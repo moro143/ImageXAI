@@ -13,11 +13,15 @@ def explain_with_lime(model, img, num_samples=1000, top_labels=1):
         model.predict,
         top_labels=top_labels,
         num_samples=num_samples,
+        random_seed=42,
     )
     return explanation
 
 
 def explain_with_shap(model, img):
+    np.random.seed(42)
+    tf.random.seed(42)
+
     def f(X):
         tmp = X.copy()
         preprocess_input(tmp)
@@ -25,7 +29,6 @@ def explain_with_shap(model, img):
 
     masker = shap.maskers.Image("inpaint_telea", img[0].shape)  # type: ignore
     explainer = shap.Explainer(f, masker)
-    print(img[0].shape)
     shap_values = explainer(
         np.array(img),
         max_evals=500,  # type: ignore
