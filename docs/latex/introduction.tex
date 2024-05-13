@@ -1,0 +1,36 @@
+% !TEX encoding = UTF-8 Unicode 
+% !TEX root = praca.tex
+
+\chapter*{Wprowadznie}
+
+\section*{Wprowadzenie do problemu}
+Przedstawienie problemu klasyfikacji obrazów przy użyciu sieci głębokich.
+
+Potrzeba XAI do zrozumienia podejmowanych decyzji.
+
+\section*{Cel pracy}
+Przedstawienie celu: zbadanie i porównanie metod XAI.
+O zbiorze ImageNet, skupić się na klasach obrazów charakteryzujących się niską 'robustness'
+
+\section*{Zakres pracy}
+Przygotowanie środowiska programistycznego i zbioru danych.
+Analiza lieratury
+Badania różnych metod XAI
+
+\section*{Wybrane Metody XAI}
+
+W dziedzinie wyjaśnialnej sztucznej inteligencji (XAI) istnieje wiele metod służących do wyjaśnienia decyzji podejmowanych przez modele uczenia maszynowego, zwłaszcza sieci neuronowe.
+W naszej pracy skupiamy się na trzech głównych metodach XAI, które są szeroko stosowane i dobrze zbadane:
+
+\begin{enumerate}
+	\item \textbf{LIME (Local Interpretable Model-agnostic Explanations)}: LIME jest techniką stosowaną do generowania lokalnych interpretacji modeli uczenia maszynowego, które są agnostyczne względem modelu.
+	      Metoda ta polega na generowaniu lokalnych wyjaśnień dla indywidualnych predykcji modelu, co pozwala na zrozumienie, dlaczego model dokonał konkretnej klasyfikacji dla danego przypadku testowego.
+
+	\item \textbf{SHAP (SHapley Additive exPlanations)}: SHAP to metoda oparta na teorii gier, która dostarcza globalnych interpretacji modeli uczenia maszynowego.
+	      Wykorzystuje ona wartości Shapleya, aby obliczyć wpływ każdej cechy na predykcje modelu.
+	      SHAP umożliwia zrozumienie, jak poszczególne cechy przyczyniają się do wyników modelu na poziomie globalnym.
+
+	\item \textbf{GradCAM (Gradient-weighted Class Activation Mapping)}: GradCAM to technika wizualizacji, która pozwala na lokalizowanie istotnych obszarów na obrazie, które przyczyniają się do konkretnej predykcji modelu.
+	      Wykorzystuje ona gradienty ostatniej warstwy sieci neuronowej w celu generowania map aktywacji klas, co umożliwia zrozumienie, które obszary obrazu były najistotniejsze dla decyzji modelu.
+\end{enumerate}
+

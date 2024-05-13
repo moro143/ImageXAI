@@ -1,0 +1,82 @@
+% !TEX encoding = UTF-8 Unicode 
+%
+% Use:
+% magister / inzynier - for master thesis or engineering thesis
+% druk / archiwum - for print version or archive version
+% en - to translate template into english
+% examples:
+%\documentclass[inzynier,druk,en] - master thesis, print version, english
+%\documentclass[magister,druk,en]{dyplom}
+%\documentclass[magister,druk]{dyplom}
+
+\documentclass[magister,druk]{dyplom}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+% Maximum section's depth.
+\setcounter{secnumdepth}{4}
+
+% Listings settings
+\setminted{breaklines, 
+frame=lines,           
+framesep=3mm,          
+baselinestretch=1.1,   
+fontsize=\small,       
+% linenos              % line numbering
+}
+
+\usepackage{lipsum}
+
+% \faculty{Faculty of \dots}                   % Uncomment if applicable
+\fieldofstudy{Informatyka techniczna}                          
+\author{inż. Mateusz Moroszczuk}
+\title{Porównanie metod XAI w klasyfikacji obrazów}
+\supervisor{dr hab. inż. Henryk Maciejewski}
+% \consultant{Consultant's name}               % Uncomment if applicable
+% \specialisation{AAA}                         % Uncomment if applicable
+\keywords{XAI, klasyfikacja obrazów}	% 3-5 keywords  
+
+\begin{document}
+
+\maketitle
+
+\input{abstract}
+
+\tableofcontents
+
+% Wprowadzenie [Prezentacja tematu i cel pracy, Znaczenie XAI w zadaniu klasyfikacji obrazów, Wybrane metody XAI]
+\input{introduction}
+
+% Przegląd literatury
+\input{literature_review}
+
+% Metodyka [Przygotowanie środowiska, charakterystyka wybranych XAI, Algorytmy i miary jakości]
+\input{methodology}
+
+% Eksperymenty i wyniki [Analiza wyjaśnienia decyzji, porównanie zgodności wyjaśnień XAI, ocena skuteczności każdego z algorytmów]
+\input{experiments}
+
+% Dyskusja [Omówienie wyników, Interpretacja metod, Wnioski]
+\input{discussion}
+
+% Wnioski
+\input{conclusions}
+
+\input{summary}
+
+% Bibliography
+\bibliographystyle{dyplom}
+\bibliography{bibliography}
+
+% Lists of figures, listings, tables
+\listoffigures
+\listoflistings
+\listoftables
+
+% Appendices - comment out if not applicable
+\appendixpage
+\appendix
+\input{appendix1}
+
+\end{document}

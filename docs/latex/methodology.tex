@@ -1,0 +1,65 @@
+% !TEX encoding = UTF-8 Unicode 
+% !TEX root = praca.tex
+
+\chapter*{Metodologia}
+
+\section*{Przygotowanie środowiska}
+
+Do przeprowadzenia eksperymentów z wybranymi metodami XAI wymagane jest odpowiednie przygotowanie środowiska programistycznego.
+W naszej pracy wykorzystujemy język Python oraz kilka popularnych bibliotek do uczenia maszynowego i przetwarzania obrazów.
+Poniżej przedstawiamy krótki opis wykorzystywanych funkcji i bibliotek:
+\begin{itemize}
+	\item \textbf{Python} - język programowania, który jest szeroko stosowany w dziedzinie uczenia maszynowego.
+	\item \textbf{TensorFlow} - biblioteka do uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{scikit-image} - biblioteka do przetwarzania obrazów, która zawiera wiele funkcji do przetwarzania obrazów.
+	\item \textbf{LIME} - biblioteka do wyjaśniania modeli uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{SHAP} - biblioteka do wyjaśniania modeli uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{numpy} - biblioteka do obliczeń numerycznych, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{matplotlib} - biblioteka do tworzenia wykresów, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+\end{itemize}
+
+\section*{Charakterystyka wybranych metod XAI}
+W tej sekcji dokładniej omówimy trzy wybrane metody wyjaśnialnej sztucznej inteligencji (XAI), które zostaly wcześniej wymienione: LIME, SHAP oraz Grad-CAM.
+
+\subsection*{LIME}
+LIME jest techniką wyjaśnialnej sztucznej inteligencji, która generuje lokalne interpretacje modeli uczenia maszynowego.
+Metoda ta jest agnostyczna względem modelu, co oznacza, że może być stosowana do różnych rodzajów modeli, niezależnie od ich architektury.
+LIME działa poprzez tworzenie lokalnych modeli, które starają się naśladować oryginalny model dla konkretnego przypadku.
+Jest to przydatne narzędzie do zrozumienia, dlaczego model dokonał konkretnej klasyfikacji dla danego przypadku testowego.
+
+\subsection*{SHAP}
+SHAP jest metodą opartą na teorii gier, która dostarcza globalnych interpretacji modeli uczenia maszynowego.
+Wykorzystuje wartości Shapleya, aby obliczyć wpływ każdej cechy na predykcje modelu.
+SHAP umożliwia zrozumienie, jak poszczególne cechy przyczyniają się do wyników modelu na poziomie globalnym.
+Jest to przydatne narzędzie do identyfikowania najważniejszych cech wpływających na predykcje modelu.
+
+\subsection*{Grad-CAM}
+GradCAM to technika wizualizacji, która pozwala na lokalizowanie istotnych obszarów na obrazie, które przyczyniają się do konkretnej predykcji modelu.
+Jest to przydatne narzędzie do zrozumienia, które obszary obrazu były decydujące dla decyzji modelu.
+GradCAM wykorzystuje gradienty ostatniej warstwy sieci neuronowej w celu generowania map aktywacji klas, co umożliwia lokalizowanie obszarów najbardziej istotnych dla klasyfikacji.
+
+\section*{Wybór hiperparametrów}
+
+\section*{Algorytmy i miary jakości}
+
+W tej sekcji opisujemy algorytmy oraz miary jakości użyte do oceny skuteczności metod wyjaśnialnej sztucznej inteligencji (XAI) w zadaniu klasyfikacji obrazów.
+Możemy je podzielić na dwie kategorie, oparte na prawdzie oraz oparte na modelu.
+
+\textbf{Miary oparte na prawdzie} są to miary, które oceniają skuteczność metod XAI na podstawie faktycznych wartości docelowych.
+
+Natomiast \textbf{miary oparte na modelu} oceniają skuteczność metod XAI do wytłumaczania modelu.
+
+\begin{enumerate}
+	\item \textbf{IOU} (Intersection over Union): Algorytm IOU jest powszechnie stosowany w zadaniach segmentacji obrazów do oceny jakości detekcji obrazów.
+	      Oblicza on stosunek powierzchni przecięcia dwóch obszarów do ich sumy.
+	      W naszym kontekście, IOU może być używany do oceny zgodności obszarów wyznaczonych przez metody XAI z rzeczywistymi obiektami na obrazie.
+
+	\item \textbf{Confidence change}: Miara ta ocenia zmianę pewności klasyfikacji na obrazach po zastosowaniu metod XAI.
+	      Jest to różnica między pewnościami klasyfikacji na oryginalnych obrazach a pewnościami klasyfikacji na obrazach zmodyfikowanych z użyciem XAI.
+	      Dzięki tej mierze możemy ocenić, czy metody XAI wpływają na zmianę pewności klasyfikacji.
+	      Obszar wyznaczony przez metody XAI powinien minimalnie zmniejszyć pewność klasyfikacji lub ją zwiększyć.
+	      Natomiast obszar poza wyznaczonym obszarem powinien drastycznie zmniejszyć pewność klasyfikacji.
+\end{enumerate}
+
+Poprzez zastosowanie tych algorytmów i miar jakości, będziemy w stanie ocenić skuteczność metod XAI w wyjaśnianiu klasyfikacji obrazów oraz ich wpływ na jakość klasyfikacji.
+
