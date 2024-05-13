@@ -20,7 +20,6 @@ def explain_with_lime(model, img, num_samples=1000, top_labels=1):
 
 def explain_with_shap(model, img):
     np.random.seed(42)
-    tf.random.seed(42)
 
     def f(X):
         tmp = X.copy()
