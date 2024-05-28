@@ -3,12 +3,122 @@
 
 \chapter*{Przegląd literatury}
 
-\section*{Literatura dotycząca metod XAI}
-Przegląd literatury dotyczącej XAI.
-Podsumowanie aktualnych badań na temat tych metod, ich zastosowania, a także porównania wnioski wyciągnięte przez badaczy.
-Aktualne wyzwania związane z wyjaśnianiem wyników modeli głębokiego uczenia
+\section*{Metody klasyfikacji obrazów}
 
-\section*{Literatura dotycząca metod klasyfikacji obrazów}
-Przegląd literatury dotyczącej klasyfikacji obrazów.
-Jak zostały zbudowane. i jakie metody użyte do szkolenia i oceny.
-Wyzwania i zagrożenia np. 'robustness'
+% PROBLEM KLASYFIKACJI OBRAZÓW
+Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie klas lub etykiet do obrazów na podstawie ich cech i właściwości.
+Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny i biologii po przemysł, marketing czy bezpieczeństwo.
+
+Klasyfikacja obrazów staje się coraz bardziej istotna w dobie wzrostu ilości dostępnych danych w postaci obrazów oraz rozwoju technik analizy obrazu.
+Wraz z postępem technologicznym i rosnącymi wymaganiami aplikacyjnymi, wzrasta zapotrzebowanie na skuteczne i wydajne metody klasyfikacji, które umożliwią automatyczną identyfikację obiektów, osób czy scen na obrazach.
+
+Jednym z głównych wyzwań w klasyfikacji obrazów jest różnorodność danych i złożoność struktury obrazów.
+Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmiarach, orientacjach i położeniach, co utrudnia automatyczne rozpoznawanie i klasyfikację.
+Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
+
+% GŁĘBOKIE SIECI 
+
+% CNN
+
+% ResNet
+
+\section*{Metody XAI}
+% XAI
+W ostatnich latach głębokie sieci neuronowe (DNN) osiągnęły niezwykłe sukcesy w wielu dziedzinach, takich jak rozpoznawanie obrazów, analiza tekstu czy przetwarzanie języka naturalnego.
+Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeba zrozumienia, dlaczego modele te podejmują konkretne decyzje.
+W kontekście krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
+
+Właśnie tutaj wchodzi w grę wyjaśnialna sztuczna inteligencja (XAI), która ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
+Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
+
+% podział
+W niniejszej sekcji przeglądu literatury skupimy się na omówieniu dwóch głównych grup metod XAI: tych opartych na podejściu Model-agnostic oraz tych opartych na podejściu Model-specific.
+Metody te różnią się swoim podejściem do wyjaśniania decyzji modeli i mają różne zalety oraz ograniczenia.
+
+% po co? | accuracy not the best metric to evaluate model
+Poprzez zgłębienie tych metod, będziemy mogli lepiej zrozumieć, jakie są różnice między nimi, jak działają i w jaki sposób mogą być stosowane w praktyce.
+Dzięki temu będziemy w stanie wybrać odpowiednią metodę XAI dla konkretnych zastosowań oraz zwiększyć zaufanie do modeli głębokiego uczenia poprzez ich lepsze zrozumienie i interpretację.
+
+\subsection*{Oparte na podejściu Model-agnostic}
+% Wprowadzenie
+Metody oparte na podejściu Model-agnostic są technikami XAI, które niezależnie od konkretnego modelu potrafią wyjaśnić jego decyzje.
+Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec różnych rodzajów modeli, co czyni je atrakcyjnym narzędziem dla praktyków i badaczy.
+
+% LIME
+\subsubsection*{LIME}
+\textbf{LIME} to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
+Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
+
+Kroki metody LIME:
+\begin{itemize}
+	\item Wybór instancji do wyjaśnienia - Na początku wybieramy konkretną instancję danych, której decyzję modelu chcemy wyjaśnić
+	\item Generowanie perturbacji - Następnie generujemy zestaw perturbowanych wersji oryginalnej instancji.
+	      Perturbacje te są tworzone przez wprowadzenie małych, losowych zmian do cech wejściowych.
+	      W przypdaku danych obrazowych, perturbacje mogą polegać na zmianie wartości pikseli lub zamaskowaniu fragmentów obrazu.
+	\item Ocena perturbowanych instancji - Każda perturbowana instancja jest następnie przekazywana do orginalnego model, aby uzyskać predykcję dla nich
+	\item Ważenie perturbacji - Perturbacje są ważone na podstawie ich odległości od orginalnej instancji.
+	      Perturbacje bliższe oryginalnej instancji mają większy wpływ na trenowanie lokalnego modelu.
+	\item Tworzenie loalnego modelu - LIME buduje prosty, lokalny model interpretowalny (np. regresja liniowa) zw oparciu o perturbowane instancje i ich odpowiadające predykcje, z uwzględnieniem ich wag.
+	      Ten model jest trenowany, aby najlepiej odwzorować zachowanie oryginalnego modelu w okolicy wybranej instancji.
+	\item Generowanie wyjaśnień - Po zbudowaniu lokalnego modelu interpretowalnego, LIME identyfikuje najważniejsze cechy, które wpływają na predykcję oryginalnego modelu dla wybranej instancji.
+	      Wyjaśnienia te są przedstawiane w postaci listy cech z przypisanymi wagami, które pokazują ich wpływ na decyzję modelu.
+\end{itemize}
+
+% SHAP
+\subsubsection*{SHAP}
+\textbf{SHAP} wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
+Metoda ta opiera się na szacowaniu Shapley values, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
+Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
+
+Teoria wartości Shapleya - wartości Shapleya pochodzą z teori gier kooperacyjnych i służą do podziału zysków (lub wpływów) między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
+Dla każdej cechy wartość Shapleya obliczana jest jako średni wkład tej cechy do wyniku modelu we wszystkich możliwych kombinacjach cech.
+
+Kroki obliczania wartości Shapleya:
+\begin{itemize}
+	\item Perturbacja danych - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech (kombinacjecech z wyjątkiem tej wybranej)
+	\item Ocena wpływu cech - Model jest uruchamiany dla każdego podzbioru cech z i bez wybranej cechy, a różnice w wynikach są mierzone
+	\item Średnia marginalna wartości - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
+\end{itemize}
+
+Obliczanie dokładnych wartości Shapleya może być obliczeniowo kosztowne, dlatego SHAP wykorzystuje różne techniki przyspieszanie obliczeń, takie jak aproksymacje i metody samplingowe.
+
+\vspace{1cm}
+% podsumowanie
+Metody Model-agnostic oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla szerokiego spektrum zastosowań. Ich zdolność do pracy z różnymi rodzajami modeli oraz możliwość generowania lokalnych wyjaśnień pozwala na lepsze zrozumienie i interpretację działania modeli głębokiego uczenia.
+
+\subsection*{Oparte na podejściu Model-specific}
+% Wprowadzenie
+Metody oparte na podejściu Model-specific to techniki XAI, które są związane bezpośrednio z architekturą i działaniem konkretnego modelu. Charakteryzują się one wysokim stopniem specjalizacji i dostosowania do konkretnych rodzajów modeli, co umożliwia uzyskanie bardziej szczegółowych i dokładnych wyjaśnień ich działania.
+
+% GradCAM
+GradCAM jest jedną z najbardziej popularnych metod Model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacyjną modelu. Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych pikseli obrazu względem konkretnej klasy. Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
+
+Metody Model-specific oferują wysoki poziom szczegółowości i precyzji w wyjaśnianiu działania konkretnych modeli, co czyni je atrakcyjnym narzędziem dla zrozumienia ich wewnętrznej logiki i mechanizmów decyzyjnych. Ich dostosowanie do konkretnych architektur modeli pozwala na uzyskanie bardziej precyzyjnych i zrozumiałych wyjaśnień, co jest kluczowe w przypadku zastosowań wymagających wysokiego stopnia pewności i zaufania do modeli.
+
+\section*{Porównywanie metod XAI w klasyfikacji obrazów}
+%Evaluating explainable artificial intelligence methods for multi-label deep learning classification tasks in remote sensing
+%DHIS - Evaluation of Explainable Artificial Intelligence: SHAP, LIME, and CAM
+%Ablation-CAM: Visual Explanations for Deep Convolutional Network via Gradient-free Localization
+%CLEVER_XAI
+Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacj obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
+Istnieją dwa główne podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
+
+\subsection*{Oparte na modelu}
+Metody oparte na modelu oceniają wyjaśnienia XAI poprzez analiże ich wpływu na wyniki modelu predykcyjnego.
+Metryki stosowane w tym podejściu:
+\begin{itemize}
+	\item Average drop in confidence and activation score - ta metryka mierzy średni spadek pewności modelu w przypadku usunięcia cech, które zostały zidentyfikowane jako ważne przez metodę XAI.
+	      Jeżeli metoda XAI poprawnie identyfikuje istotne cechy, usunięci tych cech powinno prowadzić do znaczącego spadku pewności predykcji modelu.
+	      Metryka ta jest używana do oceny, jak skutecznie metoda XAI identyfikuje krytyczne cechy wpływające na decyzję modelu.
+	\item Percent increase in confidence and activation score - ta metryka mierzy średni procentowy wzrost pewności modelu, gdy tylko cechy zidentyfikowane jako ważne przez metodę XAI pozostają w obrazie, a wszystkie inne cechy są usunięte.
+	      Jeśli metoda XAI prawidłowo identyfikuje istotne cechy, pozostawienie tylko tych cech powinno prowadzić do wzrostu pewności predykcji modelu.
+	      Ta metryka pozwala ocenić, w jakim stopniu metoda XAI może poprawić zrozumienie krytycznych cech przez model.
+\end{itemize}
+
+\subsection*{Metody oparte na prawdzie}
+Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zewnętrznymi, zdefinowanymi prawdziwymi danymi. Jedną z głównych metryk w tym podjściu jest:
+\begin{itemize}
+	\item Intersection over Union (IoU) - jest to miara pokrycia między wyjaśnieniami wygenerowanymi przez metodę XAI a zdefiniowanymi obszarami referencyjnymi w obrazie, które są uważane za istotne (np. ręcznie oznaczone przez ekspertów).
+	      IoU jest obliczane jako stosunek powierzchni przecięcia do powierzchni sumy obszarów wyjaśnień i referencji. Wysokie IoU wskazuje na dobrą zgodność wyjaśnień XAI z rzeczywistością, co oznacza, że metoda XAI skutrcznie identyfikuje istotne cechy.
+\end{itemize}

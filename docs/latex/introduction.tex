@@ -1,36 +1,28 @@
 % !TEX encoding = UTF-8 Unicode 
 % !TEX root = praca.tex
 
-\chapter*{Wprowadznie}
+\chapter*{Wstęp}
 
 \section*{Wprowadzenie do problemu}
-Przedstawienie problemu klasyfikacji obrazów przy użyciu sieci głębokich.
+Klasyfikacja obazów przy użyciu sieci głębokich (DNN) stanowi jeden z najważniejszych obszarów badawczych w dziedzinie sztucznej inteligencji.
+Dzięki swoim niezwykłym możliwościom w rozpoznawaniu wzorców, sieci głębokie są szeroko stosowane w różnych aplikacjach, takich jak diagnostyka medyczna, autonomiczne pojazdy, czy systemy rozpoznawania twarzy.
+Pomimo ich imponujących wyników, sieci głębokie są często krytykowane za swoją "czarną skrzynkę" - trudność w zrozumieniu, jak dokładnie podejmują one decyzje.
+W odpowiedzi na to wyzwanie, powstała dziedzina wyjaśnialnej sztucznej inteligencji (XAI), która ma na celu uczynienie decyzji podejmowanych przez modele AI bardziej przejrzystymi i zrozumiałymi dla użytkowników.
 
-Potrzeba XAI do zrozumienia podejmowanych decyzji.
+Potrzeba wyjaśniania decyzji podejmowanych przez modele DNN wynika z kilku kluczowych powodów.
+Po pierwsze, zrozumienie, dlaczego model podjął konkretną decyzję, jest niezbędne dla zaufania użytkowników do technologii AI, zwłaszcza w krytycznych aplikacjach, gdzie błędy mogą mieć poważne konsekwencje.
+Po drugie, wyjaśnienia pomagają w identyfikacji potencjalnych błędów modelu, umożliwiając jego dalszą optymalizację i ulepszanie.
+Wreszcie, XAI może wspierać proces zgodności z regulacjami prawnymi które częściej wymagają przejrzystości algorytmicznej.
 
 \section*{Cel pracy}
-Przedstawienie celu: zbadanie i porównanie metod XAI.
-O zbiorze ImageNet, skupić się na klasach obrazów charakteryzujących się niską 'robustness'
+Celem niniejszej pracy jest zbadanie i porównanie różnych metod XAI stosowanych w klasyfikacji obrazów.
+W ramach pracy zostaną przeanalizowane istniejące techniki wyjaśniania decyzji podejmowanych przez modele głębokie, a także ocenione ich skuteczność.
+Kluczowym elementem pracy będzie porównanie wybranych metod XAI pod kątem ich zdolności do generowania zrozumiałych i wiarygodnych wyjaśnień.
 
 \section*{Zakres pracy}
-Przygotowanie środowiska programistycznego i zbioru danych.
-Analiza lieratury
-Badania różnych metod XAI
-
-\section*{Wybrane Metody XAI}
-
-W dziedzinie wyjaśnialnej sztucznej inteligencji (XAI) istnieje wiele metod służących do wyjaśnienia decyzji podejmowanych przez modele uczenia maszynowego, zwłaszcza sieci neuronowe.
-W naszej pracy skupiamy się na trzech głównych metodach XAI, które są szeroko stosowane i dobrze zbadane:
-
-\begin{enumerate}
-	\item \textbf{LIME (Local Interpretable Model-agnostic Explanations)}: LIME jest techniką stosowaną do generowania lokalnych interpretacji modeli uczenia maszynowego, które są agnostyczne względem modelu.
-	      Metoda ta polega na generowaniu lokalnych wyjaśnień dla indywidualnych predykcji modelu, co pozwala na zrozumienie, dlaczego model dokonał konkretnej klasyfikacji dla danego przypadku testowego.
-
-	\item \textbf{SHAP (SHapley Additive exPlanations)}: SHAP to metoda oparta na teorii gier, która dostarcza globalnych interpretacji modeli uczenia maszynowego.
-	      Wykorzystuje ona wartości Shapleya, aby obliczyć wpływ każdej cechy na predykcje modelu.
-	      SHAP umożliwia zrozumienie, jak poszczególne cechy przyczyniają się do wyników modelu na poziomie globalnym.
-
-	\item \textbf{GradCAM (Gradient-weighted Class Activation Mapping)}: GradCAM to technika wizualizacji, która pozwala na lokalizowanie istotnych obszarów na obrazie, które przyczyniają się do konkretnej predykcji modelu.
-	      Wykorzystuje ona gradienty ostatniej warstwy sieci neuronowej w celu generowania map aktywacji klas, co umożliwia zrozumienie, które obszary obrazu były najistotniejsze dla decyzji modelu.
-\end{enumerate}
-
+Zakres pracy obejmuje kilka kluczowych aspektów.
+Po pierwsze, przygotowane zostanie środowisko programistyczne oraz odpowiedni zbiór danych, który umożliwi przeprowadzenie eksperymentów.
+W tym celu zostaną wybrane i skonfigurowane narzędzia oraz biblioteki niezbędne do implementacji i testowania metod XAI.
+Kolejnym krokiem będzie praktyczne badanie wybranych metod XAI.
+Będą one stosowane do analizowania wyników uzyskanych przez modele DNN na przygotowanym zbiorze danych.
+Na koniec, wyniki eksperymentów zostaną porównane i omówione, co pozwoli na wyciągnięcie wniosków dotyczących efektywności poszczególnych metod oraz wskazanie ich zalet oraz ograniczeń.

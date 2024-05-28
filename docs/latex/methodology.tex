@@ -1,44 +1,57 @@
 % !TEX encoding = UTF-8 Unicode 
 % !TEX root = praca.tex
 
-\chapter*{Metodologia}
+\chapter*{Metodyka badań}
 
 \section*{Przygotowanie środowiska}
 
 Do przeprowadzenia eksperymentów z wybranymi metodami XAI wymagane jest odpowiednie przygotowanie środowiska programistycznego.
-W naszej pracy wykorzystujemy język Python oraz kilka popularnych bibliotek do uczenia maszynowego i przetwarzania obrazów.
-Poniżej przedstawiamy krótki opis wykorzystywanych funkcji i bibliotek:
+W naszej pracy wykorzystujemy  następujące narzędzia i biblioteki:
 \begin{itemize}
-	\item \textbf{Python} - język programowania, który jest szeroko stosowany w dziedzinie uczenia maszynowego.
-	\item \textbf{TensorFlow} - biblioteka do uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{Python} - wysokopoziomowy język programowania, który jest szeroko stosowany w dziedzinie nauki o danych i uczenia maszynowego.
+	      Jest to główny język używany w naszych badaniach.
+	\item \textbf{TensorFlow} - popularna biblioteka open-source do uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego do tworzenia i trenowania modeli głębokich.
+	\item \textbf{LIME} - biblioteka do generowania lokalnie interpretowalnych wyjaśnień dla decyzji modelu. (lime\_image)
+	\item \textbf{SHAP} - biblioteka oparta na teorii gier, która oblicza wartości Shapleya, określająca wpływ poszczególnych cech na wynik modelu.
+	\item \textbf{numpy} - biblioteka do obliczeń numerycznych, która jest szeroko stosowana.
+	\item \textbf{matplotlib} - biblioteka do tworzenia wykresów i wizualizacji danych, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
 	\item \textbf{scikit-image} - biblioteka do przetwarzania obrazów, która zawiera wiele funkcji do przetwarzania obrazów.
-	\item \textbf{LIME} - biblioteka do wyjaśniania modeli uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
-	\item \textbf{SHAP} - biblioteka do wyjaśniania modeli uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
-	\item \textbf{numpy} - biblioteka do obliczeń numerycznych, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
-	\item \textbf{matplotlib} - biblioteka do tworzenia wykresów, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{Pandas} - biblioteka do manipulacji i analizy danych, które oferuje struktury danyc hi narzędzia do przetwarzania danych tabelarycznych.
+	      Jest szczególnie użyteczna do zarządzania i analizowania zbiorów danych używanych w badaniach.
 \end{itemize}
+Środowisko to pozwala na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
+Narzędzia te umożliwiają także wizualizację wyników, co jest kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
-\section*{Charakterystyka wybranych metod XAI}
-W tej sekcji dokładniej omówimy trzy wybrane metody wyjaśnialnej sztucznej inteligencji (XAI), które zostaly wcześniej wymienione: LIME, SHAP oraz Grad-CAM.
+\section*{Jak zostały wykorzystane metody}
+W celu zrozumienia, jak różne metody XAI mogą wyjaśnić decyzje modeli głębokiego uczenia w kontekście klasyfikacji obrazów, wykorzystaliśmy trzy różne techniki: LIME, SHAP oraz GradCAM.
+Poniżej przedstawiamy sposób, w jaki każda z tech metod została zastosowana w naszych badaniach.
 
 \subsection*{LIME}
-LIME jest techniką wyjaśnialnej sztucznej inteligencji, która generuje lokalne interpretacje modeli uczenia maszynowego.
-Metoda ta jest agnostyczna względem modelu, co oznacza, że może być stosowana do różnych rodzajów modeli, niezależnie od ich architektury.
-LIME działa poprzez tworzenie lokalnych modeli, które starają się naśladować oryginalny model dla konkretnego przypadku.
-Jest to przydatne narzędzie do zrozumienia, dlaczego model dokonał konkretnej klasyfikacji dla danego przypadku testowego.
 
 \subsection*{SHAP}
-SHAP jest metodą opartą na teorii gier, która dostarcza globalnych interpretacji modeli uczenia maszynowego.
-Wykorzystuje wartości Shapleya, aby obliczyć wpływ każdej cechy na predykcje modelu.
-SHAP umożliwia zrozumienie, jak poszczególne cechy przyczyniają się do wyników modelu na poziomie globalnym.
-Jest to przydatne narzędzie do identyfikowania najważniejszych cech wpływających na predykcje modelu.
 
 \subsection*{Grad-CAM}
-GradCAM to technika wizualizacji, która pozwala na lokalizowanie istotnych obszarów na obrazie, które przyczyniają się do konkretnej predykcji modelu.
-Jest to przydatne narzędzie do zrozumienia, które obszary obrazu były decydujące dla decyzji modelu.
-GradCAM wykorzystuje gradienty ostatniej warstwy sieci neuronowej w celu generowania map aktywacji klas, co umożliwia lokalizowanie obszarów najbardziej istotnych dla klasyfikacji.
 
-\section*{Wybór hiperparametrów}
+\section*{Wybór parametrów}
+Wybór odopwiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
+Parametry mają bezpośredni wpływ na jakość, dokładność i interpretowalność wyników generowanych przez modele i metody XAI.
+W tej sekcji omówimy, jakie parametry zostały wybrane dla każdej z zastosowanych metod (LIME, SHAP i GradCAM), oraz jak te parametry wpływają na wyniki i interpretacje uzyskane w naszych badaniach
+
+\subsection*{LIME}
+LimeImageExplainer(kernel width=0.25, kernel=exponential kernel, feature selection='auto', random state=None)
+kernel width for exponential kernel
+kernel - exponential kernel
+future selection - auto | other: forward selection, lasso path, none, auto
+random state
+
+explain instance(image, classifier fn=model, labels=top label, top labels=1, num features=100000?, num samples=1000, batch size=10?, segmentation fn=???, random seed=42)
+labels, top labels - dla jednaj najwazniejszej labelki
+num features - default 100 000
+num samples - 1000
+
+\subsection*{SHAP}
+
+\subsection*{GradCAM}
 
 \section*{Algorytmy i miary jakości}
 
