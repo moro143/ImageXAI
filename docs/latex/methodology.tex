@@ -22,6 +22,9 @@ W naszej pracy wykorzystujemy  następujące narzędzia i biblioteki:
 Środowisko to pozwala na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
 Narzędzia te umożliwiają także wizualizację wyników, co jest kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
+Dodatkowo została użyta baza danych ImageNetS jest to podzbiór ImageNet który zawiera 9 kategorii które posiadają 450 obrazów każda.
+Poza tym zawierają także oznaczone przez ekspertów obiekty klasyfikowane, dzięki czemu posiadamy wiedzę istotnych obszarów obrazów.
+
 \section*{Jak zostały wykorzystane metody}
 W celu zrozumienia, jak różne metody XAI mogą wyjaśnić decyzje modeli głębokiego uczenia w kontekście klasyfikacji obrazów, wykorzystaliśmy trzy różne techniki: LIME, SHAP oraz GradCAM.
 Poniżej przedstawiamy sposób, w jaki każda z tech metod została zastosowana w naszych badaniach.
@@ -32,26 +35,60 @@ Poniżej przedstawiamy sposób, w jaki każda z tech metod została zastosowana 
 
 \subsection*{Grad-CAM}
 
-\section*{Wybór parametrów}
+\section*{Wybór parametrów metod XAI}
 Wybór odopwiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
 Parametry mają bezpośredni wpływ na jakość, dokładność i interpretowalność wyników generowanych przez modele i metody XAI.
 W tej sekcji omówimy, jakie parametry zostały wybrane dla każdej z zastosowanych metod (LIME, SHAP i GradCAM), oraz jak te parametry wpływają na wyniki i interpretacje uzyskane w naszych badaniach
 
 \subsection*{LIME}
-LimeImageExplainer(kernel width=0.25, kernel=exponential kernel, feature selection='auto', random state=None)
-kernel width for exponential kernel
-kernel - exponential kernel
-future selection - auto | other: forward selection, lasso path, none, auto
-random state
+W celu porównania metod na większej ilości obrazów musimy ustalić wartości parametrów dla technik.
+W bibliotece LIME używamy tych parametrów LIME tutaja porównamy najważniejsze/najbardziej wpływowe.
 
-explain instance(image, classifier fn=model, labels=top label, top labels=1, num features=100000?, num samples=1000, batch size=10?, segmentation fn=???, random seed=42)
-labels, top labels - dla jednaj najwazniejszej labelki
-num features - default 100 000
-num samples - 1000
+Parametr \textbf{kernel\_width} kontroluje szerokość jądra używanego do wagowania odległości między próbkami. W naszum przypadku ustawiliśmy domyślną wartość 0.25.
+Mniejsza wrtość prowadzi do większej wagi sla punktów bliżej wyjaśnianej instancji.
+
+Kolejnym parametrem ddo dostosowania wartości jest 'karnel' który ustawiamy na domyślny 'exponential\_kernel'.
+Co sprawia że wagi maleją wykładniczo wraz z odległości.
+Inne opcje to: 
+
+Paramter feature\_selection to metoda wybierania cech do wyjaśnienia. Możliwe jest użycie 'forward\_selection', 'lasso\_path', 'none' oraz 'auto'. U nas wybraliśmy 'auto'. 
+
+Parametr 'labels' wybieramy jedna klasę którą chcemy wytłumaczyć, z tego samego powodu parametr num\_features ustawiamy na 1, ponieważ tyko jedną klase chcemy wytumaczy.
+
+Parametr 'num\_features' to liczba cech używanych do wyjaśnień.
+Ustawienie na 5 oznacza, że wyjaśnienie będzie oparte na 5 najważniejszych cechach.
+
+Paramtre 'segmentation\_fn' to dunkcja segmentacji, która dzieli obraz na superpiksele.
+Segmentacja obrazu wpływa na granulowość wyjaśnień.
+
+Parametr 'num\_samples' to liczba próbek generowanych wokół wyjaśnianej instancji.
+W naszum badaniu to 1000, aby ograniczyć koszty obliczeniowe techniki.
+
+Ustawiliśmy także paramte 'positive\_only' gdyż interesują nas jedynie cechy pozytywnie wpływające na klasyfikację.
+
+Paramter 'min\_weight' to minimlna waga cech, która musi być spełniona, aby cech była uwzględniona w wyjaśnieniu.
+Ustawienie na 0.0 oznacz, że wszystkie cechy będą branę pod uwagę.j
 
 \subsection*{SHAP}
+Tak samo musimy zrobić z metodą SHAP
+
+Pierwszym parametrem do wbyrania jest użycie typu maskowania 'inpaint\_telea', co oznacza ze maskowane regiony obrazu są wyznaczane przy użyciu algorytmu inpaintingowego Telea.
+
+Parametr max\_evals to liczba maksymalnych ewaluacji modelu.
+Ustawiliśmy go na 500, zwiększenie może poprawić jakość wyjaśnień, lecz zwiększy także czas obliczeń.
+
+Parametr batch\_size zwiększanie może wpłynąć na wydajność obliczeń.
+
+Dadatkowo musimy stworzyć parametr 'threshold' który określi minimalną wartość cechy, aby mogła być uwzględnina w wyjaśnieniu.
+Jest to robione aby otrzymać obszary, które mają największy wpływ.
 
 \subsection*{GradCAM}
+Tak samo musimy przygotować GradCAM.
+
+Pierwszym wyborem jest wybór warstwy konwolucyjnej za pomocą której chcemy wyjaśnić decyzję.
+Wybierana jest ostatnie ponieważ posiada ona najbardzie wysokopoziomowe cechy, warstwy konwolucyjne wyciągają cechy w sposób hierarchiczny.
+
+Tak samo jak w SHAP musimy stworzyć parametr 'threshold' aby być w stanie porównywać te metody.
 
 \section*{Algorytmy i miary jakości}
 
@@ -76,3 +113,15 @@ Natomiast \textbf{miary oparte na modelu} oceniają skuteczność metod XAI do w
 
 Poprzez zastosowanie tych algorytmów i miar jakości, będziemy w stanie ocenić skuteczność metod XAI w wyjaśnianiu klasyfikacji obrazów oraz ich wpływ na jakość klasyfikacji.
 
+\section*{Plan badań}
+
+\begin{itemize}
+  \item Przygotowanie środowiska
+  \item Dobór parametrów
+  \item Wygenerowanie wyjaśnień za pomocą wybranych metod
+  \item Wykonanie podstawowych badań na wszystkich obrazach za pomocą wybranych miar jakości
+  \item Wykonanie badań grupując na kategorie
+  \item wykonanie badań biorąc pod uwagę pewność modelu
+  \item Wykonanie podstawowych badań dla innego modelu
+  \item Wykonanie podstawowych badań dla specyficznych klas 
+\end{itemize}
