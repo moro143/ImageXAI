@@ -2,53 +2,82 @@
 % !TEX root = praca.tex
 
 \chapter*{Przegląd literatury}
-
 \section*{Metody klasyfikacji obrazów}
 
 % PROBLEM KLASYFIKACJI OBRAZÓW
-Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie klas lub etykiet do obrazów na podstawie ich cech i właściwości.
+Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet do obrazów na podstawie ich cech.
 Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny i biologii po przemysł, marketing czy bezpieczeństwo.
-
-Klasyfikacja obrazów staje się coraz bardziej istotna w dobie wzrostu ilości dostępnych danych w postaci obrazów oraz rozwoju technik analizy obrazu.
-Wraz z postępem technologicznym i rosnącymi wymaganiami aplikacyjnymi, wzrasta zapotrzebowanie na skuteczne i wydajne metody klasyfikacji, które umożliwią automatyczną identyfikację obiektów, osób czy scen na obrazach.
 
 Jednym z głównych wyzwań w klasyfikacji obrazów jest różnorodność danych i złożoność struktury obrazów.
 Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmiarach, orientacjach i położeniach, co utrudnia automatyczne rozpoznawanie i klasyfikację.
 Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
+Negatywny wpływ na jakość klasyfikacji mogą mieć zbiory danych, jeśli obrazy pochodzą z tego samego źródła, może to powodować uczenie się modelu nieprawidłowych cech.
 
-% GŁĘBOKIE SIECI 
+Szczególnym źródłem problemów mogą być zbiory danych, jeśli wszystkie dane pochodzą z tego samego źródła, może to powodować przuczenie się modelu, poprzez nauczenie się modelu nieprawidłowych cech w celu klasyfikacji.
 
-% CNN
+Głębokie sieci neuronowe (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
-% ResNet
+Sieci konwolucyjne (CNN) są szczególnie skutecznym rodzajami głębokich sieci neuronowych stworzonym do przetwarzania danych obrazowych.
+Ich achitektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
+Podstawowymi elementami sieci konwolucyjnch są:
+\begin{itemize}
+  \item \textbf{Warstwy konowlucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
+    Ta operacja pozwala na wyodrębnienie lokalnych cech z tego obrazu, takich jak krawędzie, tekstury czy wzory.
+  \item \textbf{Warstwy poolingowe}, występują po warstwach konwolucyjnych , redukują wymiary przestrzenne map cech.
+\end{itemize}
+Sieci konwolucyjne są szczególnie skuteczne w analizie danych obrazowych ze względu na ich zdolność do automatycznego wyodrębniania cech lokalnych i hierarchicznego uczenia się abstrakcji na różnych poziomach.
+Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentaacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
+
+ResNet (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
+Problem zanikającego gradientu występuje gdy uczenie się modelu staje się trudniejsze wraz ze wzrostem liczby warstw, co prowadzi do ograniczenia wydajności modelu.
+
+Główną cechą ResNet są tzw. bloki rezydualne, które wprowadzają połączenia skrótowe (shortcut connections) między warstwami, pozwalając na przekazywanie informacji wstecz w sieci.
+Dzięki tym połączeniom model może uczyć się reszty (residuum) funkcji, co eliminuje problem zanikającego gradientu.
+Znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
+Ta cecha sprawia, ze ResNet stał się jedną z najbardziej popularnych architektur w dziedzinie rozpoznawania obrazów, osiągając znakomite wyniki.
+
+ResNet50 jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
+Jest to jedna z najpopularniejszych wariantów ResNet.
 
 \section*{Metody XAI}
-% XAI
 W ostatnich latach głębokie sieci neuronowe (DNN) osiągnęły niezwykłe sukcesy w wielu dziedzinach, takich jak rozpoznawanie obrazów, analiza tekstu czy przetwarzanie języka naturalnego.
 Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeba zrozumienia, dlaczego modele te podejmują konkretne decyzje.
 W kontekście krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
 
 Właśnie tutaj wchodzi w grę wyjaśnialna sztuczna inteligencja (XAI), która ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
-Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
+Będąc w stanie określić jakie cechy mialy wpływ na predykcję, jesteśmy w stanie ocenić czy nauczył się w odpowiedni sposób, mając odpowiednią wiedzę na temat danych treningowych.
+Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
 
-% podział
-W niniejszej sekcji przeglądu literatury skupimy się na omówieniu dwóch głównych grup metod XAI: tych opartych na podejściu Model-agnostic oraz tych opartych na podejściu Model-specific.
+W niniejszej części przeglądu literatury skupimy się na omówieniu dwóch głównych grup metod XAI: 
+\begin{itemize}
+  \item Metody niezależne od modelu (Model-agnostic)
+  \item Metody zależne od modelu (Model-specific)
+\end{itemize}
 Metody te różnią się swoim podejściem do wyjaśniania decyzji modeli i mają różne zalety oraz ograniczenia.
 
-% po co? | accuracy not the best metric to evaluate model
 Poprzez zgłębienie tych metod, będziemy mogli lepiej zrozumieć, jakie są różnice między nimi, jak działają i w jaki sposób mogą być stosowane w praktyce.
 Dzięki temu będziemy w stanie wybrać odpowiednią metodę XAI dla konkretnych zastosowań oraz zwiększyć zaufanie do modeli głębokiego uczenia poprzez ich lepsze zrozumienie i interpretację.
 
-\subsection*{Oparte na podejściu Model-agnostic}
-% Wprowadzenie
+\subsection*{Model-agnostic}
 Metody oparte na podejściu Model-agnostic są technikami XAI, które niezależnie od konkretnego modelu potrafią wyjaśnić jego decyzje.
 Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec różnych rodzajów modeli, co czyni je atrakcyjnym narzędziem dla praktyków i badaczy.
 
-% LIME
+Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikownych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
+
 \subsubsection*{LIME}
-\textbf{LIME} to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+\textbf{LIME} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
+
+\begin{listing}
+  \begin{minted}{c}
+    int main()
+    {
+      int a=2*3;
+    }
+  \end{minted}
+  \caption{Pseudo kod} \label{listing:lime}
+\end{listing}
 
 Kroki metody LIME:
 \begin{itemize}
