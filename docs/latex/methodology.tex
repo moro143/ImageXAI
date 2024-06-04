@@ -5,123 +5,307 @@
 
 \section*{Przygotowanie środowiska}
 
-Do przeprowadzenia eksperymentów z wybranymi metodami XAI wymagane jest odpowiednie przygotowanie środowiska programistycznego.
-W naszej pracy wykorzystujemy  następujące narzędzia i biblioteki:
+Do przeprowadzenia eksperymentów z wybranymi metodami XAI wymagane było odpowiednie przygotowanie środowiska programistycznego.
+W tej pracy wykorzystano  następujące narzędzia i biblioteki:
 \begin{itemize}
 	\item \textbf{Python} - wysokopoziomowy język programowania, który jest szeroko stosowany w dziedzinie nauki o danych i uczenia maszynowego.
-	      Jest to główny język używany w naszych badaniach.
+	      Był to główny język używany w badaniach.
 	\item \textbf{TensorFlow} - popularna biblioteka open-source do uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego do tworzenia i trenowania modeli głębokich.
-	\item \textbf{LIME} - biblioteka do generowania lokalnie interpretowalnych wyjaśnień dla decyzji modelu. (lime\_image)
+	\item \textbf{LIME} - biblioteka do generowania lokalnie interpretowalnych wyjaśnień dla decyzji modelu.
 	\item \textbf{SHAP} - biblioteka oparta na teorii gier, która oblicza wartości Shapleya, określająca wpływ poszczególnych cech na wynik modelu.
-	\item \textbf{numpy} - biblioteka do obliczeń numerycznych, która jest szeroko stosowana.
-	\item \textbf{matplotlib} - biblioteka do tworzenia wykresów i wizualizacji danych, która jest szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{numpy} - szeroko stosowana biblioteka do obliczeń numerycznych.
+	\item \textbf{matplotlib} - biblioteka do tworzenia wykresów i wizualizacji danych, szeroko stosowana w dziedzinie uczenia maszynowego.
 	\item \textbf{scikit-image} - biblioteka do przetwarzania obrazów, która zawiera wiele funkcji do przetwarzania obrazów.
 	\item \textbf{Pandas} - biblioteka do manipulacji i analizy danych, które oferuje struktury danyc hi narzędzia do przetwarzania danych tabelarycznych.
-	      Jest szczególnie użyteczna do zarządzania i analizowania zbiorów danych używanych w badaniach.
+	      Szczególnie użyteczna do zarządzania i analizowania zbiorów danych używanych w badaniach.
+	\item \textbf{seabron} - biblioteka do tworzenia wykresów i wizualizacji danych, współgrająca z biblioteką pandas
 \end{itemize}
-Środowisko to pozwala na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
-Narzędzia te umożliwiają także wizualizację wyników, co jest kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
+Środowisko to pozwoliło na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
+Narzędzia te umożłiwiły także wizualizację wyników, co było kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
-Dodatkowo została użyta baza danych ImageNetS jest to podzbiór ImageNet który zawiera 9 kategorii które posiadają 450 obrazów każda.
-Poza tym zawierają także oznaczone przez ekspertów obiekty klasyfikowane, dzięki czemu posiadamy wiedzę istotnych obszarów obrazów.
-
-\section*{Jak zostały wykorzystane metody}
-W celu zrozumienia, jak różne metody XAI mogą wyjaśnić decyzje modeli głębokiego uczenia w kontekście klasyfikacji obrazów, wykorzystaliśmy trzy różne techniki: LIME, SHAP oraz GradCAM.
-Poniżej przedstawiamy sposób, w jaki każda z tech metod została zastosowana w naszych badaniach.
-
-\subsection*{LIME}
-
-\subsection*{SHAP}
-
-\subsection*{Grad-CAM}
+Dodatkowo, wykorzystano baza danych \textbf{ImageNetS} jest to podzbiór ImageNet który zawiera 9 kategorii, z których każda posiada 450 obrazów.
+Baza ta zawietała również oznaczone przez ekspertów obszary obiektów klasyfikowanych, co pozwalało na posiadanie wiedzy o ważnych obszarach.
+Kategorie obejmowały:
+\begin{itemize}
+	\item Pies (dog)
+	\item Ptak (bird)
+	\item Pojazd na kółkach (wheeled vehicle)
+	\item Gad (reptile)
+	\item Mięsożerca (carnivore)
+	\item Insekt (insect)
+	\item Instrumenty muzyczne (musical instrument)
+	\item Naczelny (primate)
+	\item Ryba (fish)
+\end{itemize}
 
 \section*{Wybór parametrów metod XAI}
 Wybór odopwiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
 Parametry mają bezpośredni wpływ na jakość, dokładność i interpretowalność wyników generowanych przez modele i metody XAI.
-W tej sekcji omówimy, jakie parametry zostały wybrane dla każdej z zastosowanych metod (LIME, SHAP i GradCAM), oraz jak te parametry wpływają na wyniki i interpretacje uzyskane w naszych badaniach
+W tej sekcji omówione zostało, jakie parametry zostały wybrane dla każdej z zastosowanych metod (LIME, SHAP i GradCAM), oraz jak te parametry wpływają na wyniki i interpretacje uzyskane w badaniach
 
 \subsection*{LIME}
-W celu porównania metod na większej ilości obrazów musimy ustalić wartości parametrów dla technik.
-W bibliotece LIME używamy tych parametrów LIME tutaja porównamy najważniejsze/najbardziej wpływowe.
+W celu porównania metod na większej liczbie obrazów konieczne było ustalenie wartości parametrów dla poszczególnych technik.
+W bibliotece LIME używamy tych parametrów LIME:
+\begin{itemize}
+	\item \textbf{num samples}
+	\item \textbf{num features}
+	\item \textbf{possitive only}
+	\item \textbf{min weight}
+\end{itemize}
 
-Parametr \textbf{kernel\_width} kontroluje szerokość jądra używanego do wagowania odległości między próbkami. W naszum przypadku ustawiliśmy domyślną wartość 0.25.
-Mniejsza wrtość prowadzi do większej wagi sla punktów bliżej wyjaśnianej instancji.
+Parametr \textbf{'num\_samples'} to liczba próbek generowanych wokół wyjaśnianej instancji.
+Wyjaśnienia LIME opierają się na lokalnych modelach zastępczych, które są trenowane na perturbowanych wersjach oryginalnych danych wejściowych.
+Zbyt mała liczba próbek może prowadzić do niedokładnych wyjaśnień, ponieważ lokalny model zastępczy może nie być w stanie prawidłowo uchwycić istotnych wzorców w danych.
+Z drugiej strony, zbyt duża liczba próbek może prowadzić do znacznych kosztów obliczeniowych, co wydłuża czas potrzebny na wygenerowanie wyjaśnień.
+W tej pracy użyto wartości num\_samples=1000, co stanowi kompromis między dokładnością wyjaśnień a kosztami obliczeniowymi.
 
-Kolejnym parametrem ddo dostosowania wartości jest 'karnel' który ustawiamy na domyślny 'exponential\_kernel'.
-Co sprawia że wagi maleją wykładniczo wraz z odległości.
-Inne opcje to: 
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_5}
+		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples=5}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_1000}
+		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples 1000}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_5000}
+		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples 5000}  \label{rys:parameters_lime_numsamples_5000}
+	\end{minipage}
+\end{figure}
 
-Paramter feature\_selection to metoda wybierania cech do wyjaśnienia. Możliwe jest użycie 'forward\_selection', 'lasso\_path', 'none' oraz 'auto'. U nas wybraliśmy 'auto'. 
+Parametr \textbf{'num\_features'} oznacza maksymalną ilość cech które mogą występować w wyjaśnieniu.
+Wyjaśnienia LIME polegają na identyfikacji najważniejszych cech, które wþływają na decyzję modelu w danym punkcie.
+W przypadku obrazów, cech te są reprezentowane przez superpiksele, czyli segmenty obrazu zawierające grupy pikseli.
+Określenie zbyt niskiej wartości dla num\_features może prowadzić do pominięcia istotnych cech, co skutkuje niepełnym wyjaśnieniem.
+Z kolei zbyt wysoka wartość może sprawić, że wyjaśnienie będzie zawerało nadmiarowe informacje, które mogą być trudnę do interpretacji.
 
-Parametr 'labels' wybieramy jedna klasę którą chcemy wytłumaczyć, z tego samego powodu parametr num\_features ustawiamy na 1, ponieważ tyko jedną klase chcemy wytumaczy.
+W przypadku tej pracy, ponieważ obraz jest dzielony na części (superpiksele), nawet duża wartość parametru num\_features daje stosunkowo małą ilość cech.
+Użytwo dużej wartości, aby nie ominąć żadnych istotnych cech.
+Dlatego w tej pracy pozostawiono domyślną wartość num\_features = 100000, aby zapewnić, że wszystkie potencjalnie ważne cechy zostaną uwzględnione w wyjaśnieniach.
 
-Parametr 'num\_features' to liczba cech używanych do wyjaśnień.
-Ustawienie na 5 oznacza, że wyjaśnienie będzie oparte na 5 najważniejszych cechach.
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_features_2}
+		\caption{Przykład wyjaśnienia LIME dla parametru num\_features 2}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_features_100000}
+		\caption{Przykład wyjaśnienia LIME dla parametru num\_features 100000}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
-Paramtre 'segmentation\_fn' to dunkcja segmentacji, która dzieli obraz na superpiksele.
-Segmentacja obrazu wpływa na granulowość wyjaśnień.
+Parametr \textbf{'positive\_only'} określa, czy wyjaśnienia powinny uwzględniać tylko cechy, które mają pozytywny wpływ na klasyfikację.
+Ustawienie tego parametru na prawdziwy pomaga w identyfikowaniu pozytywnych cech, które wpływają na decyzję modelu.
+Natomiast ustawienie tego parametru na prawdziwy pomaga w identyfikowaniu także negatywnych cech.
+Ta praca skupia się na wyjaśnianiu dlaczego model podją daną decyzję więc parametr \textbf{positive\_only} jest ustawiony na prawdziwy.
 
-Parametr 'num\_samples' to liczba próbek generowanych wokół wyjaśnianej instancji.
-W naszum badaniu to 1000, aby ograniczyć koszty obliczeniowe techniki.
+Parametr \textbf{min\_weight} określa minimalną wagę cech, która musi być spełniona, aby cecha była uwzględniona w wyjaśnieniu.
+Ustawienie wartości na 0.0 oznacza, że wszystkie cechy będą brane pod uwagę, niezależnie od ich wpływu na decyzję modelu.
+W praktyce jednak, zbyt duża liczba cech może skomplikować wyjaśnienia i uczynić je trudniejszymi do interpretacji.
+Dlatego w niektórych przypadkach może być użyteczne ustawienie tej wartości na wyższą, aby uwzględniać tylko te cechy, które mają istotny wpływ na wynik.
+W tej pracy ustawiono min\_weight na 0.0, aby uwzględnić wszystkie cechy w wyjaśnieniach.
 
-Ustawiliśmy także paramte 'positive\_only' gdyż interesują nas jedynie cechy pozytywnie wpływające na klasyfikację.
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_00}
+		\caption{Przykład wyjaśnienia LIME dla parametru min\_weight 0.0}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_03}
+		\caption{Przykład wyjaśnienia LIME dla parametru min\_weight 0.3}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
-Paramter 'min\_weight' to minimlna waga cech, która musi być spełniona, aby cech była uwzględniona w wyjaśnieniu.
-Ustawienie na 0.0 oznacz, że wszystkie cechy będą branę pod uwagę.j
 
 \subsection*{SHAP}
-Tak samo musimy zrobić z metodą SHAP
+Analogicznie do metody LIME, musimy ustalić odpowiednie parametry dla metody SHAP.
+Parametry mają kluczowe znaczenie dla uzyskania dokładnych i interpretowalnych wyjaśnień.
+W przypadku metody SHAP, wybrano dwa główne parametry:
+\begin{itemize}
+	\item \textbf{max\_evals}
+	\item \textbf{threshold}
+\end{itemize}
 
-Pierwszym parametrem do wbyrania jest użycie typu maskowania 'inpaint\_telea', co oznacza ze maskowane regiony obrazu są wyznaczane przy użyciu algorytmu inpaintingowego Telea.
+Parametr max\_evals to liczba maksymalnych ewaluacji modelu, które mogą być wykonane w celu obliczenia wartości SHAP.
+Wartość ta ma bezpośredni wpływ na jakość i dokładność wyjaśnień.
+Wyższa liczba ewaluacji zazwyczaj prowadzi do bardziej precyzyjnych wyników, ponieważ pozwala na lepsze oszacowanie wpływu poszczególnych cech na wynik modelu.
+Jednakże, zwiększenie wartości max\_evals wiąże się również ze zwiększonymi kosztami obliczeniowymi, co może być istotne przy analizie dużych zbiorów danych lub skomplikowanych modeli.
 
-Parametr max\_evals to liczba maksymalnych ewaluacji modelu.
-Ustawiliśmy go na 500, zwiększenie może poprawić jakość wyjaśnień, lecz zwiększy także czas obliczeń.
+W tej pracy ustaliliśmy wartość max\_evals na 500, co stanowi kompromis pomiędzy dokładnością wyjaśnień a czasem potrzebnym na ich obliczenie.
 
-Parametr batch\_size zwiększanie może wpłynąć na wydajność obliczeń.
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/shap/max_evals_10}
+		\caption{Przykład wyjaśnienia SHAP dla parametru max\_evals 10}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/shap/max_evals_500}
+		\caption{Przykład wyjaśnienia SHAP dla parametru max\_evals 500}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
+Parametr \textbf{threshold} określa minimalną wartość cechy, która musi być spełniona, aby cecha została uwzględniona w wyjaśnieniu.
+Wartość progowa jest ważna, ponieważ pozwala na filtrowanie mniej istotnych cech, co może uprościć wyjaśnienia i uczynić je bardziej zrozumiałymi.
+W przypadku obrazów, gdzie liczba cech jest bardzo duża, odpowiednie ustawienie tego parametru jest kluczowe.
 
-Dadatkowo musimy stworzyć parametr 'threshold' który określi minimalną wartość cechy, aby mogła być uwzględnina w wyjaśnieniu.
-Jest to robione aby otrzymać obszary, które mają największy wpływ.
+W tej pracy ustaliliśmy wartość threshold jako średnią wartość cechy dla danego obrazu.
+Parametr ten został stworzony, aby umożliwić porównywanie różnych metod wyjaśniania.
+Threshold pełni kluczową rolę w procesie modyfikacji zbioru cech wyjaśnień.
+Względem tego parametru, wybierane są tylko te cechy, których wartości są większe lub równe średniej wartości cech.
+Dzięki temu mechanizmowi, wyjaśnienia koncentrują się na cechach, które mają znaczący wpływ na decyzję modelu, eliminując te, które mają minimalny wpływ.
+W efekcie, wyjaśnienia stają się bardziej skoncentrowane na kluczowych cechach decyzyjnych.
+\begin{equation}
+	\hat{E} =  \{ e_i \in E \mid e_i \geq \frac{1}{|E|}\sum_{i=1}^{|E|} e_i \}
+	\label{eq:modified_explanation}
+\end{equation}
+Gdzie:
+\begin{itemize}[label=]
+	\item $\hat{E}$ to zbiór zmodyfikowanych wartości cech wyjaśnień
+	\item $\text{E}$ to oryginalny zbiór wartości cech wyjaśnień
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_base}
+		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_mean}
+		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
 \subsection*{GradCAM}
-Tak samo musimy przygotować GradCAM.
+W przypadku metody GradCAM również musimy skonfigurować parametr "threshold", który pozwoli nam porównać różne wyjaśnienia generowane przez tę metodę.
+Parametr ten jest istotny dla procesu modyfikacji wyjaśnień, podobnie jak miało to miejsce w przypadku metody SHAP.
+Wartość "threshold" w metodzie GradCAM określa minimalną wartość pikseli, które będą uwzględnione w wyjaśnieniu.
+Im wyższa wartość threshold, tym mniej pikseli zostanie uwzględnionych, co może prowadzić do bardziej skupionych wyjaśnień na kluczowych obszarach obrazu.
+Z kolei niższa wartość threshold może uwzględnić więcej pikseli, co może prowadzić do bardziej rozproszonych wyjaśnień.
 
-Pierwszym wyborem jest wybór warstwy konwolucyjnej za pomocą której chcemy wyjaśnić decyzję.
-Wybierana jest ostatnie ponieważ posiada ona najbardzie wysokopoziomowe cechy, warstwy konwolucyjne wyciągają cechy w sposób hierarchiczny.
+Wybrana została wartoś cthreshold na poziomie 0.2.
+\begin{equation}
+	\hat{E} =  \{ e_i \in E \mid e_i \geq 0.2 \}
+	\label{eq:modified_explanation_gradcam}
+\end{equation}
+Gdzie:
+\begin{itemize}[label=]
+	\item $\hat{E}$ to zbiór zmodyfikowanych wartości cech wyjaśnień
+	\item $\text{E}$ to oryginalny zbiór wartości cech wyjaśnień
+\end{itemize}
 
-Tak samo jak w SHAP musimy stworzyć parametr 'threshold' aby być w stanie porównywać te metody.
+\begin{figure}
+	\centering
+	\begin{minipage}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_base}
+		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_01}
+		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
+\begin{figure}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_02}
+		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_05}
+		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+	\begin{minipage}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_09}
+		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
-\section*{Algorytmy i miary jakości}
+\section*{Miary jakości}
 
-W tej sekcji opisujemy algorytmy oraz miary jakości użyte do oceny skuteczności metod wyjaśnialnej sztucznej inteligencji (XAI) w zadaniu klasyfikacji obrazów.
-Możemy je podzielić na dwie kategorie, oparte na prawdzie oraz oparte na modelu.
+W tej sekcji skupiano się na opisie miar jakości, które zostały wykorzystane do oceny skuteczności metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście zadania klasyfikacji obrazów.
 
-\textbf{Miary oparte na prawdzie} są to miary, które oceniają skuteczność metod XAI na podstawie faktycznych wartości docelowych.
+Wskaźnik \textbf{IoU} (Intersection ober Union), czyli stosunek przecięcia do sumy, jest powszechnie stosowany do pomiaru stopnia nakładania się dwóch obszarów.
+W kontekście XAI, IoU jest używany do porównywania obszaru wyjaśnienia z obszarem rzeczywistego obiektu lub regionu zainteresowania na obrazie.
+Im wyższy IoU, tym lepiej wyjaśnienie pokrywa się z rzeczywistym obiektem na obrazie.
 
-Natomiast \textbf{miary oparte na modelu} oceniają skuteczność metod XAI do wytłumaczania modelu.
+Miara \textbf{Zmiana pewności dla samego obszaru wyjaśnienia} ocenia, jak zmienia się pewność modelu, gdy pozostawiony zostaje jedynie obszar wyjaśnienia.
+Im lepsze wyjaśnienie, tym mniejszy średni spadek pewności. Pewność modelu może również wzrosnąć, jeśli pozostaną tylko istotne obszary.
+Innymi słowy, im lepsze wyjaśnienie, tym większy procent przypadków, w których pewność modelu wzrosła po pozostawieniu obszaru wyjaśnienia.
 
-\begin{enumerate}
-	\item \textbf{IOU} (Intersection over Union): Algorytm IOU jest powszechnie stosowany w zadaniach segmentacji obrazów do oceny jakości detekcji obrazów.
-	      Oblicza on stosunek powierzchni przecięcia dwóch obszarów do ich sumy.
-	      W naszym kontekście, IOU może być używany do oceny zgodności obszarów wyznaczonych przez metody XAI z rzeczywistymi obiektami na obrazie.
+\begin{figure}
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
+		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/mask}
+		\caption{Sam obszar wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
-	\item \textbf{Confidence change}: Miara ta ocenia zmianę pewności klasyfikacji na obrazach po zastosowaniu metod XAI.
-	      Jest to różnica między pewnościami klasyfikacji na oryginalnych obrazach a pewnościami klasyfikacji na obrazach zmodyfikowanych z użyciem XAI.
-	      Dzięki tej mierze możemy ocenić, czy metody XAI wpływają na zmianę pewności klasyfikacji.
-	      Obszar wyznaczony przez metody XAI powinien minimalnie zmniejszyć pewność klasyfikacji lub ją zwiększyć.
-	      Natomiast obszar poza wyznaczonym obszarem powinien drastycznie zmniejszyć pewność klasyfikacji.
-\end{enumerate}
+Miara \textbf{Zmiana pewności dla braku obszaru wyjaśnienia} ocenia, jak zmienia się pewność modelu, gdy usunięty zostaje obszar wyjaśnienia.
+Im lepsze wyjaśnienie, tym większy średni spadek pewności.
 
-Poprzez zastosowanie tych algorytmów i miar jakości, będziemy w stanie ocenić skuteczność metod XAI w wyjaśnianiu klasyfikacji obrazów oraz ich wpływ na jakość klasyfikacji.
+\begin{figure}
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
+		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+	\begin{minipage}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/wo_mask}
+		\caption{Obraz bez obszaru wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
+	\end{minipage}
+\end{figure}
 
 \section*{Plan badań}
 
 \begin{itemize}
-  \item Przygotowanie środowiska
-  \item Dobór parametrów
-  \item Wygenerowanie wyjaśnień za pomocą wybranych metod
-  \item Wykonanie podstawowych badań na wszystkich obrazach za pomocą wybranych miar jakości
-  \item Wykonanie badań grupując na kategorie
-  \item wykonanie badań biorąc pod uwagę pewność modelu
-  \item Wykonanie podstawowych badań dla innego modelu
-  \item Wykonanie podstawowych badań dla specyficznych klas 
+	\item Skonfigurowanie środowiska pracy, w tym odpowiednie biblioteki Pythona.
+	\item Załadowanie zbioru danych, który będzie używany do testowania metod wyjaśniania XAI.
+	\item Przygotowanie modelu klasyfikacji obrazów, który będzie poddany analizie.
+	\item \textbf{Dobór parametrów}:
+	      \begin{itemize}
+		      \item Określenie optymalnych wartości parametrów dla każdej z metod wyjaśniania, takich jak liczba próbek dla LIME, czy liczba iteracji dla SHAP.
+		      \item Przeprowadzenie eksperymentów w celu znalezienia optymalnych ustawień parametrów dla każdej metody.
+	      \end{itemize}
+
+	\item \textbf{Wygenerowanie wyjaśnień}:
+	      \begin{itemize}
+		      \item Wygenerowanie wyjaśnień dla wszystkich obrazów ze zbioru danych za pomocą wybranych metod XAI.
+		      \item Zapisanie uzyskanych wyjaśnień dla dalszej analizy.
+	      \end{itemize}
+
+	\item \textbf{Wykonanie podstawowych badań na wszystkich obrazach}:
+	      \begin{itemize}
+		      \item Zastosowanie wybranych miar jakości, takich jak IoU, w celu oceny skuteczności każdej metody wyjaśniania.
+		      \item Analiza wyników pod kątem różnych kryteriów, takich jak pokrycie obszarów istotnych dla decyzji modelu.
+	      \end{itemize}
+
+	\item \textbf{Wykonanie badań grupując na kategorie}:
+	      \begin{itemize}
+		      \item Podział obrazów na kategorie na podstawie określonych cech, takich jak klasa obiektów czy złożoność sceny.
+		      \item Analiza skuteczności metod wyjaśniania w poszczególnych kategoriach i porównanie wyników.
+	      \end{itemize}
+
+	\item \textbf{Wykonanie badań biorąc pod uwagę pewność modelu}:
+	      \begin{itemize}
+		      \item Ocena wpływu pewności modelu na skuteczność metod wyjaśniania, w tym analiza zmian pewności w zależności od obszaru wyjaśnienia.
+		      \item Porównanie wyników uzyskanych dla różnych poziomów pewności modelu.
+	      \end{itemize}
+
+	\item \textbf{Wykonanie podstawowych badań dla innego modelu}:
+	      \begin{itemize}
+		      \item Przetestowanie metod wyjaśniania na innym modelu klasyfikacji obrazów.
+		      \item Porównanie wyników uzyskanych dla różnych modeli i ocena ich zgodności.
+	      \end{itemize}
+
+	\item \textbf{Wykonanie podstawowych badań dla specyficznych klas}:
+	      \begin{itemize}
+		      \item Skoncentrowanie się na analizie wyjaśnień dla konkretnych klas obiektów lub zjawisk.
+		      \item Ocena, czy metody wyjaśniania są skuteczne w wykrywaniu istotnych cech dla określonych klas.
+	      \end{itemize}
 \end{itemize}

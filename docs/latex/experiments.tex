@@ -3,17 +3,14 @@
 
 \chapter*{Badania}
 
-W ninjejszym rozdziale przedstawimy wyniki badań mających na celu porównanie różnych metod XAI stosowanych do wyjaśniania decyzji modeli głębokiego uczenia w kontekście klasyfikacji obrazów.
+W tym rozdziale przedstawione zostały wyniki badań mających na celu porównanie różnych metod XAI stosowanych do wyjaśniania decyzji modeli głębokiego uczenia w kontekście klasyfikacji obrazów.
 W badaniach wykozystano LIME, SHAP oraz GradCAM, aby zrozumieć, w jaki sposób te techniki różnią się pod względem generowanych wyjaśnień, dokładności oraz interpretowalności.
 
-Analiza porównawcza została przeprowadzona w oparciu o kilka kluczowych kryteriów:
-\begin{itemize}
-	\item Średnia redukcja pewności
-	\item Średni procentowy wzrost pewności
-	\item IoU
-\end{itemize}
-Podczas badań każdy z powyższych kryteriów został dokładnie oceniony i zanalizowany, aby uzyskać pełny obraz mocnych i słabych stron poszczególnych metod XAI.
-Przedstawione wyniki mają na celu dostarczenie wwglądu w to, jak różne techniki wyjaśniania modeli mogą być stosowane w praktyce raz jak wybrać odpowiednią metodę w zależności od konkretnych wymagań aplikacji.
+Podczas badań skoncentrowano się na zmianie pewności oraz IoU (Intersection over Union).
+Analiza tych miar pozwoliła na lepsze zrozumienie, jak każda metoda XAI wpływa na interpretowalność modeli oraz ich skuteczność w wyjaśnianiu decyzji.
+
+Wyniki tych badań dostarczyły cennych infromacji na temat różnic między poszczególnymi technikami XAI oraz pozwoliły na wyciągnięcie wniosków dotyczących najlepszych praktyk w ich stosowaniu.
+Poprzez przedstawienie tych wyników, dążono do lepszego zrozumienia wpływu wyboru odpowiedniej metody XAI na interpretowalność i skuteczność modeli głębokiego uczenia w praktyce.
 
 \input{experiments/coherence}
 

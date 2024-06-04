@@ -4,7 +4,6 @@
 \chapter*{Przegląd literatury}
 \section*{Metody klasyfikacji obrazów}
 
-% PROBLEM KLASYFIKACJI OBRAZÓW
 Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet do obrazów na podstawie ich cech.
 Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny i biologii po przemysł, marketing czy bezpieczeństwo.
 
@@ -15,20 +14,20 @@ Negatywny wpływ na jakość klasyfikacji mogą mieć zbiory danych, jeśli obra
 
 Szczególnym źródłem problemów mogą być zbiory danych, jeśli wszystkie dane pochodzą z tego samego źródła, może to powodować przuczenie się modelu, poprzez nauczenie się modelu nieprawidłowych cech w celu klasyfikacji.
 
-Głębokie sieci neuronowe (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
+\textbf{Głębokie sieci neuronowe} (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
-Sieci konwolucyjne (CNN) są szczególnie skutecznym rodzajami głębokich sieci neuronowych stworzonym do przetwarzania danych obrazowych.
+\textbf{Sieci konwolucyjne} (CNN) są szczególnie skutecznym rodzajami głębokich sieci neuronowych stworzonym do przetwarzania danych obrazowych.
 Ich achitektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
 Podstawowymi elementami sieci konwolucyjnch są:
 \begin{itemize}
-  \item \textbf{Warstwy konowlucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
-    Ta operacja pozwala na wyodrębnienie lokalnych cech z tego obrazu, takich jak krawędzie, tekstury czy wzory.
-  \item \textbf{Warstwy poolingowe}, występują po warstwach konwolucyjnych , redukują wymiary przestrzenne map cech.
+	\item \textbf{Warstwy konowlucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
+	      Ta operacja pozwala na wyodrębnienie lokalnych cech z tego obrazu, takich jak krawędzie, tekstury czy wzory.
+	\item \textbf{Warstwy poolingowe}, występują po warstwach konwolucyjnych , redukują wymiary przestrzenne map cech.
 \end{itemize}
 Sieci konwolucyjne są szczególnie skuteczne w analizie danych obrazowych ze względu na ich zdolność do automatycznego wyodrębniania cech lokalnych i hierarchicznego uczenia się abstrakcji na różnych poziomach.
 Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentaacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
 
-ResNet (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
+\textbf{ResNet} (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
 Problem zanikającego gradientu występuje gdy uczenie się modelu staje się trudniejsze wraz ze wzrostem liczby warstw, co prowadzi do ograniczenia wydajności modelu.
 
 Główną cechą ResNet są tzw. bloki rezydualne, które wprowadzają połączenia skrótowe (shortcut connections) między warstwami, pozwalając na przekazywanie informacji wstecz w sieci.
@@ -36,7 +35,7 @@ Dzięki tym połączeniom model może uczyć się reszty (residuum) funkcji, co 
 Znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
 Ta cecha sprawia, ze ResNet stał się jedną z najbardziej popularnych architektur w dziedzinie rozpoznawania obrazów, osiągając znakomite wyniki.
 
-ResNet50 jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
+\textbf{ResNet50} jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
 Jest to jedna z najpopularniejszych wariantów ResNet.
 
 \section*{Metody XAI}
@@ -48,10 +47,10 @@ Właśnie tutaj wchodzi w grę wyjaśnialna sztuczna inteligencja (XAI), która 
 Będąc w stanie określić jakie cechy mialy wpływ na predykcję, jesteśmy w stanie ocenić czy nauczył się w odpowiedni sposób, mając odpowiednią wiedzę na temat danych treningowych.
 Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
 
-W niniejszej części przeglądu literatury skupimy się na omówieniu dwóch głównych grup metod XAI: 
+W niniejszej części przeglądu literatury skupimy się na omówieniu dwóch głównych grup metod XAI:
 \begin{itemize}
-  \item Metody niezależne od modelu (Model-agnostic)
-  \item Metody zależne od modelu (Model-specific)
+	\item \textbf{Metody niezależne od modelu} (Model-agnostic)
+	\item \textbf{Metody zależne od modelu} (Model-specific)
 \end{itemize}
 Metody te różnią się swoim podejściem do wyjaśniania decyzji modeli i mają różne zalety oraz ograniczenia.
 
@@ -69,17 +68,9 @@ Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mec
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
 
-\begin{listing}
-  \begin{minted}{c}
-    int main()
-    {
-      int a=2*3;
-    }
-  \end{minted}
-  \caption{Pseudo kod} \label{listing:lime}
-\end{listing}
 
-Kroki metody LIME:
+
+Metoda LIME składa się z następujących kroków:
 \begin{itemize}
 	\item Wybór instancji do wyjaśnienia - Na początku wybieramy konkretną instancję danych, której decyzję modelu chcemy wyjaśnić
 	\item Generowanie perturbacji - Następnie generujemy zestaw perturbowanych wersji oryginalnej instancji.
@@ -94,36 +85,110 @@ Kroki metody LIME:
 	      Wyjaśnienia te są przedstawiane w postaci listy cech z przypisanymi wagami, które pokazują ich wpływ na decyzję modelu.
 \end{itemize}
 
-% SHAP
+Poniżej znajduje się pseudokod prezentujący kroki algorytmu LIME:
+\begin{listing}
+	\begin{minted}{python}
+        instance = select_instance(data)
+        perturbed_instances = generate_perturbations(instance)
+        predictions = model.predict(perturbed_instances)
+        weights = compute_weights(perturbed_instances, instance)
+        local_model = train_local_model(perturbed_instances, predictions, weights)
+        explanations = generate_explanations(local_model)
+  \end{minted}
+	\caption{Pseudo kod LIME} \label{listing:lime}
+\end{listing}
+
+LIME jest techniką XAI, która pozwala na zrozumienie, jakie cechy danych wpływają na decyzje modelu, szczególnie w kontekście konkretnych instancji danych.
+Dzięki LIME, użytkownicy mogą lepiej zrozumieć, dlaczego model podjął daną decyzję.
+W przypadku danych obrazowych LIME umożliwia wizualizację wpływu poszczególnych fragmentów obrazu na decyzje modelu, co dodatkowo zwiększa interpretowalność i zrozumienie modelu.
+
 \subsubsection*{SHAP}
-\textbf{SHAP} wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
-Metoda ta opiera się na szacowaniu Shapley values, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
+\textbf{SHAP} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
+Metoda ta opiera się na szacowaniu wartości Shapleya, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
 Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
 
-Teoria wartości Shapleya - wartości Shapleya pochodzą z teori gier kooperacyjnych i służą do podziału zysków (lub wpływów) między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
+Teoria wartości Shapleya pochodzi z teori gier kooperacyjnych i służą do podziału zysków (lub wpływów) między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
 Dla każdej cechy wartość Shapleya obliczana jest jako średni wkład tej cechy do wyniku modelu we wszystkich możliwych kombinacjach cech.
 
-Kroki obliczania wartości Shapleya:
+Metoda SHAP składa się z następujących kroków:
 \begin{itemize}
-	\item Perturbacja danych - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech (kombinacjecech z wyjątkiem tej wybranej)
-	\item Ocena wpływu cech - Model jest uruchamiany dla każdego podzbioru cech z i bez wybranej cechy, a różnice w wynikach są mierzone
-	\item Średnia marginalna wartości - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
+	\item \textbf{Perturbacja danych} - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech (kombinacjecech z wyjątkiem tej wybranej)
+	\item \textbf{Ocena wpływu cech} - Model jest uruchamiany dla każdego podzbioru cech z i bez wybranej cechy, a różnice w wynikach są mierzone
+	\item \textbf{Średnia marginalna wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
 \end{itemize}
+
+Poniżej znajduje się pseudokod prezentujący kroki algorytmu SHAP:
+\begin{listing}
+	\begin{minted}{python}
+for feature in features:
+    shap_values[feature] = 0
+for subset in all_subsets(features - {feature}):
+    with_feature = model.predict(subset + {feature})
+    without_feature = model.predict(subset)
+    marginal_contribution = with_feature - without_feature
+    shap_values[feature] += marginal_contribution / num_subsets
+\end{minted}
+	\caption{Pseudo kod SHAP} \label{listing:shap}
+\end{listing}
 
 Obliczanie dokładnych wartości Shapleya może być obliczeniowo kosztowne, dlatego SHAP wykorzystuje różne techniki przyspieszanie obliczeń, takie jak aproksymacje i metody samplingowe.
 
+SHAP to technika XAI, która pozwala na precyzyjne przypisywanie znaczenia poszczególnym cechom wejściowym.
+Dzięki wykorzystaniu teori wartości Shapleya, SHAP zapewnia spójne i teoretycznie ugruntowane wyjaśnienia, co jest niezwykle cenne w zrozumieniu działania modeli głębokiego uczenia.
+W przypadku danych obrazowych, SHAP umożliwia identyfikację wpływu poszczególnych pikseli na predykcję modelu co jest kluczowe dla uzyskania wglądu w mechanizmy decyzyjne modelu.
+
 \vspace{1cm}
-% podsumowanie
-Metody Model-agnostic oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla szerokiego spektrum zastosowań. Ich zdolność do pracy z różnymi rodzajami modeli oraz możliwość generowania lokalnych wyjaśnień pozwala na lepsze zrozumienie i interpretację działania modeli głębokiego uczenia.
+\textbf{Metody Model-agnostic} oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla szerokiego spektrum zastosowań.
+Ich zdolność do pracy z różnymi rodzajami modeli oraz możliwość generowania lokalnych wyjaśnień pozwala na lepsze zrozumienie i interpretację działania modeli głębokiego uczenia.
 
 \subsection*{Oparte na podejściu Model-specific}
-% Wprowadzenie
-Metody oparte na podejściu Model-specific to techniki XAI, które są związane bezpośrednio z architekturą i działaniem konkretnego modelu. Charakteryzują się one wysokim stopniem specjalizacji i dostosowania do konkretnych rodzajów modeli, co umożliwia uzyskanie bardziej szczegółowych i dokładnych wyjaśnień ich działania.
+Metody oparte na podejściu Model-specific to techniki XAI, które są związane bezpośrednio z architekturą i działaniem konkretnego modelu.
+Charakteryzują się one wysokim stopniem specjalizacji i dostosowania do konkretnych rodzajów modeli, co umożliwia uzyskanie bardziej szczegółowych i dokładnych wyjaśnień ich działania, jak również często jest mniejszy koszt obliczeniowy.
+
+W odróżnieniu od metod niezależnych od modelu, metody te wykorzystują wewnętrzną strukturę i parametry modelu, aby dostarczyć wyjaśnień dotyczących podejmowanych decyzji.
+Dzięki temu są w stanie dokładniej wskazać, które elementy modelu oraz które cechy mają kluczowy wppływ na wynik predykcji.
 
 % GradCAM
-GradCAM jest jedną z najbardziej popularnych metod Model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacyjną modelu. Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych pikseli obrazu względem konkretnej klasy. Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
+\textbf{GradCAM} (Gradient-weighted Class Activation Mapping) jest jedną z najbardziej popularnych metod model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacyjną modelu.
+Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych pikseli obrazu względem konkretnej klasy.
+Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
 
-Metody Model-specific oferują wysoki poziom szczegółowości i precyzji w wyjaśnianiu działania konkretnych modeli, co czyni je atrakcyjnym narzędziem dla zrozumienia ich wewnętrznej logiki i mechanizmów decyzyjnych. Ich dostosowanie do konkretnych architektur modeli pozwala na uzyskanie bardziej precyzyjnych i zrozumiałych wyjaśnień, co jest kluczowe w przypadku zastosowań wymagających wysokiego stopnia pewności i zaufania do modeli.
+GradCAM składa się z następujących kroków:
+\begin{itemize}
+	\item \textbf{Forward pass przez model} - przeprowadzamy forward pass przez model, aby uzyskać mapy cech i predykcje.
+	\item \textbf{Obliczenie gradientów} - przeprowadzamy backward pass, aby uzyskać gradient klasy docelowej względem map cech.
+	\item \textbf{Uśrednienie gradientów} - wykonujemy global average pooling, aby uzyskać wagi istotności.
+	\item \textbf{Ważona suma map cech} - wykoujemy ważoną sumę map cech, wykorzystując wagi istotności.
+	\item \textbf{ReLU} - zastosowanie funkcji ReLU do ważonej sumy, aby uzyskać ostateczną mapę cieplną.
+	\item \textbf{Normalizacja} - Normalizujemy mapę cieplną do zakresu [0, 1].
+\end{itemize}
+
+Poniżej znajduje się pseudo kod który wizualizuje kroki algorytmu GradCAM:
+
+\begin{listing}
+	\begin{minted}{python}
+features = model.forward(image)
+predictions = model.predict(features)
+gradients = model.backward(class_idx, features)
+weights = mean(gradients, axis=(0, 1))
+cam = zeros(features.shape[1:3])
+for i in range(len(weights)):
+    cam += weights[i] * features[i]
+
+cam = maximum(cam, 0)
+cam = cam / max(cam)
+    \end{minted}
+	\caption{Pseudo kod GradCAM} \label{listing:gradcam}
+\end{listing}
+
+GradCAM dostarcza  wizualnych wyjaśnień, które są intuicyjne do interpretacji.
+Dzięki mapom ciepła (heatmaps) generowanym przez tę metodę, możemy zobaczyć, które regiony obrazu najbardziej wpłynęły na predykcję modelu.
+
+\vspace{1cm}
+
+Metody Model-specific oferują wysoki poziom szczegółowości i precyzji w wyjaśnianiu działania konkretnych modeli, co czyni je atrakcyjnym narzędziem dla zrozumienia ich wewnętrznej logiki i mechanizmów decyzyjnych.
+Ich dostosowanie do konkretnych architektur modeli pozwala na uzyskanie bardziej precyzyjnych i zrozumiałych wyjaśnień, co jest kluczowe w przypadku zastosowań wymagających wysokiego stopnia pewności i zaufania do modeli.
+Dzięki temu metody takie jak GradCAM moŋa nie tylko zwiększać zaufanie użytkowników do modeli, ale także prowadzić do ich dalszej optymalizacji i poprawy wyników.
 
 \section*{Porównywanie metod XAI w klasyfikacji obrazów}
 %Evaluating explainable artificial intelligence methods for multi-label deep learning classification tasks in remote sensing
@@ -132,17 +197,41 @@ Metody Model-specific oferują wysoki poziom szczegółowości i precyzji w wyja
 %CLEVER_XAI
 Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacj obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
 Istnieją dwa główne podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
+\begin{itemize}
+	\item \textbf{Oparte na modelu} (model-based)
+	\item \textbf{Oparte na prawdzie} (truth-based)
+\end{itemize}
 
 \subsection*{Oparte na modelu}
 Metody oparte na modelu oceniają wyjaśnienia XAI poprzez analiże ich wpływu na wyniki modelu predykcyjnego.
 Metryki stosowane w tym podejściu:
 \begin{itemize}
-	\item Average drop in confidence and activation score - ta metryka mierzy średni spadek pewności modelu w przypadku usunięcia cech, które zostały zidentyfikowane jako ważne przez metodę XAI.
-	      Jeżeli metoda XAI poprawnie identyfikuje istotne cechy, usunięci tych cech powinno prowadzić do znaczącego spadku pewności predykcji modelu.
+	\item \textbf{Średni spadek pewności i wyniku aktywacji} (Average drop in confidence and activation score) - ta metryka mierzy średni spadek pewności modelu w przypadku dostarczenia jedynie obszarów, które zostały zidentyfikowane jako ważne przez metodę XAI.
+	      Jeśli metoda XAI poprawnie identyikuje istotne cechy, powinno to prowadzić do niewielkiego spadku pewności predykcji modelu.
 	      Metryka ta jest używana do oceny, jak skutecznie metoda XAI identyfikuje krytyczne cechy wpływające na decyzję modelu.
-	\item Percent increase in confidence and activation score - ta metryka mierzy średni procentowy wzrost pewności modelu, gdy tylko cechy zidentyfikowane jako ważne przez metodę XAI pozostają w obrazie, a wszystkie inne cechy są usunięte.
+	      \begin{equation}
+		      \text{Average drop} = \frac{1}{N} \sum_{i=1}^{N} \frac{\max(0,Y_i^c-O_i^c)}{T_i^c} \times 100
+		      \label{eq:myEquation}
+	      \end{equation}
+	      Gdzie:
+	      \begin{itemize}[label=]
+		      \item $Y_i^c$ to wynik dla orginalnego obrazu
+		      \item $O_i^c$ to wynik dla samego obszaru wyjaśnienia
+		      \item $N$ to liczba obrazów
+	      \end{itemize}
+	\item \textbf{Procentowy wzrost pewności i wyniku aktywacji} (Percent increase in confidence and activation score) - ta metryka mierzy średni procentowy wzrost pewności modelu, gdy tylko cechy zidentyfikowane jako ważne przez metodę XAI pozostają w obrazie, a wszystkie inne cechy są usunięte.
 	      Jeśli metoda XAI prawidłowo identyfikuje istotne cechy, pozostawienie tylko tych cech powinno prowadzić do wzrostu pewności predykcji modelu.
 	      Ta metryka pozwala ocenić, w jakim stopniu metoda XAI może poprawić zrozumienie krytycznych cech przez model.
+	      \begin{equation}
+		      \text{Rate of increase in scores} =  \sum_{i=1}^{N} \frac{1_{Y_i^c<O_i^c}}{N} \times 100
+		      \label{eq:myEquation}
+	      \end{equation}
+	      Gdzie:
+	      \begin{itemize}[label=]
+		      \item $Y_i^c$ to wynik dla orginalnego obrazu
+		      \item $O_i^c$ to wynik dla samego obszaru wyjaśnienia
+		      \item $N$ to liczba obrazów
+	      \end{itemize}
 \end{itemize}
 
 \subsection*{Metody oparte na prawdzie}
@@ -150,4 +239,8 @@ Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zew
 \begin{itemize}
 	\item Intersection over Union (IoU) - jest to miara pokrycia między wyjaśnieniami wygenerowanymi przez metodę XAI a zdefiniowanymi obszarami referencyjnymi w obrazie, które są uważane za istotne (np. ręcznie oznaczone przez ekspertów).
 	      IoU jest obliczane jako stosunek powierzchni przecięcia do powierzchni sumy obszarów wyjaśnień i referencji. Wysokie IoU wskazuje na dobrą zgodność wyjaśnień XAI z rzeczywistością, co oznacza, że metoda XAI skutrcznie identyfikuje istotne cechy.
+	      \begin{equation}
+		      \text{IoU} = \frac{\text{Powierzchnia przecięcia}}{\text{Powierzchnia sumy}}
+		      \label{eq:myEquation}
+	      \end{equation}
 \end{itemize}
