@@ -48,6 +48,7 @@ def explain_with_gradcam(model, img, layer="conv5_block3_out"):
         conv_output, predictions = grad_model(img)
         top_k = tf.argsort(predictions[0])[-1:]
         target_class = top_k[-1]
+        print(target_class)
         target_conv_output = conv_output[0]
         loss = predictions[:, target_class]
         grads = tape.gradient(loss, conv_output)[0]
@@ -57,3 +58,29 @@ def explain_with_gradcam(model, img, layer="conv5_block3_out"):
     heatmap = np.maximum(heatmap, 0)
     heatmap /= np.max(heatmap)
     return heatmap
+
+
+def combine_explanations(exps, threshold=0.2, sum=True):
+    mask = np.ones([224, 224])
+    if sum:
+        mask = np.zeros([224, 224])
+    for exp_type, exp in exps.items():
+        if exp_type == "gradcam":
+            result = exp > threshold
+            result = result.astype(float)
+            result = np.repeat(result, 224 // exp.shape[0], axis=0)
+            result = np.repeat(result, 224 // exp.shape[1], axis=1)
+        elif exp_type == "lime":
+            _, result = exp.get_image_and_mask(exp.top_labels[0])
+        elif exp_type == "shap":
+            result = exp.values[0].squeeze(axis=-1)
+            result = result > result.mean()
+            result = result.astype(float)
+            result = result.mean(axis=-1)
+        else:
+            return
+        if sum:
+            mask = np.logical_or(mask, result).astype(int)
+        else:
+            mask = np.logical_and(mask, result).astype(int)
+    return mask

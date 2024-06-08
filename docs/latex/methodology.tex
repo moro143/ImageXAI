@@ -23,7 +23,7 @@ W tej pracy wykorzystano  następujące narzędzia i biblioteki:
 Środowisko to pozwoliło na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
 Narzędzia te umożłiwiły także wizualizację wyników, co było kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
-Dodatkowo, wykorzystano baza danych \textbf{ImageNetS} jest to podzbiór ImageNet który zawiera 9 kategorii, z których każda posiada 450 obrazów.
+Dodatkowo, wykorzystano baza danych \textbf{ImageNet-9} jest to podzbiór ImageNet który zawiera 9 kategorii, z których każda posiada 450 obrazów.
 Baza ta zawietała również oznaczone przez ekspertów obszary obiektów klasyfikowanych, co pozwalało na posiadanie wiedzy o ważnych obszarach.
 Kategorie obejmowały:
 \begin{itemize}
@@ -37,6 +37,35 @@ Kategorie obejmowały:
 	\item Naczelny (primate)
 	\item Ryba (fish)
 \end{itemize}
+
+\section*{Podział na rozmiar obiektu}
+
+Obrazy z bazy danych zostały podzielone ze względu na procent jaki obszaru zajmowanego przez obiekt docelowy.
+Zostały stworzone 3 kategorie obrazów:
+\begin{itemize}
+	\item Mały - obiekt zajmuje 25\% obrazu lub mniej
+	\item Średni - obiekt zajumuje 50\% obrazu lub mniej, ale więcej niż 25\% obrazu
+	\item Duży - obiekt zajmuje więcej niż 50\% obrazu
+\end{itemize}
+
+W tej pracy w kategorii małe znajduje się 1347 obrazów, w kategorii średnie znajduje się 1437 obrazów oraz w kategorii duże znajduje się 1266 obrazów.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=.9\textwidth]{img/examples/size_category_small}
+		\caption{Mały obiekt (0.7553\%)}  \label{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/examples/size_category_medium}
+		\caption{Średni obiekt (35.8897\%)}  \label{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/examples/size_category_big}
+		\caption{Duży obiekt (97.1939\%)}  \label{}
+	\end{subfigure}
+	\caption{Przykłady obrazów dla różnych kategori wielkości}
+\end{figure}
 
 \section*{Wybór parametrów metod XAI}
 Wybór odopwiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
@@ -61,18 +90,19 @@ W tej pracy użyto wartości num\_samples=1000, co stanowi kompromis między dok
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_5}
-		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples=5}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{num\_samples=5}  \label{rys:parameters_lime_numsamples_5}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_1000}
-		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples 1000}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{num\_samples 1000}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_5000}
-		\caption{Przykład wyjaśnienia LIME dla parametru num\_samples 5000}  \label{rys:parameters_lime_numsamples_5000}
-	\end{minipage}
+		\caption{num\_samples 5000}  \label{rys:parameters_lime_numsamples_5000}
+	\end{subfigure}
+	\caption{Przykłady wyjaśnień LIME dla różnych wartości num\_samples}
 \end{figure}
 
 Parametr \textbf{'num\_features'} oznacza maksymalną ilość cech które mogą występować w wyjaśnieniu.
@@ -87,14 +117,15 @@ Dlatego w tej pracy pozostawiono domyślną wartość num\_features = 100000, ab
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_features_2}
-		\caption{Przykład wyjaśnienia LIME dla parametru num\_features 2}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{num\_features 2}  \label{rys:parameters_lime_numsamples_5}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/num_features_100000}
-		\caption{Przykład wyjaśnienia LIME dla parametru num\_features 100000}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+		\caption{num\_features 100000}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\caption{Przykłady wyjaśnień LIME dla różnych wartości num\_features}
 \end{figure}
 
 Parametr \textbf{'positive\_only'} określa, czy wyjaśnienia powinny uwzględniać tylko cechy, które mają pozytywny wpływ na klasyfikację.
@@ -110,14 +141,15 @@ W tej pracy ustawiono min\_weight na 0.0, aby uwzględnić wszystkie cechy w wyj
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_00}
-		\caption{Przykład wyjaśnienia LIME dla parametru min\_weight 0.0}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{min\_weight 0.0}  \label{rys:parameters_lime_numsamples_5}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_03}
-		\caption{Przykład wyjaśnienia LIME dla parametru min\_weight 0.3}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+		\caption{min\_weight 0.3}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\caption{Przykłady wyjaśnień LIME dla różnych wartości min\_weight}
 \end{figure}
 
 
@@ -139,14 +171,15 @@ W tej pracy ustaliliśmy wartość max\_evals na 500, co stanowi kompromis pomi�
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/shap/max_evals_10}
-		\caption{Przykład wyjaśnienia SHAP dla parametru max\_evals 10}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{max\_evals 10}  \label{rys:parameters_lime_numsamples_5}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/shap/max_evals_500}
-		\caption{Przykład wyjaśnienia SHAP dla parametru max\_evals 500}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+		\caption{max\_evals 500}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\caption{Przykłady wyjaśnienia SHAP dla parametru max\_evals}
 \end{figure}
 Parametr \textbf{threshold} określa minimalną wartość cechy, która musi być spełniona, aby cecha została uwzględniona w wyjaśnieniu.
 Wartość progowa jest ważna, ponieważ pozwala na filtrowanie mniej istotnych cech, co może uprościć wyjaśnienia i uczynić je bardziej zrozumiałymi.
@@ -170,14 +203,15 @@ Gdzie:
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_base}
 		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_mean}
 		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+	\end{subfigure}
+	\caption{Przykład modyfikowania wyjaśnienia SHAP za pomocą threshold}
 \end{figure}
 
 \subsection*{GradCAM}
@@ -200,28 +234,58 @@ Gdzie:
 
 \begin{figure}
 	\centering
-	\begin{minipage}[b]{0.3\textwidth}
-		\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_base}
+	\begin{subfigure}[b]{0.9\textwidth}
+		\centering
+		\includegraphics[width=.45\textwidth]{img/parameters/gradcam/threshold_base}
 		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_01}
-		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-\end{figure}
-\begin{figure}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{Threshold 0.1}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_02}
-		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{Threshold 0.2}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_05}
-		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-	\begin{minipage}[b]{0.3\textwidth}
+		\caption{Threshold 0.5}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_09}
-		\caption{Zmodyfikowane wyjaśnienie}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+		\caption{Threshold 0.9}  \label{rys:parameters_lime_numsamples_1000}
+	\end{subfigure}
+	\caption{Przykład modyfikowania wyjaśnień GradCAM za pomocą threshold}
+
+\end{figure}
+
+\subsection*{Łączenie wyjaśnień}
+
+Wyjaśnienia możemy łączyć na 2 różne sposoby:
+\begin{itemize}
+	\item Część wspólna obszarów wyjaśnień - bardziej szczegółowe wyjaśnienia
+	\item Suma obszarów wyjaśnień - bardziej ogólne wyjaśnienia
+\end{itemize}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=.9\textwidth]{img/examples/first_explanation}
+		\caption{Wyjaśnienie GradCAM}  \label{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/examples/second_explanation}
+		\caption{Wyjaśnienie SHAP}  \label{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=.9\textwidth]{img/examples/and_explanation}
+		\caption{Część wspólna wyjaśnień}  \label{}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/examples/or_explanation}
+		\caption{Suma obszarów wyjaśnień}  \label{}
+	\end{subfigure}
+	\caption{Przykład łączenia wyjaśnień} \label{rys:test}
 \end{figure}
 
 \section*{Miary jakości}
@@ -237,28 +301,30 @@ Im lepsze wyjaśnienie, tym mniejszy średni spadek pewności. Pewność modelu 
 Innymi słowy, im lepsze wyjaśnienie, tym większy procent przypadków, w których pewność modelu wzrosła po pozostawieniu obszaru wyjaśnienia.
 
 \begin{figure}
-	\begin{minipage}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
 		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/mask}
 		\caption{Sam obszar wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+	\end{subfigure}
+	\caption{Przykład pozostawienia samego wyjaśnienia}
 \end{figure}
 
 Miara \textbf{Zmiana pewności dla braku obszaru wyjaśnienia} ocenia, jak zmienia się pewność modelu, gdy usunięty zostaje obszar wyjaśnienia.
 Im lepsze wyjaśnienie, tym większy średni spadek pewności.
 
 \begin{figure}
-	\begin{minipage}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
 		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
-	\begin{minipage}[b]{0.45\textwidth}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/wo_mask}
 		\caption{Obraz bez obszaru wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
-	\end{minipage}
+	\end{subfigure}
+	\caption{Przykład usunięcia obszaru wyjaśnienia}
 \end{figure}
 
 \section*{Plan badań}
