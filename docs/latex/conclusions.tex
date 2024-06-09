@@ -2,3 +2,51 @@
 % !TEX root = praca.tex
 
 \chapter*{Wnioski}
+
+W przeprowadzonych badaniach skupiono się na analizie i porównaniu różnych metod wyjaśnialnej sztucznej inteligencji (XAI), w tym LIME, SHAP i GradCAM, pod kątem ich spójności, dokładności oraz wpływu na pewność modelu.
+Przeanalizowano również, jak łączenie wyjaśnień tych metod wpływa na jakość i interpretowalność wyników.
+Poniżej przedstawiono szczegółowe podsumowanie wyników oraz wnioski z przeprowadzonych badań.
+
+\section*{Spójność obszarów wyjaśnień}
+
+Analiza spójności obszarów wyjaśnień wykazała, że najlepszą spójność osiągano w przypadku połączenia GradCAM z LIME, podczas gdy najgorsze wyniki uzyskano dla połączenia LIME z SHAP.
+Oznacza to, że GradCAM i LIME miały większą zgodność co do istotnych obszarów w obrazach, natomiast LIME i SHAP identyfikowały te obszary bardziej rozbieżnie.
+
+\section*{Spójność w podziale na kategorie}
+
+W podziale na kategorie również zaobserwowano, że połączenie GradCAM z SHAP charakteryzowało się najlepszą spójnością, a najgorsze wyniki uzyskano dla połączenia LIME z SHAP.
+Najlepsze wyniki dla kategorii osiągnięto w przypadku kategorii ptak, natomiast najgorsze dla kategorii naczelny, co sugeruje, że GradCAM i SHAP lepiej współdziałały w identyfikacji istotnych cech u ptaków, podczas gdy LIME i SHAP miały trudności z naczelnikami.
+
+\section*{Spójność w podziale na rozmiary}
+
+Podział na rozmiary wykazał, że GradCAM z SHAP osiągały najlepszą spójność niezależnie od wielkości obrazu. Spójność ta zwiększała się proporcjonalnie do rozmiaru dla GradCAM z SHAP, podczas gdy dla GradCAM z LIME wzrost ten był nieproporcjonalny.
+LIME z SHAP wykazywały podobne, choć nieco mniej spójne wyniki.
+Oznacza to, że GradCAM i SHAP były bardziej stabilne i przewidywalne w identyfikacji istotnych obszarów w obrazach o różnych rozmiarach.
+
+\section*{Analiza porównawcza metod}
+
+Porównując metody XAI pod kątem wartości IoU, zmian pewności po pozostawieniu samego wyjaśnienia oraz zmian pewności po usunięciu wyjaśnienia, GradCAM okazał się najlepszy we wszystkich tych aspektach, natomiast LIME osiągało najgorsze wyniki.
+
+Dla poszczególnych kategorii GradCAM zawsze miał najwyższe wartości IoU, podczas gdy LIME najniższe, z wyjątkiem kategorii Insekt, gdzie wyniki były zbliżone do SHAP.
+Podobne wyniki zaobserwowano przy analizie zmian pewności, zarówno po pozostawieniu, jak i po usunięciu wyjaśnienia, gdzie GradCAM dominował nad LIME.
+
+Połączenie wyjaśnień
+\section*{Część wspólna}
+
+Połączenie wyjaśnień przez część wspólną wykazało, że najlepsze wyniki osiągnięto dla połączenia GradCAM z LIME.
+Jednakże, niezależnie od kombinacji metod, wyniki te były gorsze od wyników uzyskanych z poszczególnych metod.
+Zmiany pewności modelu po pozostawieniu wyjaśnień były największe dla połączenia GradCAM z LIME, lecz nadal gorsze od podstawowych wyjaśnień.
+
+\section*{Suma obszarów}
+
+Połączenie wyjaśnień poprzez sumę obszarów przyniosło lepsze wyniki niż dla pojedynczych metod.
+Najlepsze wyniki uzyskano dla połączenia GradCAM z LIME, natomiast najgorsze dla SHAP z LIME.
+Wartości IoU były wyższe dla połączonych wyjaśnień, co sugeruje, że takie podejście może zwiększać dokładność identyfikacji istotnych obszarów.
+Zmiana pewności modelu po pozostawieniu sumy obszarów wyjaśnień była największa dla połączenia wszystkich trzech metod, co sugeruje, że suma wyjaśnień może dostarczać bardziej kompleksowych informacji.
+Jednak zmiana pewności po usunięciu tych obszarów również była największa dla tej kombinacji, co wskazuje na znaczną istotność tych obszarów dla modelu.
+
+\section*{Wnioski końcowe}
+
+Badania wykazały, że GradCAM jest najbardziej spójną i dokładną metodą wyjaśnień w porównaniu do LIME i SHAP. Łączenie wyjaśnień różnych metod może poprawić dokładność i spójność wyników, szczególnie gdy stosuje się sumę obszarów.
+Jednakże, niezależnie od metody połączenia, wyniki te są zazwyczaj gorsze od wyników uzyskanych z poszczególnych metod.
+W praktyce, wybór odpowiedniej metody XAI oraz podejście do łączenia wyjaśnień powinno być dostosowane do specyfiki problemu i wymagań interpretowalności modelu.
