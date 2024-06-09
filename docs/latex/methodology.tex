@@ -3,6 +3,42 @@
 
 \chapter*{Metodyka badań}
 
+\section*{Plan badań}
+
+\begin{enumerate}
+	\item \textbf{Skonfigurowanie środowiska pracy}, w tym odpowiednie biblioteki Pythona.
+	\item \textbf{Załadowanie zbioru danych}, który będzie używany do testowania metod wyjaśniania XAI.
+	\item \textbf{Dobór parametrów}:
+	      \begin{itemize}
+		      \item Określenie optymalnych wartości parametrów dla każdej z metod wyjaśniania.
+	      \end{itemize}
+	\item \textbf{Wygenerowanie wyjaśnień}:
+	      \begin{itemize}
+		      \item Wygenerowanie wyjaśnień dla wszystkich obrazów ze zbioru danych za pomocą wybranych metod XAI i odpowiednich parametrów.
+		      \item Zapisanie uzyskanych wyjaśnień dla dalszej analizy.
+	      \end{itemize}
+	\item \textbf{Analiza spójności} wyjaśnień
+	\item \textbf{Wykonanie podstawowych badań na wszystkich obrazach}:
+	      \begin{itemize}
+		      \item Zastosowanie wybranych miar jakości, w celu oceny i analizy skuteczności każdej metody wyjaśniania.
+	      \end{itemize}
+	\item \textbf{Wykonanie badań grupując na kategorie}:
+	      \begin{itemize}
+		      \item Analiza skuteczności metod wyjaśniania dla poszczególnych kategoriach obrazów i porównanie wyników.
+	      \end{itemize}
+	\item \textbf{Wykonanie badań grupując na wielkość obiektu}:
+	      \begin{itemize}
+		      \item Analiza skuteczności metod wyjaśniania dla pogrupowanych wielkością obrazów i porównanie wyników.
+	      \end{itemize}
+
+	\item \textbf{Połączenie wyjaśnień} wygenerowanych przez różne metody XAI:
+	      \begin{itemize}
+		      \item Połączenie wygenerowanych wyjaśnień
+		      \item Wykonanie podstawowych badań na wszystkich obrazach z użyciem połączonych wyjaśnień
+	      \end{itemize}
+
+\end{enumerate}
+
 \section*{Przygotowanie środowiska}
 
 Do przeprowadzenia eksperymentów z wybranymi metodami XAI wymagane było odpowiednie przygotowanie środowiska programistycznego.
@@ -23,8 +59,11 @@ W tej pracy wykorzystano  następujące narzędzia i biblioteki:
 Środowisko to pozwoliło na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
 Narzędzia te umożłiwiły także wizualizację wyników, co było kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
-Dodatkowo, wykorzystano baza danych \textbf{ImageNet-9} jest to podzbiór ImageNet który zawiera 9 kategorii, z których każda posiada 450 obrazów.
-Baza ta zawietała również oznaczone przez ekspertów obszary obiektów klasyfikowanych, co pozwalało na posiadanie wiedzy o ważnych obszarach.
+\section*{Wybór bazy obrazów}
+
+W tej pracy wykorzystano bazę danych \textbf{ImageNet-9} jest to podzbiór ImageNet, najpoularniejszej bazy zdjęć.
+Podzbiór ten zawiera zawiera 9 kategorii, z których każda posiada 450 obrazów.
+Ważnym aspektem wyboru tego zbioru były oznaczone obszary obiektów klasyfikowanych, co pozwalało na posiadanie wiedzy o ważnych obszarach, która została użyta do oceny jakości generowanych wyjaśnień.
 Kategorie obejmowały:
 \begin{itemize}
 	\item Pies (dog)
@@ -38,19 +77,17 @@ Kategorie obejmowały:
 	\item Ryba (fish)
 \end{itemize}
 
-\section*{Podział na rozmiar obiektu}
-
-Obrazy z bazy danych zostały podzielone ze względu na procent jaki obszaru zajmowanego przez obiekt docelowy.
-Zostały stworzone 3 kategorie obrazów:
+Dodatkowo baza obrazów została podzielona ze względu na to jaki procent obrazu zajmuje obiekt docelowy.
+Podzielony został na 3 kategorie obrazów:
 \begin{itemize}
-	\item Mały - obiekt zajmuje 25\% obrazu lub mniej
-	\item Średni - obiekt zajumuje 50\% obrazu lub mniej, ale więcej niż 25\% obrazu
-	\item Duży - obiekt zajmuje więcej niż 50\% obrazu
+	\item Mały - obiekt zajmuje 25\% obrazu lub mniej. W tej kategorii znajduje się 1347 obrazów.
+	\item Średni - obiekt zajumuje 50\% obrazu lub mniej, ale więcej niż 25\% obrazu. W tej kategorii znajduje się 1437 obrazów.
+	\item Duży - obiekt zajmuje więcej niż 50\% obrazu. W tej kategorii znajduje się 1266 obrazów.
 \end{itemize}
 
-W tej pracy w kategorii małe znajduje się 1347 obrazów, w kategorii średnie znajduje się 1437 obrazów oraz w kategorii duże znajduje się 1266 obrazów.
+Przykłady obrazów dla kategorii wielkości zostały przedstawione na Rys \ref{rys:examples_size_cat}.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/examples/size_category_small}
@@ -65,6 +102,7 @@ W tej pracy w kategorii małe znajduje się 1347 obrazów, w kategorii średnie 
 		\caption{Duży obiekt (97.1939\%)}  \label{}
 	\end{subfigure}
 	\caption{Przykłady obrazów dla różnych kategori wielkości}
+	\label{rys:examples_size_cat}
 \end{figure}
 
 \section*{Wybór parametrów metod XAI}
@@ -88,7 +126,7 @@ Zbyt mała liczba próbek może prowadzić do niedokładnych wyjaśnień, poniew
 Z drugiej strony, zbyt duża liczba próbek może prowadzić do znacznych kosztów obliczeniowych, co wydłuża czas potrzebny na wygenerowanie wyjaśnień.
 W tej pracy użyto wartości num\_samples=1000, co stanowi kompromis między dokładnością wyjaśnień a kosztami obliczeniowymi.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_samples_5}
@@ -115,7 +153,7 @@ W przypadku tej pracy, ponieważ obraz jest dzielony na części (superpiksele),
 Użytwo dużej wartości, aby nie ominąć żadnych istotnych cech.
 Dlatego w tej pracy pozostawiono domyślną wartość num\_features = 100000, aby zapewnić, że wszystkie potencjalnie ważne cechy zostaną uwzględnione w wyjaśnieniach.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/num_features_2}
@@ -139,7 +177,7 @@ W praktyce jednak, zbyt duża liczba cech może skomplikować wyjaśnienia i ucz
 Dlatego w niektórych przypadkach może być użyteczne ustawienie tej wartości na wyższą, aby uwzględniać tylko te cechy, które mają istotny wpływ na wynik.
 W tej pracy ustawiono min\_weight na 0.0, aby uwzględnić wszystkie cechy w wyjaśnieniach.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_00}
@@ -169,7 +207,7 @@ Jednakże, zwiększenie wartości max\_evals wiąże się również ze zwiększo
 
 W tej pracy ustaliliśmy wartość max\_evals na 500, co stanowi kompromis pomiędzy dokładnością wyjaśnień a czasem potrzebnym na ich obliczenie.
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/shap/max_evals_10}
@@ -201,7 +239,7 @@ Gdzie:
 	\item $\text{E}$ to oryginalny zbiór wartości cech wyjaśnień
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_base}
@@ -232,7 +270,7 @@ Gdzie:
 	\item $\text{E}$ to oryginalny zbiór wartości cech wyjaśnień
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}[b]{0.9\textwidth}
 		\centering
@@ -261,31 +299,31 @@ Gdzie:
 
 \subsection*{Łączenie wyjaśnień}
 
-Wyjaśnienia możemy łączyć na 2 różne sposoby:
+Wyjaśnienia są łączone w tej pracy na 2 różne sposoby:
 \begin{itemize}
-	\item Część wspólna obszarów wyjaśnień - bardziej szczegółowe wyjaśnienia
-	\item Suma obszarów wyjaśnień - bardziej ogólne wyjaśnienia
+	\item Część wspólna obszarów wyjaśnień (Rys. \ref{rys:example_combine_and}) - bardziej szczegółowe wyjaśnienia
+	\item Suma obszarów wyjaśnień (Rys. \ref{rys:example_combine_or}) - bardziej ogólne wyjaśnienia
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/examples/first_explanation}
-		\caption{Wyjaśnienie GradCAM}  \label{}
+		\caption{Wyjaśnienie GradCAM}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/examples/second_explanation}
-		\caption{Wyjaśnienie SHAP}  \label{}
+		\caption{Wyjaśnienie SHAP}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/examples/and_explanation}
-		\caption{Część wspólna wyjaśnień}  \label{}
+		\caption{Część wspólna wyjaśnień}  \label{rys:example_combine_and}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/examples/or_explanation}
-		\caption{Suma obszarów wyjaśnień}  \label{}
+		\caption{Suma obszarów wyjaśnień}  \label{rys:example_combine_or}
 	\end{subfigure}
-	\caption{Przykład łączenia wyjaśnień} \label{rys:test}
+	\caption{Przykład łączenia wyjaśnień}
 \end{figure}
 
 \section*{Miary jakości}
@@ -293,85 +331,43 @@ Wyjaśnienia możemy łączyć na 2 różne sposoby:
 W tej sekcji skupiano się na opisie miar jakości, które zostały wykorzystane do oceny skuteczności metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście zadania klasyfikacji obrazów.
 
 Wskaźnik \textbf{IoU} (Intersection ober Union), czyli stosunek przecięcia do sumy, jest powszechnie stosowany do pomiaru stopnia nakładania się dwóch obszarów.
-W kontekście XAI, IoU jest używany do porównywania obszaru wyjaśnienia z obszarem rzeczywistego obiektu lub regionu zainteresowania na obrazie.
+W tej pracy, IoU jest używany do porównywania obszaru wyjaśnienia z obszarem rzeczywistego obiektu (informacje na ten temat pochodzą z ImageNet-9).
 Im wyższy IoU, tym lepiej wyjaśnienie pokrywa się z rzeczywistym obiektem na obrazie.
+Wzór na IoU znajduje się w rozdziale 'Przegląd literatury' (\ref{eq:iou}).
 
-Miara \textbf{Zmiana pewności dla samego obszaru wyjaśnienia} ocenia, jak zmienia się pewność modelu, gdy pozostawiony zostaje jedynie obszar wyjaśnienia.
-Im lepsze wyjaśnienie, tym mniejszy średni spadek pewności. Pewność modelu może również wzrosnąć, jeśli pozostaną tylko istotne obszary.
+W celu oceny jakości wyjaśnień zbadano zmianę pewności modelu po modyfikacjach obrazu za pomocą wyjaśnień.
+
+Badano \textbf{zmiany pewności po pozostawieniu samego obszaru wyjaśnienia} (Rys. \ref{rys:example_only_exp}).
+Im lepsze wyjaśnienie, tym mniejszy powinien być średni spadek pewności (\ref{eq:average_drop}).
+W pewnych przypadkach, gdy wyjaśnienie jest nadzwyczaj dobre, pewność modelu może nawet wzrosnąć, im dla większej części obrazów wzrasta pewność tym lepsza jest to metoda wyjaśniania (\ref{eq:rate_of-increase}).
 Innymi słowy, im lepsze wyjaśnienie, tym większy procent przypadków, w których pewność modelu wzrosła po pozostawieniu obszaru wyjaśnienia.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
-		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
+		\caption{Orginalny obraz}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/mask}
-		\caption{Sam obszar wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
+		\caption{Sam obszar wyjaśnienia}
 	\end{subfigure}
 	\caption{Przykład pozostawienia samego wyjaśnienia}
+	\label{rys:example_only_exp}
 \end{figure}
 
-Miara \textbf{Zmiana pewności dla braku obszaru wyjaśnienia} ocenia, jak zmienia się pewność modelu, gdy usunięty zostaje obszar wyjaśnienia.
+Badano również \textbf{zmiany pewności po usunięciu obszaru wyjaśnienia} (Rys. \ref{rys:example_no_exp}) ocenia, jak zmienia się pewność modelu, gdy usunięty zostaje obszar wyjaśnienia.
 Im lepsze wyjaśnienie, tym większy średni spadek pewności.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
-		\caption{Orginalny obraz}  \label{rys:parameters_lime_numsamples_1000}
+		\caption{Orginalny obraz}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/wo_mask}
-		\caption{Obraz bez obszaru wyjaśnienia}  \label{rys:parameters_lime_numsamples_1000}
+		\caption{Obraz bez obszaru wyjaśnienia}
 	\end{subfigure}
 	\caption{Przykład usunięcia obszaru wyjaśnienia}
+	\label{rys:example_no_exp}
 \end{figure}
 
-\section*{Plan badań}
-
-\begin{itemize}
-	\item Skonfigurowanie środowiska pracy, w tym odpowiednie biblioteki Pythona.
-	\item Załadowanie zbioru danych, który będzie używany do testowania metod wyjaśniania XAI.
-	\item Przygotowanie modelu klasyfikacji obrazów, który będzie poddany analizie.
-	\item \textbf{Dobór parametrów}:
-	      \begin{itemize}
-		      \item Określenie optymalnych wartości parametrów dla każdej z metod wyjaśniania, takich jak liczba próbek dla LIME, czy liczba iteracji dla SHAP.
-		      \item Przeprowadzenie eksperymentów w celu znalezienia optymalnych ustawień parametrów dla każdej metody.
-	      \end{itemize}
-
-	\item \textbf{Wygenerowanie wyjaśnień}:
-	      \begin{itemize}
-		      \item Wygenerowanie wyjaśnień dla wszystkich obrazów ze zbioru danych za pomocą wybranych metod XAI.
-		      \item Zapisanie uzyskanych wyjaśnień dla dalszej analizy.
-	      \end{itemize}
-
-	\item \textbf{Wykonanie podstawowych badań na wszystkich obrazach}:
-	      \begin{itemize}
-		      \item Zastosowanie wybranych miar jakości, takich jak IoU, w celu oceny skuteczności każdej metody wyjaśniania.
-		      \item Analiza wyników pod kątem różnych kryteriów, takich jak pokrycie obszarów istotnych dla decyzji modelu.
-	      \end{itemize}
-
-	\item \textbf{Wykonanie badań grupując na kategorie}:
-	      \begin{itemize}
-		      \item Podział obrazów na kategorie na podstawie określonych cech, takich jak klasa obiektów czy złożoność sceny.
-		      \item Analiza skuteczności metod wyjaśniania w poszczególnych kategoriach i porównanie wyników.
-	      \end{itemize}
-
-	\item \textbf{Wykonanie badań biorąc pod uwagę pewność modelu}:
-	      \begin{itemize}
-		      \item Ocena wpływu pewności modelu na skuteczność metod wyjaśniania, w tym analiza zmian pewności w zależności od obszaru wyjaśnienia.
-		      \item Porównanie wyników uzyskanych dla różnych poziomów pewności modelu.
-	      \end{itemize}
-
-	\item \textbf{Wykonanie podstawowych badań dla innego modelu}:
-	      \begin{itemize}
-		      \item Przetestowanie metod wyjaśniania na innym modelu klasyfikacji obrazów.
-		      \item Porównanie wyników uzyskanych dla różnych modeli i ocena ich zgodności.
-	      \end{itemize}
-
-	\item \textbf{Wykonanie podstawowych badań dla specyficznych klas}:
-	      \begin{itemize}
-		      \item Skoncentrowanie się na analizie wyjaśnień dla konkretnych klas obiektów lub zjawisk.
-		      \item Ocena, czy metody wyjaśniania są skuteczne w wykrywaniu istotnych cech dla określonych klas.
-	      \end{itemize}
-\end{itemize}
