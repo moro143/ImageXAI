@@ -13,7 +13,10 @@ def iou(mask, exp, exp_type, threshold=0.2, img_shape=(224, 224)):
         _, result = exp.get_image_and_mask(exp.top_labels[0])
     elif exp_type == "shap":
         result = exp.values[0].squeeze(axis=-1)
-        result = result > result.mean()  # how to
+        result[result<0]=0
+        max_val = np.max(result)
+        result = result/max_val
+        result = result > threshold 
         result = result.astype(float)
         result = result.mean(axis=-1)
     else:
@@ -38,7 +41,10 @@ def iou_explanations(
         _, result1 = exp1.get_image_and_mask(exp1.top_labels[0])
     elif exp1_type == "shap":
         result1 = exp1.values[0].squeeze(axis=-1)
-        result1 = result1 > result1.mean()  # how to
+        result1[result1<0]=0
+        max_val = np.max(result1)
+        result1 = result1/max_val
+        result1 = result1 > threshold 
         result1 = result1.astype(float)
         result1 = result1.mean(axis=-1)
     else:
@@ -52,7 +58,10 @@ def iou_explanations(
         _, result2 = exp2.get_image_and_mask(exp2.top_labels[0])
     elif exp2_type == "shap":
         result2 = exp2.values[0].squeeze(axis=-1)
-        result2 = result2 > result2.mean()  # how to
+        result2[result2<0]=0
+        max_val = np.max(result2)
+        result2 = result2/max_val
+        result2 = result2 > threshold 
         result2 = result2.astype(float)
         result2 = result2.mean(axis=-1)
     else:
@@ -80,7 +89,11 @@ def confidence_change_mask(
         _, result = exp.get_image_and_mask(exp.top_labels[0])
     elif exp_type == "shap":
         result = exp.values[0].squeeze(axis=-1)
-        result = result > result.mean()  # how to
+        result[result<0]=0
+        max_val = np.max(result)
+        result = result/max_val
+        result = result > threshold 
+        #result = result > result.mean()  # how to
         result = result.astype(float)
         result = result.mean(axis=-1)
     else:
@@ -108,7 +121,11 @@ def confidence_change_wo_mask(
         _, result = exp.get_image_and_mask(exp.top_labels[0])
     elif exp_type == "shap":
         result = exp.values[0].squeeze(axis=-1)
-        result = result > result.mean()
+        result[result<0]=0
+        max_val = np.max(result)
+        result = result/max_val
+        result = result > threshold 
+        #result = result > result.mean()
         result = result.astype(float)
         result = result.mean(axis=-1)
     else:
@@ -142,7 +159,10 @@ def new_predictions(
         _, result = exp.get_image_and_mask(exp.top_labels[0])
     elif exp_type == "shap":
         result = exp.values[0].squeeze(axis=-1)
-        result = result > result.mean()
+        result[result<0]=0
+        max_val = np.max(result)
+        result = result/max_val
+        result = result > threshold# result.mean()
         result = result.astype(float)
         result = result.mean(axis=-1)
     else:
