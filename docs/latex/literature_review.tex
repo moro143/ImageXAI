@@ -64,7 +64,7 @@ Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec r�
 Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikownych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
 
 \subsubsection*{LIME}
-\textbf{LIME} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+\textbf{LIME} \cite{ribeiro2016why} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
 
@@ -104,7 +104,7 @@ Dzięki LIME, użytkownicy mogą lepiej zrozumieć, dlaczego model podjął konk
 W przypadku danych obrazowych LIME umożliwia wizualizację wpływu poszczególnych fragmentów obrazu na decyzje modelu, co dodatkowo zwiększa interpretowalność i zrozumienie modelu.
 
 \subsubsection*{SHAP}
-\textbf{SHAP} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
+\textbf{SHAP} \cite{lundberg2017unified} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
 Metoda ta opiera się na szacowaniu wartości Shapleya, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
 Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
 
@@ -138,7 +138,7 @@ W odróżnieniu od metod niezależnych od modelu, metody te wykorzystują wewnę
 Dzięki temu są w stanie dokładniej wskazać, które elementy modelu oraz które cechy mają kluczowy wpływ na wynik predykcji.
 
 % GradCAM
-\textbf{GradCAM} (Gradient-weighted Class Activation Mapping) jest jedną z najbardziej popularnych metod model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacji modelu.
+\textbf{GradCAM} \cite{Selvaraju_2019} (Gradient-weighted Class Activation Mapping) jest jedną z najbardziej popularnych metod model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacji modelu.
 Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych super pikseli obrazu względem konkretnej klasy.
 Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
 
@@ -185,7 +185,7 @@ Dzięki temu metody takie jak GradCAM mogą nie tylko zwiększać zaufanie użyt
 %Ablation-CAM: Visual Explanations for Deep Convolutional Network via Gradient-free Localization
 %CLEVER_XAI
 Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacj obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
-Istnieją dwa główne podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
+W pracy 'Ablation-CAM' \cite{9093360} zaprezentowano dwa podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
 \begin{itemize}
 	\item \textbf{Oparte na modelu} (model-based)
 	\item \textbf{Oparte na prawdzie} (truth-based)
