@@ -30,7 +30,6 @@ Porównując metody XAI pod kątem wartości IoU, zmian pewności po pozostawien
 Dla poszczególnych kategorii GradCAM zawsze miał najwyższe wartości IoU, podczas gdy LIME najniższe, z wyjątkiem kategorii Insekt, gdzie wyniki były zbliżone do SHAP.
 Podobne wyniki zaobserwowano przy analizie zmian pewności, zarówno po pozostawieniu, jak i po usunięciu wyjaśnienia, gdzie GradCAM dominował nad LIME.
 
-Połączenie wyjaśnień
 \section*{Część wspólna}
 
 Połączenie wyjaśnień przez część wspólną wykazało, że najlepsze wyniki osiągnięto dla połączenia GradCAM z LIME.
@@ -48,5 +47,4 @@ Jednak zmiana pewności po usunięciu tych obszarów również była największa
 \section*{Wnioski końcowe}
 
 Badania wykazały, że GradCAM jest najbardziej spójną i dokładną metodą wyjaśnień w porównaniu do LIME i SHAP. Łączenie wyjaśnień różnych metod może poprawić dokładność i spójność wyników, szczególnie gdy stosuje się sumę obszarów.
-Jednakże, niezależnie od metody połączenia, wyniki te są zazwyczaj gorsze od wyników uzyskanych z poszczególnych metod.
 W praktyce, wybór odpowiedniej metody XAI oraz podejście do łączenia wyjaśnień powinno być dostosowane do specyfiki problemu i wymagań interpretowalności modelu.

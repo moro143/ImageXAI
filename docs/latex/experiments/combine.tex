@@ -6,11 +6,11 @@ Przeprowadzimy analizę na całym zbiorze danych, porównując wyniki uzyskane z
 \subsection*{Część wspólna}
 W tej analizie połączono wyjaśnienia różnych metod poprzez część wspólną obszarów wyjaśnionych przez każdą z metody.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_iou_and}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_iou_and}
 	\caption{IoU dla połączeń wyjaśnień poprzez część wspólną}  \label{rys:combine_iou_and}
 \end{figure}
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline
@@ -35,11 +35,11 @@ Najgorsze wyniki osiągneło połączenie wszystkich trzechwyjaśnień.
 Żadne z połączeń nie uzyskało lepszego średniego wyniku  IoU niż średni wynik którgokolwiek z części wyjaśnień.
 Powodem jest zbyt duże zmniejszenie wielkość wyjaśnień.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_confidence_exp_and}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_confidence_exp_and}
 	\caption{Zmiana pewności po pozostawieniu samego wyjaśnienia}  \label{rys:combineandconfidencean}
 \end{figure}
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline
@@ -61,8 +61,8 @@ Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na 
 Najlepsze wyniki dla połączenia GradCAM z SHAP, jednak zadal gorsze niż wyjaśnienie uzyskane z samego GradCAM lub samgeo SHAPA.
 Żadne z połączeń nie uzyskało lepszego średniego zmiany pewności niż średni wynik którgokolwiek z części wyjaśnień.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_confidence_no_exp_and}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_confidence_no_exp_and}
 	\caption{Zmiana pewności przy usunięciu obszarów wyjaśnienia}  \label{rys:combineandconfidenceandno}
 \end{figure}
 \begin{table}
@@ -89,11 +89,11 @@ Najlepsze wyniki były dla połączenia GradCAM oraz SHAP, jdenak nadal gorsze n
 
 
 \subsection*{Suma obszarów}
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_iou_or}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_iou_or}
 	\caption{IoU dla połączeń wyjaśnień poprzez sume obszarów}  \label{rys:combine_iou_or}
 \end{figure}
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline
@@ -118,11 +118,11 @@ Oznacza to że wyjaśnienia SHAP zawierają obszary będące poza obszarem zaint
 Najgorsze wyniki osiągnął SHAP oraz LIME.
 Nadal jednak byłu lepsze niż sam LIME lub sam SHAP.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_confidence_exp_or}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_confidence_exp_or}
 	\caption{Zmiana pewności po pozostawieniu samego wyjaśnienia}  \label{rys:combineandconfidenceor}
 \end{figure}
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline
@@ -145,11 +145,11 @@ Najlepszy wynik uzyskało połączenie wszystkich trzech wyjaśnień, co dało z
 Spowodowane to było mniejszą modeyfikacją.
 Najgorsze wyniki uzyskało połączenie SHAP oraz LIME, nadal będąc lepszym wynikiem niż którekolwiek z pojedyńczych części.
 
-\begin{figure}
-	\centering\includegraphics[width=.6\textwidth]{img/combine_confidence_no_exp_or}
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/combine_confidence_no_exp_or}
 	\caption{Zmiana pewności przy usunięciu obszarów wyjaśnienia}  \label{rys:combineandconfidenceorno}
 \end{figure}
-\begin{table}
+\begin{table}[h]
 	\centering
 	\begin{tabular}{|c|c|}
 		\hline

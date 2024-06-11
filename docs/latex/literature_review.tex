@@ -12,7 +12,7 @@ Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmi
 Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
 Negatywny wpływ na wynik klasyfikacji mogą mieć niskiej jakości zbiory danych
 
-Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, może to powodować przuczenie się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
+Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, może to skutokować przuczeniem się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
 
 \textbf{Głębokie sieci neuronowe} (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
@@ -119,24 +119,6 @@ Metoda SHAP składa się z następujących kroków:
 	\item \textbf{Średnia marginalna wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
 \end{enumerate}
 
-Poniżej znajduje się pseudokod prezentujący kroki algorytmu SHAP:
-\begin{listing}
-	\begin{minted}{python}
-def explain_shap(instance)
-    shap_values = initialize_shap_values(instance)
-    for each feature j in instance:
-        for each subset S excluding j:
-            S_union_j = S U {j}
-            pred_with_j = model.predict(instance with features in S_union_j)
-            pred_without_j = model.predict(instance with features in S)
-            contribution = pred_with_j - pred_without_j
-            weight = (|S|! * (M - |S| - 1)!) / M!
-            shap_values[j] += weight * contribution
-    return shap_values
-\end{minted}
-	\caption{Pseudo kod SHAP} \label{listing:shap}
-\end{listing}
-
 Obliczanie dokładnych wartości Shapleya może być obliczeniowo kosztowne, dlatego SHAP wykorzystuje różne techniki przyspieszanie obliczeń, takie jak aproksymacje i metody samplingowe.
 
 SHAP to technika XAI, która pozwala na precyzyjne przypisywanie znaczenia poszczególnym cechom wejściowym.
@@ -193,7 +175,7 @@ Dzięki mapom ciepła (heatmaps) generowanym przez tę metodę, możemy zobaczy�
 
 \vspace{1cm}
 
-Metody Model-specific oferują wysoki poziom szczegółowości i precyzji w wyjaśnianiu działania konkretnych modeli, co czyni je atrakcyjnym narzędziem dla zrozumienia ich wewnętrznej logiki i mechanizmów decyzyjnych.
+Podsumowując, \textbf{Metody Model-specific} oferują wysoki poziom szczegółowości i precyzji w wyjaśnianiu działania konkretnych modeli, co czyni je atrakcyjnym narzędziem dla zrozumienia ich wewnętrznej logiki i mechanizmów decyzyjnych.
 Ich dostosowanie do konkretnych architektur modeli pozwala na uzyskanie bardziej precyzyjnych i zrozumiałych wyjaśnień, co jest kluczowe w przypadku zastosowań wymagających wysokiego stopnia pewności i zaufania do modeli.
 Dzięki temu metody takie jak GradCAM mogą nie tylko zwiększać zaufanie użytkowników do modeli, ale także prowadzić do ich dalszej optymalizacji i poprawy wyników.
 
