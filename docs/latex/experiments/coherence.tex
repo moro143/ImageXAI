@@ -2,8 +2,7 @@
 
 W tej sekcji przeprowadzono ocenę spójności wyjaśnień generowanych przez różne metody XAI: LIME, SHAP i GradCAM.
 Celem analizy było zrozumienie, jak bardzo wyjaśnienia nakładają się na siebie oraz jak różne techniki identyfikują istotne cechy obrazu.
-
-Wyniki wygenerowanych wyjaśnień zostały przedstawione za pomocą metryki IoU (Intersection over Union), która mierzy stopień pokrycia się regionów uznawanych za istotne przez różne metody.
+Spójność wyjaśnień oceniono za pomocą współczynnika Intersection over Union (IoU) między obszarami wyjaśnień generowanych przez różne metody.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/base_coherence}
@@ -16,33 +15,26 @@ Wyniki wygenerowanych wyjaśnień zostały przedstawione za pomocą metryki IoU 
 		\hline
 		\textbf{Metody XAI}     & \textbf{Średnie IoU} \\
 		\hline
-		\textbf{GradCAM i LIME} & 0.210750             \\
+		\textbf{GradCAM i LIME} & 0.178567             \\
 		\hline
-		\textbf{GradCAM i SHAP} & 0.279382             \\
+		\textbf{GradCAM i SHAP} & 0.111023             \\
 		\hline
-		\textbf{LIME i SHAP}    & 0.113670             \\
+		\textbf{LIME i SHAP}    & 0.072478             \\
 		\hline
 	\end{tabular}
-	\caption{Średnie wartości IoU dla porównania spójności wyjaśnień}
+	\caption{Średnie wartości IoU między typami wyjaśnień}
 	\label{tab:base_coherence}
 \end{table}
 
-Za pomocą wykresu pudełkowego (Rys \ref{rys:base_coherence}) przedstawione zostały wartości IoU dla porównania spójności wyjaśnień między różnymi metodami.
-Natomiast Tabela \ref{tab:base_coherence} przedstawia porównanie spójności wyjaśnień między wybranymi metodami XAI, przy uzyciu średnich wartości IoU.
+Za pomocą wykresu pudełkowego (Rys \ref{rys:base_coherence}) przedstawione zostały wartości IoU.
+Natomiast Tabela \ref{tab:base_coherence} przedstawia średnich wartości IoU.
 
-Wyniki pokazały, że największą spójnością wykazały się wyjaśnienia wygenerowane przez metody GradCAM i SHAP.
-Natomiast najmniejszą spójność wykazały wyjaśnienia wygenerowane przez LIME i SHAP, co może wskazywać na różnice w podejściu tych metod do identyfikacji kluczowych cech.
+GradCAM i LIME generują najbardziej spójne wyjaśnienia, co jest widoczne w najwyższych wartościach IoU.
+Sugeruje to, że dwie metody mają podobny sposóbidentyfikowania kluczowych obszarów na obrazach, które wpływają na decyzję.
 
-Niska spójność między LIME i SHAP, pomimo wyższej spójności GradCAM i LIME oraz GradCAM i SHAP, może wskazywać na to, że obszary identyfikowane przez GradCAM są większe i bardziej ogólne.
+GradCAM i SHAP oraz LIME i SHAP mają niższe wartości IoU, co sugeruje na większe różnice w obszarach wyjaśnień generowanych przez te metody.
+Może to wynikać z różnych podejść do generowania wyjaśnień.
 
-GradCAM działa na poziomie cech wysokiego poziomu, które są identyfikowane na końcowych warstwach sieci neuronowej.
-W związku z tym, GradCAM ma tendencję do zaznaczania większych regionów na obrazie, które zawierają kluczowe cechy wpływające na klasyfikację.
-Dzięki temu wyjaśnienia generowane przez GradCAM są bardziej ogólne i obejmują szersze obszary obrazu.
-
-LIME i SHAP z kolei, działają na bardziej szczegółowych poziomach.
-
-W rezultacie, większe i bardziej ogólne regiony identyfikowane przez GradCAM mają większe szanse na nakładanie się z wyjaśnieniami LIME oraz SHAP.
-Natomiast LIME i SHAP, ze względu na swoją szczegółowość, wykazują mniejszą spójność, ponieważ identyfikują bardziej precyzyjne i różniące się od siebie obszary.
 
 \vspace{1cm}
 
@@ -97,45 +89,51 @@ Analiza została przeprowadzona dla różnych kategorii obrazów.
 		\hline
 		\textbf{Kategoria}           & \textbf{GradCAM i LIME} & \textbf{GradCAM i SHAP} & \textbf{LIME i SHAP} \\
 		\hline
-		\textbf{Pies}                & 0.206546                & 0.277394                & 0.111613             \\
+		\textbf{Pies}                & 0.165114                & 0.113522                & 0.064965             \\
 		\hline
-		\textbf{Ptak}                & 0.247909                & 0.277716                & 0.117751             \\
+		\textbf{Ptak}                & 0.165077                & 0.117948                & 0.075792             \\
 		\hline
-		\textbf{Pojazd na kołach}    & 0.204956                & 0.283621                & 0.118001             \\
+		\textbf{Pojazd na kołach}    & 0.184504                & 0.109644                & 0.070630             \\
 		\hline
-		\textbf{Gad}                 & 0.191600                & 0.287120                & 0.113589             \\
+		\textbf{Gad}                 & 0.187232                & 0.108796                & 0.077426             \\
 		\hline
-		\textbf{Mięsorzerca}         & 0.196739                & 0.292880                & 0.110058             \\
+		\textbf{Mięsorzerca}         & 0.167741                & 0.114880                & 0.072844             \\
 		\hline
-		\textbf{Insekt}              & 0.235127                & 0.273465                & 0.119031             \\
+		\textbf{Insekt}              & 0.191125                & 0.112918                & 0.075120             \\
 		\hline
-		\textbf{Instrument muzyczny} & 0.208132                & 0.253540                & 0.109638             \\
+		\textbf{Instrument muzyczny} & 0.195389                & 0.100318                & 0.073182             \\
 		\hline
-		\textbf{Naczelny}            & 0.195163                & 0.283483                & 0.105888             \\
+		\textbf{Naczelny}            & 0.169974                & 0.107942                & 0.071622             \\
 		\hline
-		\textbf{Ryba}                & 0.210879                & 0.285220                & 0.117462             \\
+		\textbf{Ryba}                & 0.180948                & 0.113242                & 0.070721             \\
 		\hline
 	\end{tabular}
 	\caption{Średnie wartości IoU dla różnych kategorii}
 	\label{tab:base_coherence_categories}
 \end{table}
 
-Dane zostały przedstawione w ten sam sposób jak wcześniej, za pomocą wykresu (Rys \ref{rys:coherence_category}) oraz tabeli (Tabela \ref{tab:base_coherence_categories}) przedstawiającej średnie wartości IoU w celu prównania spójności w zależności od kategorii obrazu.
+Dane zostały przedstawione w ten sam sposób jak wcześniej, za pomocą wykresu (Rys \ref{rys:coherence_category}) oraz tabeli (Tabela \ref{tab:base_coherence_categories}) przedstawiającej średnie wartości IoU.
 
-Spójność LIME i SHAP jest podobna dla wszystkich kategorii obrazów, przy czym najgorsza jest dla kategorii Naczelny, natomiast najlepsza dla kategorii Insect.
-Spójność między tymi dwoma metodami jest najgorsza niezależnie od kategorii.
+Spójności różnią się w zależności od kategorii, jednak największą spójność zawsze posiada GradCAM z LIME.
+Największą spójnością dla nich są kategorie Instrument muzyczny oraz Insekt.
+Najniższą spójnością natomiast dla nich są kategorie Pies i Ptak.
 
-Spójność GradCAM i LIME jest różna w zależności od kategorii obrazów, przy czym najgorsza jest dla kategorii Gad, natomiast najlepsza dla kategorii Ptak i Insekt.
-Spójność między tymi dwiema metodami nigdy nie jest najlepsza ani najgorsza niezależnie od kategorii.
+Najniższą spójnością cechują się zawsze LIME i SHAP, dla których najgorsze wyniki są dla kategorii Pies, natomiast najlepsze dla Gad.
 
-Spójność GradCAM i SHAP jest różna w zależności od kategorii obrazów, przy czym najgorsza jest dla kategorii Instrument muzyczny, natomiast najlepsza dla Mięsorzerca.
-Spójność miedzy tymi dwiema metodami zawsze jest najlepsza nie zależnie od kategorii.
+GraCAM i SHAP posiadają wartości o bliskich wartościach dla wszystkich kategorii.
+
+Kategoria Insekt jako jedyna posiada wyższą średnią IoU niż średnia IoU całego zbioru dla wszystkich typów XAI.
+Natomiast kategoria Naczelny jako jedyna posiada niższą średnią IoU całego zbioru dla wszystkich typów XAI.
 
 \vspace{1cm}
 W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowano spójność wyjaśnień podzieloną ze względu na wielkość obiektów na obrazie.
 
 \begin{figure}[h]
 	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\includegraphics[width=1\textwidth]{img/base_coherence_size_XS}
+		\caption{Bardzo mały obiekt}  \label{}
+	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=1\textwidth]{img/base_coherence_size_S}
 		\caption{Mały obiekt}  \label{}
@@ -148,6 +146,10 @@ W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowan
 		\centering\includegraphics[width=1\textwidth]{img/base_coherence_size_L}
 		\caption{Duży obiekt}  \label{}
 	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=1\textwidth]{img/base_coherence_size_XL}
+		\caption{Bardzo duży obiekt}  \label{}
+	\end{subfigure}
 	\caption{Spójność wyjaśnień dla różnych rozmiarów obiektów}
 	\label{rys:coherence_size}
 \end{figure}
@@ -156,13 +158,17 @@ W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowan
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Rozmiar} & \textbf{GradCAM vs LIME} & \textbf{GradCAM vs SHAP} & \textbf{LIME vs SHAP} \\
+		\textbf{Rozmiar}     & \textbf{GradCAM i LIME} & \textbf{GradCAM i SHAP} & \textbf{LIME i SHAP} \\
 		\hline
-		\textbf{Mały}    & 0.253597                 & 0.250014                 & 0.117247              \\
+		\textbf{Bardzo mały} & 0.230775                & 0.106354                & 0.059743             \\
 		\hline
-		\textbf{Średni}  & 0.204279                 & 0.282094                 & 0.114313              \\
+		\textbf{Mały}        & 0.191562                & 0.115253                & 0.079477             \\
 		\hline
-		\textbf{Duży}    & 0.172506                 & 0.307551                 & 0.109135              \\
+		\textbf{Średni}      & 0.175971                & 0.107933                & 0.068557             \\
+		\hline
+		\textbf{Duży}        & 0.166485                & 0.110300                & 0.070198             \\
+		\hline
+		\textbf{Bardzo duży} & 0.163015                & 0.111202                & 0.068941             \\
 		\hline
 	\end{tabular}
 	\caption{Średnie wartości IoU dla różnych rozmiarów}
@@ -171,21 +177,10 @@ W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowan
 
 Tak jak w poprzednich przypadkach wyniki przedstawiono na wykresie (Rys \ref{rys:coherence_size}) oraz tabeli (Tabela \ref{tab:base_coherence_size}) przedstawiającej średnie wartości IoU dla porównania spójności wyjaśnień w zależności od rozmiaru obiektu na obrazie.
 
-Wyniki:
-\begin{itemize}
-	\item \textbf{Obiekty małe} - Największa spójność wyjaśnień występuje między metodami GradCAM i LIME oraz GradCAM i SHAP.
-	      Spójność między LIME i SHAP jest znacznie niższa tak jak w poprzednich analizach.
-	\item \textbf{Obiekty średnie} - GradCAM i SHAP ponownie wykazują największą spójność, następnie GradCAM i LIME, a najniższą spójność odnotowano między LIME i SHAP.
-	\item \textbf{Obiekty duże} - Spójność wyjaśnień między GradCAM i SHAP jest najwyższa. GradCAM i LIME mają niższą spójność, a najniższą spójność obserwuje się między LIME i SHAP.
-\end{itemize}
+Spójności różnią się w zależności od wielkości obiektu, jednak największą spójność zawsze posiada GradCAM z LIME.
+Największą spójność posiadają dla obiektów bardzo małych i ta spójność zmniejsza się wraz ze wzrostem wielkości obiektu.
 
-Dodatkowo zauważono, że spójność między GradCAM i LIME była odwrotnie proporcjonalna do wielkości obiektu.
-Im mniejeszy obiekt, tym większa była spójność między tymi metodami.
-Podobny trend zaobserwowano w przypadku spójności między LIME i SHAP, choć wpływ wielkości obiektu był mniejszy.
-Natomiast spójność między GradCAM i SHAP była proporcjonalnie zależna od wielkośći.
-Im większy obiekt, tym większa była spójność między tymi metodami.
+GradCAM i SHAP największą spójnośc posiadają dla obiektów małych obiektów, a najmniejszą dla obiektów bardzo małych, są to jednak niewielkie różnice.
 
-Warto zauważyć, że metody takie jak LIME i SHAP są wrażliwe na dobór parametrów.
-Te zależności od parametrów mogą wpływać na stabilność i spójność wyjaśnień generowanych przez te techniki.
-Co może częściowo może tłumaczyć podobne wyniki między LIME i SHAP niezależnie od rozmiaru obiektu.
+LIME i SHAP największą spójność posiadają dla obiektów małych, a najmniejszą dla obiektów bardzo małych.
 

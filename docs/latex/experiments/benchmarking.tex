@@ -1,6 +1,5 @@
 \section*{Analiza porównacza wyjaśnień}
 W tej sekcji przeprowadzono analizę porównawcą wyjaśnień generowanych przez różne metody XAI: LIME, SHAP i GradCAM.
-Oceny zostały dokonane na podstawie IoU oraz na podstawie zmiany pewności modelu.
 
 Analiza została przeprowadzona na trzech poziomach:
 \begin{enumerate}
@@ -10,13 +9,17 @@ Analiza została przeprowadzona na trzech poziomach:
 \end{enumerate}
 
 Celem tej analizy było zrozumienie, które metody XAI są najbardziej skuteczne w identyfikacji istotnych cech orazów oraz jakie czynniki mogą wpłynąć na spójność i stabilność wyjaśnień generowanych przez metody.
+Każda z tych metod ma inne teoretyczne podstawy oraz praktyczne założenia, które mogą istotnie wpływać na ich skuteczność i użyteczność w różnych zastosowaniach.
 Dzięki temu możliwe jest lepsze zrozumienie mechanizmów działania każdej z metod i ich potencjalnych zastosowań w praktyce.
 
 \subsection*{Analiza na całym zbiorze danych}.
 
-W tej części przeprowadzono analizę porównawczą metod XAI na całym zbiorze danych.
-Skupiono się na ocenie Intersection over Union oraz zmianach w pewności modelu po zastosowaniu wyjaśnień.
-Celem było zrozumienie, jak skutecznie każda metoda identyfikuje istotne cechy obrazu w kontekście całego zbioru.
+W tej części przeprowadzono analizę porównawczą metod XAI na całym zbiorze danych, w celu zbadania ogólnych właściwości oraz efektywności metod XAI w kontekście interpretowalności modeli głębokich.
+Skupiono się na ocenie Intersection over Union, procentowego udziału obszaru wyjaśnienia poza obiektem oraz zmianach w pewności modelu po zastosowaniu wyjaśnień.
+
+\vspace{1cm}
+
+Analiza porównawcza wartości IoU dla wybranych metod na całym zbiorze danych dostarczyła inforamcji na dotyczących spójności generowanych wyjaśnień.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/base_iou}
@@ -29,26 +32,65 @@ Celem było zrozumienie, jak skutecznie każda metoda identyfikuje istotne cechy
 		\hline
 		\textbf{Metoda XAI}  & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Średnie IoU} & 0.439863         & 0.199370      & 0.292436      \\
+		\textbf{Średnie IoU} & 0.439863         & 0.176337      & 0.118810      \\
 		\hline
 	\end{tabular}
 	\caption{Średnie wartości IoU}
 	\label{tab:basiciou}
 \end{table}
 
+
 Wyniki analizy pokazano na wykresie pudełkowym (Rys. \ref{rys:basiciou}), który przedstawia rozkład wartości IoU dla poszczególnych metod XAI.
 Dodatkowo, Tabela \ref{tab:basiciou} zawiera średnie wartości IoU dla każdej z metod.
 
-Z wyników wynika, że metoda GradCAM osiągnęła najwyższe średnie wartości IoU, co sugeruje, że generowane przez nią wyjaśnienia najbardziej pokrywają się z rzeczywistymi istotnymi obszarami na obrazach.
-Natomiast LIME osiągnęła najniższe średnie IoU.
+Najwyższym wynikiem IoU wykazał się GradCAM, co wskazuje na wysoką zgodnośc wyjaśnień z rzeczywistymi obszarami decyzyjnymi modelu.
 
-Te wyniki wskazują, że GradCAM jest najbardziej skuteczny w identyfikacji istotnych cech obrazów na całym zbiorze danych.
-Wyższa wartość IoU dla GradCAM może wynikać z doboru niskiego parametru threshold, co powoduje zaznaczenie większego obszaru obrazu.
+LIME uzyskał IoU na niższym poziomie.
+Wyjaśnienia wygenerowane przez LIME często pokrywały mniejsze obszary obiektów na obrazach.
 
-Metoda LIME, która analizuje lokalne zmiany w predykcji modelu na skutek modyfikacji fragmentów obrazu, wykazała najniższą spójność z rzeczywistymi istotnymi obszarami.
-Może to być spowodowane tym, że LIME generuje bardziej szczegółowe, co prowadzi do mniejszej wartości IoU.
+SHAP wykazał najniższe wartości IoU.
 
-Metoda SHAP, która ocenia wpływ każdego piksela na predykcję modelu, uzyskała średnie wartości IoU między GradCAM a LIME, co sugeruje, że generuje wyjaśnienia o umiarkowanej ogólności i precyzji.
+Analiza IoU pokazała, że GradCAM oferuje największą spójnośc i zgodność wyjaśnień z rzeczywistymi obszarami decyzyjnymi modelu.
+LIME i SHAP osiągnęły gorsze wyniki co może być spowodowane doborem parametrów oraz metodą dostarczania wyjaśnień, wyjaśnienia są mniejsze oraz często skupiają się na koknkretnych cechach obiektu, nie na całym obiekcie.
+
+\vspace{1cm}
+
+W celu dostarczenia dodatkowych informacji o spójności wyjaśnień, zbadano jaki procent obszaru wyjaśnienia znajduje się poza obiektem, czyli jest nieprawidłowo oznaczony.
+
+\begin{figure}[h]
+	\centering\includegraphics[width=.9\textwidth]{img/areaincorrect}
+	\caption{Procent obszaru wyjaśnienia poza obiektem}  \label{rys:areaincorrect}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Metoda XAI}                          & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\hline
+		\textbf{Średni procent obszaru wyjaśnienia } & 36.310489\%      & 28.544654\%   & 45.590079\%   \\
+		\hline
+	\end{tabular}
+	\caption{Procent obszaru wyjaśnienia poza obiektem}
+	\label{tab:areaincorrect}
+\end{table}
+
+Wyniki analizy pokazano na wykresie pudełkowym (Rys. \ref{rys:areaincorrect}), który przedstawia rozkład wartości procentów obszarów wyjaśnienia poza obiektem poszczególnych metod XAI.
+Dodatkowo, Tabela \ref{tab:areaincorrect} zawiera średnie procenty obszarów wyjaśnień poza obiektem.
+
+Najlepszy wynik w tej analizie osiągnął LIME.
+
+GradCAM pomimo wysokiego IoU osiągnął gorsze wyniki co może być spowodowane wyjaśnieniami generowanymi na super piksele, związane z wielkością ostatniej warstwy konwolucyjnej.
+
+Najgorsze wyniki jesdnak osiągnął SHAP.
+
+Analiza procentu obszaru wyjaśnienia poza obiektem pokazuje, że LIME generuje wyjaśnienia o najmniejszym rozproszeniu, skupiając się na istotnych cech.
+GradCAM przez sposób dostarczania wyjaśńień, wyjaśnienia często posiadają obszary spoza rzeczywistego obiektu.
+SHAP przez wrażliwość na hiperparametry posiadał najgorsze wyniki.
+
+\vspace{1cm}
+
+Analiza porównawcza zmiany pewności po pozostawieniu jedynie obszaru wyjaśnień dostarczyła istotnych obserwacji dotyczących wpływu generowanych wyjaśnień na pewność decyzji modelu.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp}
@@ -59,9 +101,9 @@ Metoda SHAP, która ocenia wpływ każdego piksela na predykcję modelu, uzyska�
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Metoda XAI}  & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Metoda XAI}             & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Średnie IoU} & -0.247974        & -0.732920     & -0.58366      \\
+		\textbf{Średni spadek pewności} & -0.247974        & -0.781209     & -0.826915     \\
 		\hline
 	\end{tabular}
 	\caption{Średni spadek pewności modelu po pozostawieniu jedynie obszaru wyjaśnienia}
@@ -72,26 +114,25 @@ Metoda SHAP, która ocenia wpływ każdego piksela na predykcję modelu, uzyska�
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Metoda XAI}  & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Metoda XAI} & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Średnie IoU} & 24.8148\%        & 2.2222\%      & 5.6296\%      \\
+		\textbf{Procent}    & 24.8148\%        & 0.8642\%      & 0.2963\%      \\
 		\hline
 	\end{tabular}
-	\caption{Procent przydaków, w których pewność się zwiększyła}
+	\caption{Procent przytaków, w których pewność się zwiększyła}
 	\label{tab:base_confidence_exp_percent}
 \end{table}
 
 Wyniki analizy przedstawiono na wykresie (Rys. \ref{rys:base_confidence_exp}), który ilustruje zmianę pewności modelu po pozostawieniu jedynie obszarów wyjaśnień.
 Natomiast Tabela \ref{tab:base_confidence_exp} przedstawia średni spadek pewności modelu dla każdej z metod, natomiast Tabela \ref{tab:base_confidence_exp_percent} pokazuje procent przypadków, w których pewność modelu wzrosła po zastosowaniu wyjaśnień.
 
-Metoda GradCAM wykazała najmniejszy spadek pewności modelu, co sugeruje, że wyjaśnienia generowane przez GradCAM są najbardziej zgodne z rzeczywistymi istotnymi obszarami obrazu.
-Średni spadek pewności wyniósł -0.247974, a w 24.8148\% przypadków pewność modelu wzrosła, co jest najwyższym wynikiem spośród analizowanych metod.
+Najmniejszy spadek pewności oraz największy procent przypatków, w których pewność wzrosła osiągnął GradCAM.
 
-Metoda LIME, mimo że generuje szczegółowe wyjaśnienia, wykazała największy spadek pewności modelu (-0.732920) i najniższy procent przypadków ze wzrostem pewności (2.2222\%).
-Może to sugerować, że LIME identyfikuje obszary, które nie zawsze są kluczowe dla predykcji modelu.
+Zarówno SHAP jak i LIME osiągnęły niskie wyniki w tej analizie, spowodowane to może być wybieraniem mniejszych obszarów przez LIME i SHAP.
 
-Metoda SHAP, która ocenia wpływ każdego super pikselu na predykcję, uzyskała średni spadek pewności na poziomie -0.583660 oraz 5.6296\% przypadków ze wzrostem pewności.
-Wyniki te wskazują, że SHAP generuje wyjaśnienia o umiarkowanej skuteczności w kontekście identyfikacji istotnych obszarów obrazu.
+\vspace{1cm}
+
+Analiza porównawcza zmiany pewności decyzji po usunięciu wyjaśnionych obszarów dla metod GradCAM, LIME i SHAP dostarczyła informacji dotyczące wpływu interpretacji na pewność modelu.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp}
@@ -102,9 +143,9 @@ Wyniki te wskazują, że SHAP generuje wyjaśnienia o umiarkowanej skuteczności
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Metoda XAI}  & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Metoda XAI}              & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Średnie IoU} & -0.747604        & -0.404889     & -0.626561     \\
+		\textbf{Średnia zmiana pewności} & -0.747604        & -0.342071     & -0.204317     \\
 		\hline
 	\end{tabular}
 	\caption{Średni spadek pewności modelu po usunięciu obszaru wyjaśnienia}
@@ -114,19 +155,19 @@ Wyniki te wskazują, że SHAP generuje wyjaśnienia o umiarkowanej skuteczności
 Wyniki analizy przedstawiono na wykresie (Rys. \ref{rys:base_confidence_no_exp}), który ilustruje zmianę pewności modelu po usunięciu obszaru wyjaśnienia.
 Natomiast Tabela \ref{tab:base_confidence_no_exp} przedstawia średni spadek pewności modelu dla każdej z metod.
 
-Metoda GradCAM wykazała największy spadek pewności modelu (-0.747604), co sugeruje, że wyjaśnienia generowane przez GradCAM są najbardziej zgodne z rzeczywistymi istotnymi obszarami obrazu.
+Najlepsze wyniki uzyskał GradCAM, wskazuje to na duży wpływ obszaru wyjaśnienia na decyzję modelu.
 
-Metoda LIME wykazała najmniejszy spadek pewności modelu (-0.404889).
-Może to sugerować, że LIME identyfikuje nie wszystkie obszary kluczowe lub identyfikuje nieklucze dla prdykcji modelu obszary.
+LIME wygenerował mniejsze zmiany w pewności, co może wynikać z generowania mniejszych wyjaśnień.
 
-Metoda SHAP uzyskała średni spadek pewności na poziomie -0.626561.
-Wyniki te wskazują, że SHAP generuje wyjaśnienia, które są umiarkowanie skuteczne w kontekście identyfikacji istotnych obszarów obrazu, ale nie są tak trafne jak wyjaśnienia generowane przez GradCAM.
+SHAP wygenerował najmniejszy spadek, co może wynikać z generowania mniejszych wyjaśnień oraz wysokiej czułości na hiperparametry.
+
+Analiza zmiany pewności decyzji po usunięciu obszarów wyjaśnień wykazała, że metoda GradCAM generuje wyjaśnienia z obszarami wysoce wpływającymi na pewność modelu.
+Natomiast zarówno LIME jak i SHAP generują wyjaśnienia z obszarami sumarycznie mniej ważnymi.
 
 \subsection*{Analiza z podziałem na kategorie obrazu}
 
-W tej części dokonano analizy porównawczej metod XAI z uwzględnieniem różnych kategorii obrazów.
-Porównano skuteczność wyjaśnień generowanych przez LIME, SHAP i GradCAM dla różnych klas.
-Celem była ocena, jak metody radzą sobie w kontekście specyficznych rodzajów obrazów.
+W tej części przeprowadzono analizę porównawczą metod XAI z podziałem na wybrane kategorie obrazów.
+Celem było dokładniejsze porównanie jakości wyjaśnień oraz ocena wpływu kategorii obrazu na wyniki.
 
 \begin{figure}[h]
 	\centering
@@ -176,23 +217,23 @@ Celem była ocena, jak metody radzą sobie w kontekście specyficznych rodzajów
 		\hline
 		\textbf{Kategoria}           & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Pies}                & 0.467134         & 0.174455      & 0.351659      \\
+		\textbf{Pies}                & 0.467134         & 0.140748      & 0.123451      \\
 		\hline
-		\textbf{Ptak}                & 0.428416         & 0.232156      & 0.253825      \\
+		\textbf{Ptak}                & 0.428416         & 0.166958      & 0.123881      \\
 		\hline
-		\textbf{Pojazd na kołach}    & 0.459880         & 0.199560      & 0.308771      \\
+		\textbf{Pojazd na kołach}    & 0.459880         & 0.185348      & 0.121152      \\
 		\hline
-		\textbf{Gad}                 & 0.436193         & 0.198447      & 0.302146      \\
+		\textbf{Gad}                 & 0.436193         & 0.201811      & 0.121951      \\
 		\hline
-		\textbf{Mięsożerca}          & 0.468916         & 0.173762      & 0.335634      \\
+		\textbf{Mięsożerca}          & 0.468916         & 0.154079      & 0.122430      \\
 		\hline
-		\textbf{Insekt}              & 0.410650         & 0.252195      & 0.255142      \\
+		\textbf{Insekt}              & 0.410650         & 0.218640      & 0.115746      \\
 		\hline
-		\textbf{Instrument muzyczny} & 0.394289         & 0.182606      & 0.261536      \\
+		\textbf{Instrument muzyczny} & 0.394289         & 0.179295      & 0.102792      \\
 		\hline
-		\textbf{Naczelny}            & 0.465292         & 0.165912      & 0.332052      \\
+		\textbf{Naczelny}            & 0.465292         & 0.150706      & 0.118099      \\
 		\hline
-		\textbf{Ryba}                & 0.427992         & 0.215236      & 0.261161      \\
+		\textbf{Ryba}                & 0.427992         & 0.189446      & 0.113783      \\
 		\hline
 	\end{tabular}
 	\caption{IoU dla kategorii}
@@ -201,18 +242,117 @@ Celem była ocena, jak metody radzą sobie w kontekście specyficznych rodzajów
 
 Wyniki analizy IoU w zależności od kategorii obrazów przedstawiono na wykresach (Rys. \ref{rys:base_iou_category}) oraz w Tabeli \ref{tab:base_iou_category}, która zawiera średnie wartości IoU dla poszczególnych metod XAI i kategorii.
 
-Z analizy wynika, że metoda GradCAM osiągnęła najwyższe średnie wartości IoU we wszystkich kategoriach, co wskazuje na jej najwyższą skuteczność w identyfikacji istotnych cech obrazów niezależnie od ich rodzaju.
-Najlepsze wyniki gradcam osiągnął dla kategorii Pies, Pojazd na kołach, Mięsożerca oraz Naczelny.
-Natomias najgorsze wyniki osiągneł dla kategorii Insstrument muzyczny oraz Insekt.
+Metoda GradCAM osiąga najlepsze wyniki niezależnie od wybranej kategorii obrazu, co świadczy o jej zdolności do lokalizowania rzeczywistego obiektu.
+Najwyższe wartości osiągnęła dla kategorii Mięsożerca oraz Pies.
+Najniższe natomiast dla kategorii Instrument muzyczny.
 
-Metoda SHAP, mimo że generalnie osiągnęła średnie wartości IoU pomiędzy GradCAM a LIME, wykazała szczególną skuteczność w kategoriach Pies, Mięsożerca i Naczelny.
-Natomiast najgorzej porodził sobie z kategoriamii Ptak i Insekt.
+Metoda LIME uzyskuje niższe wartości IoU w porównaniu do GradCAM.
+Najwyższe wyniki LIME zaobserwowano dla kategorii Insekt.
+Najniższe natomiast dla kategorii Pies.
 
-Metoda LIME miała najniższe wartości IoU we wszystkich kategoriach.
-Wyniki kategorii Insekt dla LIME, były podobne do wyników SHAPA, co sugeruje, że w tej konkretnej kategorii obie metody osiągneły porównywalne wyniki.
-Najgorsze wyniki uzyskał dla kategorii Naczelny.
+Metoda SHAP uzyskuje podobne wartości niezależnie od wybranej kategorii.
+Przy czym najlepsze wyniki dla kategorii Ptak.
+Natomiast najgorsze dla kategorii Instrument muzyczny.
 
-Ogólnie rzecz biorąc, wyniki te sugerują, że skuteczność metod XAI różni się w zależności od rodzaju obrazów, a wybór odpowiedniej metody powinien uwzględniać specyfikę analizowanej kategorii.
+Jedyną kategorią dla której średnia wartość IoU jest większa dla wszystkich wyjaśniń od wartości dla całego zbioru jest kategoria Pojazd na kołach.
+Żadna kategoria nie jest gorsze dla wszystkich wyjaśnień.
+
+Metoda GradCAM wykazuje się najwyższą spójnością i precyzją w generowaniu wyjaśnień.
+Zarówno LIME jak i SHAP generują wyjaśnienia o niższej spójności.
+
+\vspace{1cm}
+
+Anlize średniego procentu obszaru wyjaśnienia poza obiektem pozwoliła nalepsze zrozumienie wyników IoU.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_dog}
+		\caption{Dog}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_bird}
+		\caption{Bird}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_vehicle}
+		\caption{Vehicle}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_reptile}
+		\caption{Reptile}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_carnivore}
+		\caption{Carnivore}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_insect}
+		\caption{Insect}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_music}
+		\caption{Instrument}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_primate}
+		\caption{Primate}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_fish}
+		\caption{Fish}
+	\end{subfigure}
+	\caption{Procent obszaru wyjaśnienia poza obiektem}
+	\label{rys:areaincorrect_category}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Kategoria}           & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\hline
+		\textbf{Pies}                & 22.727765\%      & 15.608602\%   & 32.742012\%   \\
+		\hline
+		\textbf{Ptak}                & 44.389150\%      & 34.211208\%   & 53.824976\%   \\
+		\hline
+		\textbf{Pojazd na kołach}    & 31.756452\%      & 28.022858\%   & 39.598063\%   \\
+		\hline
+		\textbf{Gad}                 & 37.630000\%      & 27.926620\%   & 45.545502\%   \\
+		\hline
+		\textbf{Mięsożerca}          & 28.788019\%      & 20.999559\%   & 34.912974\%   \\
+		\hline
+		\textbf{Insekt}              & 50.101927\%      & 36.614944\%   & 61.524663\%   \\
+		\hline
+		\textbf{Instrument muzyczny} & 41.103004\%      & 39.156369\%   & 52.134963\%   \\
+		\hline
+		\textbf{Naczelny}            & 25.07336\%       & 17.63363\%    & 36.43725\%    \\
+		\hline
+		\textbf{Ryba}                & 45.224726\%      & 36.728101\%   & 53.590312\%   \\
+		\hline
+	\end{tabular}
+	\caption{Średni procent obszaru wyjaśnienia poza obiektem}
+	\label{tab:areaincorrect_category}
+\end{table}
+
+Wyniki analizy  przedstawiono na wykresach (Rys. \ref{rys:areaincorrect_category}) oraz w Tabeli \ref{tab:areaincorrect_category}, która zawiera średnie procenty obszarów wyjaśnienia poza obiektami dla poszczególnych metod XAI i kategorii.
+
+Metoda GradCAM często generuje wyjaśnienia, których obszar wykracza poza geanice obiektów na obrazie.
+W niektórych kategoriach takich jak Insekt, Ryba i Ptak, średni procent obszaru wyjaśnienia poza obiektem był bardzo wysoki.
+Dla kategorii Pies średni procent był najmniejszy.
+
+Metoda LIME wygenerowała wyjaśnienia z najmniejszym procentem poza rzeczywistym obszarem obiektu, nizależnie od kategori.
+Najlepsze wyniki dla LIME uzyskały kategorie Pies oraz Naczelny, natomiast najgorsze kategoria Instrument muzyczny.
+
+Metoda SHAP wygenerowała najgorsze wyjaśnienia.
+Najgorszą kategorią były Insekt, Ptak, Instrument muzyczny oraz Ryba, gdzie średnio większość wyjaśnienia znajdowała się poza obiektem.
+
+Porównując wyniki z wynikiami otrzymanymi dla całego zbioru, zauważono, że dla kategorii Pies, Pojazdy na kołach, Mięsożerca, Naczelny wszsytkie metody osiągnęly lepsze wyniki.
+Natomiast dla kategorii Gad SHAP i LIME osiągneły lepsze wyniki, a dla reszty kategorii wszystkie metody osiągnęly gorsze wyniki.
+
+\vspace{1cm}
+
+Analiza zmiany pewności po pozostawieniu jedynie obszaru wyjaśnień z podziałem na kategorie pozwoliła na dokładniejsze badanie wpływu obszarów wyjaśnień na wynik modelu.
 
 \begin{figure}[h]
 	\centering
@@ -262,23 +402,23 @@ Ogólnie rzecz biorąc, wyniki te sugerują, że skuteczność metod XAI różni
 		\hline
 		\textbf{Kategoria}           & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Pies}                & -0.203837        & -0.730913     & -0.523232     \\
+		\textbf{Pies}                & -0.203837        & -0.770963     & -0.794431     \\
 		\hline
-		\textbf{Ptak}                & -0.126917        & -0.695752     & -0.528825     \\
+		\textbf{Ptak}                & -0.126917        & -0.820506     & -0.891384     \\
 		\hline
-		\textbf{Pojazd na kołami}    & -0.283471        & -0.766767     & -0.626653     \\
+		\textbf{Pojazd na kołami}    & -0.283471        & -0.791623     & -0.822829     \\
 		\hline
-		\textbf{Gad}                 & -0.281027        & -0.703908     & -0.597428     \\
+		\textbf{Gad}                 & -0.281027        & -0.732984     & -0.783735     \\
 		\hline
-		\textbf{Mięsożerca}          & -0.165199        & -0.781692     & -0.510289     \\
+		\textbf{Mięsożerca}          & -0.165199        & -0.798678     & -0.837208     \\
 		\hline
-		\textbf{Insekt}              & -0.244699        & -0.630861     & -0.594027     \\
+		\textbf{Insekt}              & -0.244699        & -0.734359     & -0.844176     \\
 		\hline
-		\textbf{Instrument muzyczny} & -0.315661        & -0.733294     & -0.602684     \\
+		\textbf{Instrument muzyczny} & -0.315661        & -0.768455     & -0.814664     \\
 		\hline
-		\textbf{Naczelny}            & -0.236171        & -0.765780     & -0.557879     \\
+		\textbf{Naczelny}            & -0.236171        & -0.800441     & -0.813812     \\
 		\hline
-		\textbf{Ryba}                & -0.374784        & -0.787316     & -0.711981     \\
+		\textbf{Ryba}                & -0.374784        & -0.812877     & -0.839997     \\
 		\hline
 	\end{tabular}
 	\caption{Średni spadek pewności modelu po pozostawieniu jedynie obszaru wyjaśnienia dla kategorii}
@@ -291,23 +431,23 @@ Ogólnie rzecz biorąc, wyniki te sugerują, że skuteczność metod XAI różni
 		\hline
 		\textbf{Kategoria}           & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Pies}                & 32.8889\%        & 2.2222\%      & 7.1111\%      \\
+		\textbf{Pies}                & 32.8889\%        & 0.6667\%      & 1.3333\%      \\
 		\hline
-		\textbf{Ptak}                & 35.3333\%        & 4.6667\%      & 6.4444\%      \\
+		\textbf{Ptak}                & 35.3333\%        & 0.2222\%      & 0.2222\%      \\
 		\hline
-		\textbf{Pojazd na kołami}    & 20.0000\%        & 0.4444\%      & 4.4444\%      \\
+		\textbf{Pojazd na kołami}    & 20.0000\%        & 0.8889\%      & 0.0000\%      \\
 		\hline
-		\textbf{Gad}                 & 25.5556\%        & 1.5556\%      & 6.8889\%      \\
+		\textbf{Gad}                 & 25.5556\%        & 2.2222\%      & 0.2222\%      \\
 		\hline
-		\textbf{Mięsożerca}          & 31.5556\%        & 0.8889\%      & 6.8889\%      \\
+		\textbf{Mięsożerca}          & 31.5556\%        & 0.6667\%      & 0.0000\%      \\
 		\hline
-		\textbf{Insekt}              & 23.1111\%        & 6.2222\%      & 5.1111\%      \\
+		\textbf{Insekt}              & 23.1111\%        & 2.4444\%      & 0.2222\%      \\
 		\hline
-		\textbf{Instrument muzyczny} & 14.8889\%        & 1.7778\%      & 4.4444\%      \\
+		\textbf{Instrument muzyczny} & 14.8889\%        & 0.6667\%      & 0.4444\%      \\
 		\hline
-		\textbf{Naczelny}            & 27.3333\%        & 1.3333\%      & 6.2222\%      \\
+		\textbf{Naczelny}            & 27.3333\%        & 0.0000\%      & 0.0000\%      \\
 		\hline
-		\textbf{Ryba}                & 12.6667\%        & 0.8889\%      & 3.1111\%      \\
+		\textbf{Ryba}                & 12.6667\%        & 0.0000\%      & 0.2222\%      \\
 		\hline
 	\end{tabular}
 	\caption{Procent przypadków, w których pewność się zwiększyła dla kategorii}
@@ -316,16 +456,26 @@ Ogólnie rzecz biorąc, wyniki te sugerują, że skuteczność metod XAI różni
 
 Wyniki analizy zmiany pewności po pozostawieniu jedynie obszaru wyjaśnienia dla różnych kategorii obrazów przedstawiono na wykresach (Rys. \ref{rys:base_confidence_exp_category}) oraz w Tabelach \ref{tab:category_confidence_exp} i \ref{tab:category_confidence_exp_percent}, które zawierają średni spadek pewności modelu oraz procent przypadków, w których pewność modelu się zwiększyła po usunięciu obszarów uznanych przez metodę za nieistotne.
 
-Z analizy wynika, że metoda GradCAM konsekwentnie powoduje najmniejszy spadek pewności modelu w różnych kategoriach obrazów, co wskazuje na jej skuteczność w zachowywaniu kluczowych informacji przy pozostawieniu jedynie obszaru wyjaśnienia.
-Najmniejszy spadek pewności odnotowano w kategorii Ptak, a największy w kategorii Ryba.
+Metoda GradCAM wykazuje najniższy spadek pewności oraz największy procent przypadkó, w których pewność się zwiększyła niezależnie od kategorii.
+Jest to spowodowane większym obszarem wyjaśnień w porównaniu do pozostałych metod.
+Najmniejszy spadek pewności oraz największy procent zwiększenia się pewności zanotowano dla kategorii Ptak, natomiast największy spadek oraz najmniejszy procent dla kategorii Ryba.
 
-Metoda SHAP wykazała mniejsze spadki pewności w kategoriach Pies, Ptak i Mięsożerca, większe spadki dla kategorii Ryba.
+LIME charakteryzuje się wyraźnie większym spadkiem pewności po pozostawieniu jedynie obszaru wyjaśnień.
+Dla kategorii Ptak odnotowano największy spadek pewności, natomista dla kategorii Gad najmniejszy spadek pewności.
+Procent przypadków, w których pewność się zwiększyła jest zerowy dla kategorii Ryba oraz Naczelny
 
-Metoda LIME miała najniższe wartości we wszystkich kategoriach, co wskazuje na największy spadek pewności modelu. Największy spadek pewności zaobserwowano w kategorii Ryba i Mięsożerca, a najmniejszy w kategorii Ptak.
+SHAP wygenerował wyjaśnienia powodujące największy spadek pewności niezależnie od kategorii.
+Najmnijeszy spadek pewności uzyskała kategoria Pies, największy natomiast kategoria Ptak.
+Dla trzech kategorii (Pojazd na kołach, Mięsożerca, Naczelny) procent przypdaków w których zwiększyła się pewność jest równy zero.
+Tylko dla kategorii Pies procent przypadków wynosił więcej niż jeden procent.
 
-Dodatkowo, analiza procentu przypadków, w których pewność modelu się zwiększyła, pokazuje, że GradCAM również w tej mierze osiąga lepsze wyniki.
-W kategorii Ptak aż 35.3333\% przypadków odnotowało wzrost pewności modelu, co jest najwyższą wartością spośród wszystkich metod i kategorii.
-LIME pomimo gorszego wyniku zarówno IoU jak i średniego spadku pewności posiadał większy procent przypadków zwiększenia się pewności dla kategorii Insekt od SHAP.
+Średni spadek pewności w porównaniu do średniego spadku dla cełego zbioru zmnijeszył się dla kategorii Pies dla wszystkich metod oraz zwiększył się dla kategori Ryba dla wszystkich metod.
+
+Metoda GradCAM dostarcza wyjaśnienia które są często wystarczające do predykcji, natomiast zarówno SHAP jak i LIME dostarczają wyjaśnienia z zbyt małą ilością informacji do poprawnej klasyfikacji.
+
+\vspace{1cm}
+
+Analiza średniego spadku pewności po usunięciu obszaru wyjasnienia pomogła ocenić wartość obszarów podczas predykcji modelu.
 
 \begin{figure}[h]
 	\centering
@@ -375,23 +525,23 @@ LIME pomimo gorszego wyniku zarówno IoU jak i średniego spadku pewności posia
 		\hline
 		\textbf{Kategoria}           & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Pies}                & -0.712184        & -0.417865     & -0.537021     \\
+		\textbf{Pies}                & -0.712184        & -0.336678     & -0.180713     \\
 		\hline
-		\textbf{Ptak}                & -0.815407        & -0.434966     & -0.675336     \\
+		\textbf{Ptak}                & -0.815407        & -0.263471     & -0.181980     \\
 		\hline
-		\textbf{Pojazd na kołami}    & -0.731519        & -0.413569     & -0.622449     \\
+		\textbf{Pojazd na kołami}    & -0.731519        & -0.374297     & -0.166775     \\
 		\hline
-		\textbf{Gad}                 & -0.709709        & -0.368300     & -0.614917     \\
+		\textbf{Gad}                 & -0.709709        & -0.365967     & -0.218283     \\
 		\hline
-		\textbf{Mięsożerca}          & -0.709833        & -0.316740     & -0.542409     \\
+		\textbf{Mięsożerca}          & -0.709833        & -0.268193     & -0.170374     \\
 		\hline
-		\textbf{Insekt}              & -0.802191        & -0.421774     & -0.676712     \\
+		\textbf{Insekt}              & -0.802191        & -0.339857     & -0.219888     \\
 		\hline
-		\textbf{Instrument muzyczny} & -0.729714        & -0.423949     & -0.627190     \\
+		\textbf{Instrument muzyczny} & -0.729714        & -0.405207     & -0.220832     \\
 		\hline
-		\textbf{Naczelny}            & -0.730957        & -0.368148     & -0.621441     \\
+		\textbf{Naczelny}            & -0.730957        & -0.332383     & -0.190197     \\
 		\hline
-		\textbf{Ryba}                & -0.786923        & -0.478694     & -0.721575     \\
+		\textbf{Ryba}                & -0.786923        & -0.292582     & -0.289812     \\
 		\hline
 	\end{tabular}
 	\caption{Średni spadek pewności modelu po usunięciu obszaru wyjaśnienia dla kategorii}
@@ -400,24 +550,27 @@ LIME pomimo gorszego wyniku zarówno IoU jak i średniego spadku pewności posia
 
 Wyniki analizy zmiany pewności po usunięciu obszaru wyjaśnień dla różnych kategorii obrazów przedstawiono na wykresach (Rys. \ref{rys:category_confidence_no_exp}) oraz w Tabelach \ref{tab:category_confidence_no_exp}, które zawierają średni spadek pewności modelu.
 
-Z analizy wynika, że metoda LIME powoduje najmniejszy spadek pewności modelu po usunięciu obszaru wyjaśnienia w większości kategorii obrazów, co sugeruje, że generowane przez nią wyjaśnienia są mniej istotne dla decyzji modelu.
-Najmniejszy spadek pewności odnotowano w kategorii Mięsożerca, a największy w kategorii Ptak.
+Metoda GradCAM wykazuje największy spadek pewności modelu po usunięciu obszaru wyjaśnienia niezależnie od kategorii.
+Największy spadek został zaobserowowany dla kategorii Ptak, natomist najmniejsz dla kategorii Gad oraz Mięsożerca.
 
-Metoda SHAP wykazuje średnie wartości spadku pewności pomiędzy LIME a GradCAM.
-Warto zauważyć, że najmniejszy spadek pewności modelu po usunięciu obszaru wyjaśnienia dla SHAP wystąpił w kategorii Mięsożerca.
+LIME wykazał największy spadek dla kategorii Instrument muzyczny, natomiast najmniejszy dla kategorii Ptak oraz Mięsożerca.
 
-Metoda GradCAM wykazuje największe spadki pewności modelu po usunięciu obszaru wyjaśnienia we wszystkich kategoriach obrazów.
-Największy spadek pewności odnotowano w kategorii Ptak, co wskazuje na to, że obszary wyjaśnień generowanych przez GradCAM są kluczowe dla decyzji modelu w przypadku obrazów tej kategorii.
+SHAP wykazał najniższy spadek pewności modelu niezależnie od kategorii obrazu.
+Największy spadek wykazał dla kategorii Rybam natomiast najmniejszy spadek dla kategorii Mięsożerca.
 
-Podsumowując, LIME powoduje najmniejszy spadek pewności modelu po usunięciu obszaru wyjaśnienia, co sugeruje, że generowane przez nią wyjaśnienia są mniej istotne dla decyzji modelu.
-Metoda SHAP osiąga średnie wyniki pomiędzy LIME a GradCAM, a GradCAM wykazuje największe spadki pewności modelu, co sugeruje, że obszary wyjaśnień generowanych przez tę metodę są kluczowe dla decyzji modelu.
+Porównując z analizą całego zbioru kategorie Pies, Mięsożerca i Naczelny wykazały gorsze wyniki dla wszystkich metod XAI.
+
+\vspace{1cm}
+
+Analiza porównawcza wyjaśnień dla różnych kategorii obrazów pokazała, że metoda GradCAM często oferuje najlepszą lokalizację obszarów, pomimo dostarczania wyjaśnień często wykraczających poza obszar obiektu.
+LIME i SHAP mają tendencję do generowania wyjaśnień mniejszych, nie wykrywających wystarczająco ogólnych cech.
 
 \subsection*{Analiza w zależności od wielkość obiektu}
 
-\textbf{Analiza w zależności od wielkości obiektu}.
-Przeanalizowano, jak metody XAI radziły sobie w identyfikacji istotnych cech obrazów w zależności od wielkości obiektów.
-Porównano wyniki IoU oraz zmiany pewności modelu dla małych, średnich oraz dużych obiektów.
-Celem było zrozumienie, jak wielkość obiektu wpływa na skuteczność wyjaśnień generowanych przez różne metody.
+W tej sekcji dokonano analizy porownawczej metod GradCAM, LIME i SHAP pod względem generowanych wyjaśnień w zależności od wielkości obiektu na obrazie.
+Analiza ta jest istotna, ponieważ wpływ wielkości obiektu na efektywność może się różnić w zależności od użytej metody XAI.
+Podział na różne kategorie wielkości obiektów pozwala na ocenę, jak skutecznie każda metoda radzi sobie z generowaniem wyjaśnień dla różnych rozmiarów obeiektu.
+Wyniki analizy dostarczyły informacji na temat elastyczności i dokładności poszczególnych metod.
 
 \begin{figure}[h]
 	\centering
@@ -441,13 +594,17 @@ Celem było zrozumienie, jak wielkość obiektu wpływa na skuteczność wyjaśn
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Rozmiar} & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Rozmiar}     & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Mały}    & 0.345227         & 0.276572      & 0.171397      \\
+		\textbf{Bardzo mały} & 0.050891         & 0.126901      & 0.035773      \\
 		\hline
-		\textbf{Średni}  & 0.477717         & 0.186679      & 0.314621      \\
+		\textbf{Mały}        & 0.354933         & 0.227675      & 0.117969      \\
 		\hline
-		\textbf{Duży}    & 0.497586         & 0.131633      & 0.396037      \\
+		\textbf{Średni}      & 0.477717         & 0.163982      & 0.122531      \\
+		\hline
+		\textbf{Duży}        & 0.496625         & 0.139437      & 0.118255      \\
+		\hline
+		\textbf{Bardzo duży} & 0.522507         & 0.131985      & 0.118691      \\
 		\hline
 	\end{tabular}
 	\caption{Średnie wartości IoU w zależności od rozmiaru obiektu na obrazie}
@@ -456,19 +613,67 @@ Celem było zrozumienie, jak wielkość obiektu wpływa na skuteczność wyjaśn
 
 Wyniki analizy IoU dla różnych wielkości obiektów obrazów przedstawiono na wykresach (Rys. \ref{rys:size_iou}) oraz w Tabeli \ref{tab:size_iou}, która zawiera średnie wartości IoU.
 
-GradCAM osiągnął najlepsze wyniki IoU dla dużych obiektów.
-Skuteczność GradCAM jest proporcjonalna do wielkości obiektu: im większy obiekt, tym wyższa wartość IoU.
-Wskazuje to, że GradCAM lepiej identyfikuje kluczowe obszary na obrazach zawierające większe obiekty.
-Może to być spowodowane niską rozdzielczością wyjaśnień wynikającą z wielkości ostatniej warstwy konwolucyjnej w ResNet50.
+GradCAM wykazał wyraźny wzrost wartości IoU wraz ze wzrostem wielkości obiektu.
+Dla Bardzo małych i małych obiektów zależność od wielkości ostatniej warstwy konwolucyjnej była najbardziej widoczna.
 
-LIME osiągnął najniższą wartość IoU dla dużych obiektów.
-Skuteczność LIME jest odwrotnie proporcjonalna do wielkości obiektu:  im większy obiekt, tym niższa wartość IoU.
-Wskazuje to, że LIME lepiej radzi sobie z mniejszymi obiektami, mając trudności z identyfikacją kluczowych cech na większych obiektach.
-Może to być spowodowane ustawionymi parametrami, gdyż LIME jest wysoce wrażliwy na parametry.
+LIME uzyskał najlepsze wyniki ze wszystkich technik dla Bardzo małych obiektów.
+Najlepszy wynik uzyskał dla Małych obiektów.
+Następnie zmniejszała się ta wartość wraz ze wzrostem rozmiarów obiektu.
 
-SHAP osiągał najlepsze wyniki dla dużych obiektów.
-Skuteczność SHAP również była proporcjonalna do wielkości obiektu: im większy obiekt tym wyższa wartość IoU.
-Podobnie jak GradCAM, SHAP lepiej identyfikuje istotne obszary dla większych obiektów, choć jego skuteczność nie jest tak wysoka jak dla GradCAM.
+SHAP osiągnął nagorszy wynik dla obiektów Bardzo małych, pozostałe rozmiary obiektów miały podobne wyniki.
+
+GradCAM wykazuje najlepsze wyniki w zakresie pokrycia istotnych obszarów decyzyjnych na obrazach, zwłąszcza w przypadku większych obiektów.
+LIME ma tendencję do generowania bardziej precyzyjnych wyjaśnień dla mniejszych obiektów, ale traci na efektywności dla większych.
+SHAP ma najniższe wartości IOU, co może ograniczać jego zastosowanie.
+
+\vspace{1cm}
+
+
+
+\begin{figure}
+	\centering
+	\begin{subfigure}{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_size_gradcam}
+		\caption{GradCAM}  \label{rys:areaincorrect_size_gradcam}
+	\end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_size_lime}
+		\caption{LIME}  \label{rys:areaincorrect_size_lime}
+	\end{subfigure}
+	\begin{subfigure}{0.3\textwidth}
+		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_size_shap}
+		\caption{SHAP}  \label{rys:areaincorrect_size_shap}
+	\end{subfigure}
+	\label{rys:areaincorrect_size}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{Rozmiar}     & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\hline
+		\textbf{Bardzo mały} & 94.901906        & 85.985901     & 95.942452     \\
+		\hline
+		\textbf{Mały}        & 58.767365        & 40.634976     & 69.416491     \\
+		\hline
+		\textbf{Średni}      & 32.141339        & 27.179856     & 43.712921     \\
+		\hline
+		\textbf{Duży}        & 16.371432        & 16.118421     & 22.106995     \\
+		\hline
+		\textbf{Bardzo duży} & 4.259065         & 4.566799      & 4.921229      \\
+		\hline
+	\end{tabular}
+	\caption{Procent obszaru wyjaśnienia poza obiektem}
+	\label{tab:size_area}
+\end{table}
+
+Wyniki analizy procentu obszaru poza obiektem dla różnych wielkości obiektów obrazów przedstawiono na wykresach (Rys. \ref{rys:areaincorrect_size}) oraz w Tabeli \ref{tab:size_area}, która zawiera średnie wartości precentu obaszarów poza obiektem.
+
+Zgodnie z założeniami najmniejsze obiekty powodowały największy procent obszaru wyjaśnienia poza obiektem.
+Najlepiej poradził sobie z tym LIME, który posiadał najlepsze wyniki dla wszystkich wielkości poza Bardzo dużymi obiektami, gdzie GradCAM miał marginalnie lepsze wyniki.
+
+\vspace{1cm}
 
 \textbf{Zmiana pewności przy pozostawieniu samego wyjaśnienia}
 \begin{figure}[h]
@@ -493,13 +698,17 @@ Podobnie jak GradCAM, SHAP lepiej identyfikuje istotne obszary dla większych ob
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Rozmiar} & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Rozmiar}     & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Mały}    & -0.262645        & -0.658282     & -0.567562     \\
+		\textbf{Bardzo mały} & -0.369749        & -0.637539     & -0.657654     \\
 		\hline
-		\textbf{Średni}  & -0.242182        & -0.753241     & -0.592994     \\
+		\textbf{Mały}        & -0.259113        & -0.750735     & -0.812674     \\
 		\hline
-		\textbf{Duży}    & -0.238938        & -0.789269     & -0.590214     \\
+		\textbf{Średni}      & -0.242182        & -0.791863     & -0.838422     \\
+		\hline
+		\textbf{Duży}        & -0.239186        & -0.803234     & -0.833250     \\
+		\hline
+		\textbf{Bardzo duży} & -0.232523        & -0.861181     & -0.860782     \\
 		\hline
 	\end{tabular}
 	\caption{Zmiana pewności przy samym obszarze wyjaśnienia w zależności od rozmiaru obiektu na obrazie}
@@ -510,13 +719,17 @@ Podobnie jak GradCAM, SHAP lepiej identyfikuje istotne obszary dla większych ob
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Rozmiar} & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Rozmiar}     & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Mały}    & 22.7171\%        & 4.0831\%      & 6.6815\%      \\
+		\textbf{Bardzo mały} & 02.3256\%        & 00.0000\%     & 00.0000\%     \\
 		\hline
-		\textbf{Średni}  & 26.3048\%        & 1.6701\%      & 5.5672\%      \\
+		\textbf{Mały}        & 23.3896\%        & 01.3804\%     & 00.2301\%     \\
 		\hline
-		\textbf{Duży}    & 25.3555\%        & 0.8689\%      & 4.5814\%      \\
+		\textbf{Średni}      & 26.3048\%        & 00.6263\%     & 00.4175\%     \\
+		\hline
+		\textbf{Duży}        & 25.5947\%        & 00.6563\%     & 00.2461\%     \\
+		\hline
+		\textbf{Bardzo duży} & 19.1489\%        & 00.0000\%     & 00.0000\%     \\
 		\hline
 	\end{tabular}
 	\caption{Procent przypadków, w których pewność się zwiększyła sam obszar wyjaśnienia dla rozmirów}
@@ -525,18 +738,21 @@ Podobnie jak GradCAM, SHAP lepiej identyfikuje istotne obszary dla większych ob
 
 Wyniki analizy zmiany pewności po pozostawieniu jedynie obszarów wyjaśnienia dla różnych wielkości obiektów obrazów przedstawiono na wykresach (Rys. \ref{rys:size_confidence_exp}) oraz w Tabelach \ref{tab:size_confidence_exp} oraz \ref{tab:size_confidence_exp_percent}.
 
-W przypadku GradCAM zmiana pewności modelu po pozostawieniu obszarów wyjaśnień jest najmniejsza dla dużych obiektów.
-Spadek pewności jest mniejszy dla większych obiektów, co może sugerować, że GradCAM skuteczniej identyfikuje kluczowe obszary dla większych obiektów, które mają większy wpływ na pewność modelu.
-GradCAM osiągnął najwyższy procent przypadków, w których pewność się zwiększyła dla średnich obiektów.
-GradCAM wykazuje największą skuteczność dla średnich obiektów w kontekście zwiększania pewności modelu, chociaż różnice pomiędzy kategoriami rozmiarów nie są znaczne.
+Średni spadek pewności modelu jest najmniejszy zawsze dla GradCAM.
+Najmniejszy jest dla obszarów Bardzo dużych po czym się zwiększa.
+Powodem może być zależność od ostatniej warstwy konwlucyjnej.
+Procent przypdaków, w których pewność się zwiększyła jest zawsze największa dla GradCAM, przy czym dla Bardzo małych jest ona zdecydowanie najmniejsza.
 
-LIME wykazał największy spadek pewności dla dużych obiektów.
-Spadek pewności jest większy dla większych obiektów, co może sugerować, że LIME ma trudności z identyfikacją kluczowych obszarów dla większych obiektów, co skutkuje większym spadkiem pewności modelu.
-LIME osiągnął największy procent przypadków, w których pewność się zwiększyła dla małych obiektów.
-LIME wykazuje największą skuteczność dla małych obiektów w kontekście zwiększania pewności modelu, co potwierdza jego lepszą zdolność do pracy z mniejszymi obiektami.
+W przeciwieństwie do GradCAM, dla LIME pewność zwiększa się wraz ze wzrostem wielkości obiektu.
+Co oznacza, że im mniejszy obiekt tym lepszy wynik.
+Procent przypadków, w których pewność się zwiększyła jest nawsze niska, w poruwnaniu do GradCAM jednak jest ona najwyższa dla obiektów małych.
 
-SHAP wykazał najmniejszy spadek pewności dla dużych obiektów.
-Spadek pewności jest stosunkowo podobny dla wszystkich rozmiarów obiektów, z niewielką tendencją do mniejszego spadku dla większych obiektów, co może sugerować, że SHAP jest bardziej stabilny w identyfikacji kluczowych obszarów niezależnie od wielkości obiektu.
+W przypadku SHAP najmniejsze zmiana jest dla obiektów Bardzo małych, natomiast największa dla Bardzo dużych.
+Procent przypadków, w których pewność się zwiększyła jest zawsze niska, dla Bardzo małych oraz Bardzo dużych jest ona zerowa.
+
+GradCAM okazuje się najskuteczniejszy w generowanu istotnych wyjaśnień, które mają prawdziwy wpływ na pewność modelu, zwłaszcza w przypadku Średnich, Dużych i Bardzo dużych obiektów.
+
+\vspace{1cm}
 
 \textbf{Zmiana pewności po usunięciu obszarów wyjaśnień}
 \begin{figure}[h]
@@ -560,31 +776,37 @@ Spadek pewności jest stosunkowo podobny dla wszystkich rozmiarów obiektów, z 
 	\centering
 	\begin{tabular}{|c|c|c|c|}
 		\hline
-		\textbf{Rozmiar} & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
+		\textbf{Rozmiar}     & \textbf{GradCAM} & \textbf{LIME} & \textbf{SHAP} \\
 		\hline
-		\textbf{Mały}    & -0.758815        & -0.538989     & -0.658195     \\
+		\textbf{Bardzo mały} & -0.617362        & -0.484938     & -0.298606     \\
 		\hline
-		\textbf{Średni}  & -0.749968        & -0.382061     & -0.627136     \\
+		\textbf{Mały}        & -0.763479        & -0.398575     & -0.253015     \\
 		\hline
-		\textbf{Duży}    & -0.732993        & -0.288121     & -0.592250     \\
+		\textbf{Średni}      & -0.749968        & -0.326675     & -0.177250     \\
+		\hline
+		\textbf{Duży}        & -0.730637        & -0.296358     & -0.180975     \\
+		\hline
+		\textbf{Bardzo duży} & -0.794106        & -0.299977     & -0.199899     \\
 		\hline
 	\end{tabular}
 	\caption{Średni spadek po usunięciu obszaru wyjaśnienia dla rozmiarów}
 	\label{tab:size_confidence_no_exp}
 \end{table}
 
-GradCAM wykazał najmniejszy spadek pewności dla dużych obiektów.
-GradCAM lepiej identyfikuje kluczowe obszary na obrazach zawierających większe obiekty, co skutkuje mniejszym spadkiem pewności modelu po ich usunięciu.
+GradCAM wykazuje największy spadek pewności po usunięciu obszaru wyjaśnienia we wszystkich kategoriach wielkości obszaru.
+Największy spadek obserwowany jest dla Bardzo dużych obiektów, natomiast najmniejszy dla Bardzo małych obiektów.
 
-LIME wykazał największy spadek pewności dla małych obiektów.
-LIME ma trudności z identyfikacją kluczowych obszarów na obrazach zawierających mniejsze obiekty, co prowadzi do większego spadku pewności modelu po ich usunięciu.
+LIME generuje mniejsze spadki pewności w porównaniu do GradCAM szczególnie zauważalne przy Średnich, Dużych i Bardzo dużych obiektach.
+Najlepsze wyniki uzyskał dla Bardzo małych obiektów.
 
-SHAP wykazał najmniejszy spadek pewności dla dużych obiektów.
-SHAP jest stabilny w identyfikacji kluczowych obszarów niezależnie od wielkości obiektu, co skutkuje mniejszym spadkiem pewności modelu po ich usunięciu.
+SHAP wykazuje najmniejszy spadek pewności po usunięciu obszarów wyjaśnienia.
+
+GradCAM generuje najbardziej istotne wyjaśnienia, które mają największy wpływ na pewność modelu, co jest szczególnie widoczne w przypadku bardzo dużych obiektów.
+LIME, mimo że mniej skuteczny od GradCAM, wykazuje dobra przydatność dla bardzo małych obiektów.
+SHAP wykazuje najgorsze wyniki niezależnie od wielkości obiektu.
 
 \vspace{1cm}
-Analiza wyników w zależności od wielkości obiektów na obrazach wskazuje na istotne różnice w skuteczności metod XAI.
-GradCAM wykazuje najlepsze wyniki dla dużych obiektów, sugerując jego skuteczność w identyfikacji kluczowych obszarów na obrazach zawierających większe obiekty.
-LIME natomiast osiąga najniższe wyniki dla dużych obiektów, co może wskazywać na trudności w identyfikacji obszarów istotnych dla klasyfikacji modelu w przypadku większych obiektów.
-SHAP wykazuje dobre wyniki dla dużych obiektów, a jego skuteczność jest stosunkowo stabilna dla różnych rozmiarów obiektów.
-Te różnice podkreślają znaczenie uwzględniania wielkości obiektu w interpretacji modeli oraz wyboru odpowiedniej metody XAI w zależności od specyfiki danych i celu analizy.
+Podsumowując GradCAM jest najbardziej efektywną metodą zwłaszcza dla większych obiektów.
+Wyjaśnienia generowane przez GradCAM mają największy wpływ na decyzję modelu.
+LIME generuje mniej efektywne wyjaśnienia, które są szczególnie użyteczne dla Bardzo małych obiektów.
+SHAP ma najniższą skuteczność w generowaniu wyjaśnień, wyjaśnienia są najmniej istotne dla decyzji modelu, co jest szczególnie widoczne dla Bardzo małych i Bardzo dużych obiektów.

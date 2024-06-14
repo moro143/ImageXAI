@@ -16,18 +16,20 @@ Negatywny wpływ na wynik klasyfikacji mogą mieć niskiej jakości zbiory danyc
 
 \textbf{Głębokie sieci neuronowe} (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
-\textbf{Sieci konwolucyjne} (CNN) są szczególnie skutecznym rodzajami głębokich sieci neuronowych stworzonym do przetwarzania danych obrazowych.
+Istnieje wiele różnych atchitektur głębokich sieci neuronowych.
+Przykładem są \textbf{sieci konwolucyjne} \cite{8379889} (CNN) , które zostały stworzone do przetwarzania danych obrazowych.
 Ich achitektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
 Podstawowymi elementami sieci konwolucyjnch są:
 \begin{itemize}
 	\item \textbf{Warstwy konowlucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
 	      Ta operacja pozwala na wyodrębnienie lokalnych cech z tego obrazu, takich jak krawędzie, tekstury czy wzory.
+	      Tworząc nowe obrazy zwane mapami konwolucyji.
 	\item \textbf{Warstwy poolingowe}, występują po warstwach konwolucyjnych , redukują wymiary przestrzenne map cech.
 \end{itemize}
 Sieci konwolucyjne są szczególnie skuteczne w analizie danych obrazowych ze względu na ich zdolność do automatycznego wyodrębniania cech lokalnych i hierarchicznego uczenia się abstrakcji na różnych poziomach.
 Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentaacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
 
-\textbf{ResNet} (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
+\textbf{ResNet} \cite{He_2016_CVPR} (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
 Problem zanikającego gradientu występuje gdy uczenie się modelu staje się trudniejsze wraz ze wzrostem liczby warstw, co prowadzi do ograniczenia wydajności modelu.
 
 Główną cechą ResNet są tzw. bloki rezydualne, które wprowadzają połączenia skrótowe między warstwami, pozwalając na przekazywanie informacji wstecz w sieci.

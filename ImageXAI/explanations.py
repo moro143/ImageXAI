@@ -5,6 +5,8 @@ from lime import lime_image
 from tensorflow.keras.applications.resnet50 import \
     preprocess_input  # pyright: ignore
 
+from ImageXAI.measurements import lime_, shap_
+
 
 def explain_with_lime(model, img, num_samples=1000, top_labels=1):
     explainer = lime_image.LimeImageExplainer()
@@ -72,15 +74,9 @@ def combine_explanations(exps, threshold=0.2, sum=True):
             result = np.repeat(result, 224 // exp.shape[0], axis=0)
             result = np.repeat(result, 224 // exp.shape[1], axis=1)
         elif exp_type == "lime":
-            _, result = exp.get_image_and_mask(exp.top_labels[0])
+            result = lime_(exp)
         elif exp_type == "shap":
-            result = exp.values[0].squeeze(axis=-1)
-            result[result<0]=0
-            max_val = np.max(result)
-            result = result/max_val
-            result = result > threshold 
-            result = result.astype(float)
-            result = result.mean(axis=-1)
+            result = shap_(exp)
         else:
             return
         if sum:
