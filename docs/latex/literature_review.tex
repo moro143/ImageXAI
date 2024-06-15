@@ -5,7 +5,7 @@
 \section*{Metody klasyfikacji obrazów}
 
 Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet do obrazów na podstawie ich cech.
-Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny i biologii po przemysł, marketing czy bezpieczeństwo.
+Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny\cite{medical} i biologii\cite{biology} po przemysł, marketing\cite{marketing} czy bezpieczeństwo\cite{security}.
 
 Jednym z głównych wyzwań w klasyfikacji obrazów jest różnorodność danych i złożoność struktury obrazów.
 Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmiarach, orientacjach i położeniach, co utrudnia automatyczne rozpoznawanie i klasyfikację.
@@ -37,19 +37,26 @@ Dzięki tym połączeniom model może uczyć się reszty funkcji, co eliminuje p
 Znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
 Ta cecha sprawia, ze ResNet stał się jedną z najbardziej popularnych architektur w dziedzinie rozpoznawania obrazów, osiągając znakomite wyniki.
 
-\textbf{ResNet50} jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
-Jest to jedna z najpopularniejszych wariantów ResNet.
+\textbf{ResNet50}\cite{Koonce2021} jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
+Jest to jedna z najpopularniejszych wariantów ResNet używaną często podczas porównywania wyników, jako punkt odniesienia.
+
+\section*{Zastosowania klasyfikacji obrazów w różnych dziedzinach}
 
 \section*{Metody XAI}
 W ostatnich latach głębokie sieci neuronowe (DNN) osiągnęły niezwykłe sukcesy w wielu dziedzinach, takich jak rozpoznawanie obrazów, analiza tekstu czy przetwarzanie języka naturalnego.
 Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeba zrozumienia, dlaczego modele te podejmują konkretne decyzje.
 W kontekście krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
 
-Wyjaśnialna sztuczna inteligencja (XAI) ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
+Wyjaśnialna sztuczna inteligencja (XAI)\cite{XAItax, XAIcurrent, XAIOnC, XAIcounter} ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
 Będąc w stanie określić jakie cechy mialy wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób, posiadając odpowiednią wiedzę na temat danych treningowych.
 Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
 
-W niniejszej części przeglądu literatury skupiono się na omówieniu dwóch głównych grup metod XAI:
+Istnieje wiele sposobu grupowania metod XAI.
+Jednym z nich to podział na wyjaśnienia lokalne\cite{ribeiro2016why} i wyjaśnienia globalne\cite{XAIglobal}.
+Wyjaśnienia globalne przedstawia cały model.
+Natomiast wyjaśnienia lokalne skupiają się na wyjaśnianiu decyzji dla poszczególnych instancji danych.
+
+Innym sposobem grupowania jest podział na dwie głózne grupy:
 \begin{itemize}
 	\item \textbf{Metody niezależne od modelu} (Model-agnostic)
 	\item \textbf{Metody zależne od modelu} (Model-specific)
@@ -66,7 +73,7 @@ Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec r�
 Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikownych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
 
 \subsubsection*{LIME}
-\textbf{LIME} \cite{ribeiro2016why} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+\textbf{LIME} \cite{ribeiro2016why, LIMEwhy} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
 
@@ -106,7 +113,7 @@ Dzięki LIME, użytkownicy mogą lepiej zrozumieć, dlaczego model podjął konk
 W przypadku danych obrazowych LIME umożliwia wizualizację wpływu poszczególnych fragmentów obrazu na decyzje modelu, co dodatkowo zwiększa interpretowalność i zrozumienie modelu.
 
 \subsubsection*{SHAP}
-\textbf{SHAP} \cite{lundberg2017unified} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
+\textbf{SHAP} \cite{lundberg2017unified, SHAPmanip} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
 Metoda ta opiera się na szacowaniu wartości Shapleya, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
 Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
 
@@ -187,7 +194,8 @@ Dzięki temu metody takie jak GradCAM mogą nie tylko zwiększać zaufanie użyt
 %Ablation-CAM: Visual Explanations for Deep Convolutional Network via Gradient-free Localization
 %CLEVER_XAI
 Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacj obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
-W pracy 'Ablation-CAM' \cite{9093360} zaprezentowano dwa podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
+W pracy 'Ablation-CAM'\cite{9093360} porównano GradCAM z autorskim rozwiązaniem.
+Aby porównać obie metody zapropnowano dwa podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
 \begin{itemize}
 	\item \textbf{Oparte na modelu} (model-based)
 	\item \textbf{Oparte na prawdzie} (truth-based)
@@ -197,7 +205,7 @@ W pracy 'Ablation-CAM' \cite{9093360} zaprezentowano dwa podejścia do porównyw
 Metody oparte na modelu oceniają wyjaśnienia XAI poprzez analizie ich wpływu na wyniki modelu predykcyjnego.
 Przykładowe metryki stosowane w tym podejściu:
 \begin{itemize}
-	\item \textbf{Średni spadek pewności i wyniku aktywacji} (Average drop in confidence and activation score) - ta metryka mierzy średni spadek pewności modelu (\ref{eq:average_drop}) w przypadku dostarczenia jedynie obszarów, które zostały zidentyfikowane jako ważne przez metodę XAI.
+	\item \textbf{Średni spadek pewności i wyniku aktywacji}\cite{9093360} (Average drop in confidence and activation score) - ta metryka mierzy średni spadek pewności modelu (\ref{eq:average_drop}) w przypadku dostarczenia jedynie obszarów, które zostały zidentyfikowane jako ważne przez metodę XAI.
 	      Jeśli metoda XAI poprawnie identyikuje istotne cechy, powinno to prowadzić do niewielkiego spadku pewności predykcji modelu.
 	      Metryka ta jest używana do oceny, jak skutecznie metoda XAI identyfikuje krytyczne cechy wpływające na decyzję modelu.
 	      \begin{equation}
@@ -210,7 +218,7 @@ Przykładowe metryki stosowane w tym podejściu:
 		      \item $O_i^c$ to wynik dla samego obszaru wyjaśnienia
 		      \item $N$ to liczba obrazów
 	      \end{itemize}
-	\item \textbf{Procentowy wzrost pewności i wyniku aktywacji} (Percent increase in confidence and activation score) - ta metryka mierzy procent przypadków wzrost pewności modelu (\ref{eq:rate_of-increase}), gdy tylko cechy zidentyfikowane jako ważne przez metodę XAI pozostają w obrazie, a wszystkie inne cechy są usunięte.
+	\item \textbf{Procentowy wzrost pewności i wyniku aktywacji}\cite{9093360} (Percent increase in confidence and activation score) - ta metryka mierzy procent przypadków wzrost pewności modelu (\ref{eq:rate_of-increase}), gdy tylko cechy zidentyfikowane jako ważne przez metodę XAI pozostają w obrazie, a wszystkie inne cechy są usunięte.
 	      Jeśli metoda XAI prawidłowo identyfikuje istotne cechy, pozostawienie tylko tych cech powinno prowadzić do częstego wzrostu pewności predykcji modelu.
 	      Ta metryka pozwala ocenić, w jakim stopniu metoda XAI może poprawić zrozumienie krytycznych cech przez model.
 	      \begin{equation}
@@ -228,7 +236,7 @@ Przykładowe metryki stosowane w tym podejściu:
 \subsection*{Metody oparte na prawdzie}
 Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zewnętrznymi, zdefinowanymi prawdziwymi danymi. Jedną z głównych metryk w tym podjściu jest:
 \begin{itemize}
-	\item Intersection over Union (IoU) - jest to miara pokrycia między wyjaśnieniami wygenerowanymi przez metodę XAI a zdefiniowanymi obszarami referencyjnymi w obrazie (\ref{eq:iou}), które są uważane za istotne (np. ręcznie oznaczone przez ekspertów).
+	\item Intersection over Union (IoU)\cite{9093360, XAIevalCNN} - jest to miara pokrycia między wyjaśnieniami wygenerowanymi przez metodę XAI a zdefiniowanymi obszarami referencyjnymi w obrazie (\ref{eq:iou}), które są uważane za istotne (np. ręcznie oznaczone przez ekspertów).
 	      IoU jest obliczane jako stosunek powierzchni przecięcia do powierzchni sumy obszarów wyjaśnień i referencji. Wysokie IoU wskazuje na dobrą zgodność wyjaśnień XAI z rzeczywistością, co oznacza, że metoda XAI skutrcznie identyfikuje istotne cechy.
 	      \begin{equation}
 		      \text{IoU} = \frac{\text{I}}{\text{U}}
@@ -239,4 +247,27 @@ Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zew
 		      \item I to powierzchnia przecięcia obszarów
 		      \item U to powierzchnia sumy obszarów
 	      \end{itemize}
+\end{itemize}
+
+\section*{Zastosowania wyjaśnialnych modeli}
+
+Wyjaśnialne modele sztucznej inteligencji zwiększają transparentność i zrozumienie decyzji podejmowanych przez skomplikowane modele głębokiego uczenia.
+Poniżej przedstawiono praktyczne zastosowania XAI w różnych obszach.
+\subsection*{Medycyna}
+\begin{itemize}
+	\item Diagnostyka medyczna\cite{medicalXAIexample}
+	\item Planowanie leczenia\cite{medicalXAIexampletret}
+\end{itemize}
+\subsection*{Przemysł}
+\begin{itemize}
+	\item Predykcja utrzymania ruchu
+	\item Kontrola jakości\cite{qualityXAIexample}
+\end{itemize}
+\subsection*{Marketing i Reklama}
+\begin{itemize}
+	\item Marketing\cite{marketingXAIexample}
+\end{itemize}
+\subsection*{Automatyzacja i Robotyka}
+\begin{itemize}
+	\item Nawigacja i percepcja robotów\cite{lover2021explainable}
 \end{itemize}
