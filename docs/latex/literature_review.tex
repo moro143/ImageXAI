@@ -4,20 +4,20 @@
 \chapter*{Przegląd literatury}
 \section*{Metody klasyfikacji obrazów}
 
-Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet do obrazów na podstawie ich cech.
+Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet klas do obrazów na podstawie ich cech.
 Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny\cite{medical} i biologii\cite{biology} po przemysł, marketing\cite{marketing} czy bezpieczeństwo\cite{security}.
 
-Jednym z głównych wyzwań w klasyfikacji obrazów jest różnorodność danych i złożoność struktury obrazów.
+Jednym z głównych wyzwań w klasyfikacji obrazów\cite{imageclassificationchallanges} jest różnorodność danych i złożoność struktury obrazów.
 Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmiarach, orientacjach i położeniach, co utrudnia automatyczne rozpoznawanie i klasyfikację.
 Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
 Negatywny wpływ na wynik klasyfikacji mogą mieć niskiej jakości zbiory danych
 
-Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, może to skutokować przuczeniem się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
+Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, co może skutkować przuczeniem się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
 
-\textbf{Głębokie sieci neuronowe} (DNN) to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
+\textbf{Głębokie sieci neuronowe (DNN)}\cite{nature} to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
 Istnieje wiele różnych atchitektur głębokich sieci neuronowych.
-Przykładem są \textbf{sieci konwolucyjne} \cite{8379889} (CNN) , które zostały stworzone do przetwarzania danych obrazowych.
+Przykładem są \textbf{sieci konwolucyjne (CNN)}\cite{8379889}, które zostały stworzone do przetwarzania obrazów.
 Ich achitektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
 Podstawowymi elementami sieci konwolucyjnch są:
 \begin{itemize}
@@ -29,66 +29,63 @@ Podstawowymi elementami sieci konwolucyjnch są:
 Sieci konwolucyjne są szczególnie skuteczne w analizie danych obrazowych ze względu na ich zdolność do automatycznego wyodrębniania cech lokalnych i hierarchicznego uczenia się abstrakcji na różnych poziomach.
 Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentaacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
 
-\textbf{ResNet} \cite{He_2016_CVPR} (Residual Neural Network) to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
+\textbf{ResNet (Residual Neural Network)}\cite{He_2016_CVPR} to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
 Problem zanikającego gradientu występuje gdy uczenie się modelu staje się trudniejsze wraz ze wzrostem liczby warstw, co prowadzi do ograniczenia wydajności modelu.
 
 Główną cechą ResNet są tzw. bloki rezydualne, które wprowadzają połączenia skrótowe między warstwami, pozwalając na przekazywanie informacji wstecz w sieci.
 Dzięki tym połączeniom model może uczyć się reszty funkcji, co eliminuje problem zanikającego gradientu.
-Znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
+ResNet znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
 Ta cecha sprawia, ze ResNet stał się jedną z najbardziej popularnych architektur w dziedzinie rozpoznawania obrazów, osiągając znakomite wyniki.
 
 \textbf{ResNet50}\cite{Koonce2021} jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
-Jest to jedna z najpopularniejszych wariantów ResNet używaną często podczas porównywania wyników, jako punkt odniesienia.
+Jest to jedna z najpopularniejszych wariantów ResNet często używaną podczas porównywania wyników, jako punkt odniesienia.
 
-\section*{Zastosowania klasyfikacji obrazów w różnych dziedzinach}
+%\section*{Zastosowania klasyfikacji obrazów w różnych dziedzinach}
 
 \section*{Metody XAI}
 W ostatnich latach głębokie sieci neuronowe (DNN) osiągnęły niezwykłe sukcesy w wielu dziedzinach, takich jak rozpoznawanie obrazów, analiza tekstu czy przetwarzanie języka naturalnego.
 Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeba zrozumienia, dlaczego modele te podejmują konkretne decyzje.
-W kontekście krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
+W szczególności w przypadku krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
 
 Wyjaśnialna sztuczna inteligencja (XAI)\cite{XAItax, XAIcurrent, XAIOnC, XAIcounter} ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
-Będąc w stanie określić jakie cechy mialy wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób, posiadając odpowiednią wiedzę na temat danych treningowych.
-Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i jakie cechy danych miały największy wpływ na tę decyzję.
+Posiadając wiedzę na temat danych treningowych oraz będąc w stanie określić jakie cechy mialy wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób.
+Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i które cechy danych miały największy wpływ na tę decyzję.
 
-Istnieje wiele sposobu grupowania metod XAI.
+Istnieją różnorodne metody wyjaśnialnej sztucznej inteligencji, można je grupować na wiele różnych sposobów w celu lepszego zrozumienia ich działania.
 Jednym z nich to podział na wyjaśnienia lokalne\cite{ribeiro2016why} i wyjaśnienia globalne\cite{XAIglobal}.
-Wyjaśnienia globalne przedstawia cały model.
-Natomiast wyjaśnienia lokalne skupiają się na wyjaśnianiu decyzji dla poszczególnych instancji danych.
+Wyjaśnienia globalne przedstawiają działanie całego model, natomiast wyjaśnienia lokalne skupiają się na wyjaśnianiu decyzji dla poszczególnych instancji danych.
+W problemie klasyfikacji danych użwane są zazwyczaj lokalne wyjaśnienia.
 
-Innym sposobem grupowania jest podział na dwie głózne grupy:
+Innym sposobem na grupowania XAI jest podział na dwie grupy:
 \begin{itemize}
 	\item \textbf{Metody niezależne od modelu} (Model-agnostic)
 	\item \textbf{Metody zależne od modelu} (Model-specific)
 \end{itemize}
-Metody te różnią się swoim podejściem do wyjaśniania decyzji modeli i mają różne zalety oraz ograniczenia.
+Metody te różnią się swoim podejściem do wyznaczania wyjaśnień decyzji modeli i mają różne zalety oraz ograniczenia.
 
-Poznanie tych metod, pomaga w lepszym zrozumieć, jakie są różnice między nimi, jak działają i w jaki sposób mogą być stosowane w praktyce.
+Poznanie zalet i ograniczeń tych metod, pomaga w lepszym zrozumieć, jakie są różnice między nimi, jak działają i w jaki sposób mogą być stosowane w praktyce.
 Można dzięki temu wybrać odpowiednią metodę XAI dla konkretnych zastosowań oraz zwiększając tym zaufanie do modeli głębokiego uczenia poprzez ich lepsze zrozumienie i interpretację.
 
-\subsection*{Model-agnostic}
+\subsection*{Metody niezależne od modelu}
 Metody oparte na podejściu Model-agnostic są technikami XAI, które niezależnie od konkretnego modelu potrafią wyjaśnić jego decyzje.
 Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec różnych rodzajów modeli, co czyni je atrakcyjnym narzędziem dla praktyków i badaczy.
 
 Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikownych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
 
-\subsubsection*{LIME}
-\textbf{LIME} \cite{ribeiro2016why, LIMEwhy} (Local Interpretable Model-agnostic Explanations) to jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+Przykładem tekiej techniki jest \textbf{LIME} (Local Interpretable Model-agnostic Explanations)\cite{ribeiro2016why, LIMEwhy}, jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
-
-
 
 Metoda LIME składa się z następujących kroków:
 \begin{enumerate}
 	\item \textbf{Wybór instancji do wyjaśnienia} - Na początku wybierana jest konkretna instancja danych, której decyzja modelu zostanie  wyjaśniona.
 	\item \textbf{Generowanie perturbacji} - Następnie generowany jest zestaw perturbowanych wersji oryginalnej instancji.
 	      Perturbacje te są tworzone przez wprowadzenie małych, losowych zmian do cech wejściowych.
-	      W przypdaku danych obrazowych, perturbacje mogą polegać na zmianie wartości pikseli lub zamaskowaniu fragmentów obrazu.
+	      W przypdaku danych obrazowych, perturbacje mogą polegać na zmianie wartości superpikseli.
 	\item \textbf{Ocena perturbowanych instancji} - Każda perturbowana instancja jest następnie przekazywana do orginalnego model, aby uzyskać predykcję dla nich
 	\item \textbf{Ważenie perturbacji} - Perturbacje są ważone na podstawie ich odległości od orginalnej instancji.
 	      Perturbacje bliższe oryginalnej instancji mają większy wpływ na trenowanie lokalnego modelu.
-	\item \textbf{Tworzenie loalnego modelu} - LIME buduje prosty, lokalny model interpretowalny (np. regresja liniowa) zw oparciu o perturbowane instancje i ich odpowiadające predykcje, z uwzględnieniem ich wag.
+	\item \textbf{Tworzenie loalnego modelu} - LIME buduje prosty, lokalny model interpretowalny w oparciu o perturbowane instancje i ich odpowiadające predykcje, z uwzględnieniem ich wag.
 	      Ten model jest trenowany, aby najlepiej odwzorować zachowanie oryginalnego modelu w okolicy wybranej instancji.
 	\item \textbf{Generowanie wyjaśnień} - Po zbudowaniu lokalnego modelu interpretowalnego, LIME identyfikuje najważniejsze cechy, które wpływają na predykcję oryginalnego modelu dla wybranej instancji.
 	      Wyjaśnienia te są przedstawiane w postaci listy cech z przypisanymi wagami, które pokazują ich wpływ na decyzję modelu.
@@ -112,54 +109,51 @@ LIME jest techniką XAI, która pozwala na zrozumienie, jakie cechy danych wpły
 Dzięki LIME, użytkownicy mogą lepiej zrozumieć, dlaczego model podjął konkretną decyzję.
 W przypadku danych obrazowych LIME umożliwia wizualizację wpływu poszczególnych fragmentów obrazu na decyzje modelu, co dodatkowo zwiększa interpretowalność i zrozumienie modelu.
 
-\subsubsection*{SHAP}
-\textbf{SHAP} \cite{lundberg2017unified, SHAPmanip} (SHapley Additive exPlanations) wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
+Innym przykładem techniki lokalnej jest \textbf{SHAP} (SHapley Additive exPlanations)\cite{lundberg2017unified, SHAPmanip} wykorzystuje teorię gier do przypisywania znaczenia poszczególnym cechom wejściowym w procesie decyzyjnym modelu.
 Metoda ta opiera się na szacowaniu wartości Shapleya, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
 Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
 
-Teoria wartości Shapleya pochodzi z teori gier kooperacyjnych i służą do podziału zysków (lub wpływów) między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
+Teoria wartości Shapleya pochodzi z teori gier kooperacyjnych i służą do podziału zysków między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
 Dla każdej cechy wartość Shapleya obliczana jest jako średni wkład tej cechy do wyniku modelu we wszystkich możliwych kombinacjach cech.
 
 Metoda SHAP składa się z następujących kroków:
 \begin{enumerate}
 	\item \textbf{Wybór instancji}
-	\item \textbf{Perturbacja danych} - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech (kombinacje cech z wyjątkiem tej wybranej)
-	\item \textbf{Ocena wpływu cech} - Model jest uruchamiany dla każdego podzbioru cech z i bez wybranej cechy, a różnice w wynikach są mierzone
-	\item \textbf{Średnia marginalna wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
+	\item \textbf{Perturbacja danych} - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech
+	\item \textbf{Ocena wpływu cech} - Model jest uruchamiany dla każdego podzbioru cech, a różnice w wynikach są mierzone
+	\item \textbf{Średnia wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
 \end{enumerate}
 
 Obliczanie dokładnych wartości Shapleya może być obliczeniowo kosztowne, dlatego SHAP wykorzystuje różne techniki przyspieszanie obliczeń, takie jak aproksymacje i metody samplingowe.
 
 SHAP to technika XAI, która pozwala na precyzyjne przypisywanie znaczenia poszczególnym cechom wejściowym.
-Dzięki wykorzystaniu teori wartości Shapleya, SHAP zapewnia spójne wyjaśnienia, co jest niezwykle cenne w zrozumieniu działania modeli głębokiego uczenia.
-Jest jednak kosztowny obliczeniowo.
-W przypadku danych obrazowych, SHAP umożliwia identyfikację wpływu poszczególnych super pikseli na predykcję modelu co jest kluczowe dla uzyskania wglądu w mechanizmy decyzyjne modelu.
+W przypadku danych obrazowych, SHAP umożliwia identyfikację wpływu poszczególnych superpikseli na predykcję modelu co jest kluczowe dla uzyskania wglądu w mechanizmy decyzyjne modelu.
 
 \vspace{1cm}
-Podsumowując, \textbf{Metody Model-agnostic} oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla szerokiego spektrum zastosowań.
+Podsumowując, metody model-agnostic oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla różnorodnych zastosowań.
 Ich zdolność do pracy z różnymi rodzajami modeli oraz możliwość generowania lokalnych wyjaśnień pozwala na lepsze zrozumienie i interpretację działania modeli głębokiego uczenia.
 
-\subsection*{Oparte na podejściu Model-specific}
-Metody oparte na podejściu Model-specific to techniki XAI, które są związane bezpośrednio z architekturą i działaniem konkretnego modelu.
+\subsection*{Metody zależne od modelu}
+Metody oparte na podejściu model-specific to techniki XAI, które są związane bezpośrednio z architekturą i działaniem konkretnego modelu.
 Charakteryzują się one wysokim stopniem specjalizacji i dostosowania do konkretnych rodzajów modeli, co umożliwia uzyskanie bardziej szczegółowych i dokładnych wyjaśnień ich działania oraz mniejsze koszty obliczeniowe.
 
 W odróżnieniu od metod niezależnych od modelu, metody te wykorzystują wewnętrzną strukturę i parametry modelu, aby dostarczyć wyjaśnień dotyczących podejmowanych decyzji.
 Dzięki temu są w stanie dokładniej wskazać, które elementy modelu oraz które cechy mają kluczowy wpływ na wynik predykcji.
 
-% GradCAM
 \textbf{GradCAM} \cite{Selvaraju_2019} (Gradient-weighted Class Activation Mapping) jest jedną z najbardziej popularnych metod model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacji modelu.
-Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych super pikseli obrazu względem konkretnej klasy.
+Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych superpikseli obrazu względem konkretnej klasy oraz warstwę konwolucyjną sieci CNN w celu wynaczenia obszarów superpikseli.
 Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
 
 GradCAM składa się z następujących kroków:
-\begin{itemize}
-	\item \textbf{Forward pass przez model} - przeprowadzamy forward pass przez model, aby uzyskać mapy cech i predykcje.
+\begin{enumerate}
+	\item \textbf{Forward pass} - przeprowadzamy forward pass przez model, aby uzyskać mapy cech i predykcje.
 	\item \textbf{Obliczenie gradientów} - przeprowadzamy backward pass, aby uzyskać gradient klasy docelowej względem map cech.
 	\item \textbf{Uśrednienie gradientów} - wykonujemy global average pooling, aby uzyskać wagi istotności.
 	\item \textbf{Ważona suma map cech} - wykonujemy ważoną sumę map cech, wykorzystując wagi istotności.
 	\item \textbf{ReLU} - zastosowanie funkcji ReLU do ważonej sumy, aby uzyskać ostateczną mapę cieplną.
 	\item \textbf{Normalizacja} - Normalizujemy mapę cieplną do zakresu [0, 1].
-\end{itemize}
+  \item \textbf{Wizualizacjia} - Stworzoną mapę cieplną nakładamy na obraz w celu wizualizacji.
+\end{enumerate}
 
 Poniżej znajduje się pseudo kod który wizualizuje kroki algorytmu GradCAM:
 
@@ -171,10 +165,10 @@ gradients = model.backward(class_idx, features)
 weights = mean(gradients, axis=(0, 1))
 cam = zeros(features.shape[1:3])
 for i in range(len(weights)):
-    cam += weights[i] * features[i]
+    gradcam += weights[i] * features[i]
 
-cam = maximum(cam, 0)
-cam = cam / max(cam)
+gradcam = maximum(cam, 0)
+gradcam = gradcam / max(gradcam)
     \end{minted}
 	\caption{Pseudo kod GradCAM} \label{listing:gradcam}
 \end{listing}
