@@ -41,10 +41,10 @@ Ta metoda pozwala na odkrycie kluczowych elementów decyzyjnych modeli, które s
 \end{table}
 Tabela \ref{tab:combineandiouand} średnie wartości dla połączonych wyjaśnień różnych metod XAI.
 
-Najlepsze wyniki osiągnąło połączenie wyjaśnień GradCAM oraz LIME.
-Najgorsze wyniki osiągneło połączenie wszystkich trzechwyjaśnień.
-Żadne z połączeń nie uzyskało lepszego średniego wyniku  IoU niż średni wynik którgokolwiek z części wyjaśnień.
-Powodem jest zbyt duże zmniejszenie wielkość wyjaśnień.
+Najlepsze wyniki osiągnąło połączenie wyjaśnień \textbf{GradCAM} oraz \textbf{LIME}.
+Najgorsze wyniki osiągneło połączenie wszystkich trzech wyjaśnień.
+Żadne z połączeń nie uzyskało lepszego średniego wyniku IoU niż średni wynik którgokolwiek z części wyjaśnień.
+Powodem było zbyt duże zmniejszenie wielkość wyjaśnień.
 
 \vspace{1cm}
 
@@ -71,7 +71,7 @@ Powodem jest zbyt duże zmniejszenie wielkość wyjaśnień.
 	\label{tab:combineandconfidenceand}
 \end{table}
 Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na \ref{rys:combineandconfidencean} oraz w tabeli \ref{tab:combineandconfidenceand}.
-Najlepsze wyniki dla połączenia GradCAM z SHAP, jednak zadal gorsze niż wyjaśnienie uzyskane z samego GradCAM lub samgeo SHAPA.
+Najlepsze wyniki dla połączenia \textbf{GradCAM} z \textbf{SHAP}, jednak zadal gorsze niż wyjaśnienie uzyskane z samego GradCAM lub samgeo SHAPA.
 Żadne z połączeń nie uzyskało lepszego średniego zmiany pewności niż średni wynik którgokolwiek z części wyjaśnień.
 
 \vspace{1cm}
@@ -99,7 +99,7 @@ Najlepsze wyniki dla połączenia GradCAM z SHAP, jednak zadal gorsze niż wyja�
 	\label{tab:combineandconfidenceandno}
 \end{table}
 Zmiana pewności przy usunięciu obszarów wyjaśnienia zostały przedstawiona na rysunku \ref{rys:combineandconfidenceandno} oraz w tabeli \ref{tab:combineandconfidenceandno}
-Najlepsze wyniki były dla połączenia GradCAM oraz LIME, jednak nadal gorsze niż którekolwiek z części wyjaśnień.
+Najlepsze wyniki były dla połączenia \textbf{GradCAM} oraz \textbf{LIME}, jednak nadal gorsze niż którekolwiek z części wyjaśnień.
 Żadne z połączeń nie uzyskało lepszego średniego zmiany pewności niż średni wynik którgokolwiek z części wyjaśnień.
 
 \vspace{1cm}
@@ -132,7 +132,7 @@ W tej sekcji przeanalizowano, jak różne metody XAI mogą zostać połączone p
 	\label{tab:combineandiou}
 \end{table}
 Tabela \ref{tab:combineandiou} średnie wartości dla połączonych wyjaśnień różnych metod XAI.
-Najlepszy wynik uzsykano z połączenia wyjaśnień GradCAM oraz LIME, które uzyskało wynik lepszy niż, sam GradCAM lub sam LIME.
+Najlepszy wynik uzsykano z połączenia wyjaśnień \textbf{GradCAM} oraz \textbf{LIME}, które uzyskało wynik lepszy niż, sam GradCAM lub sam LIME.
 Wszystkie połączenia dały lepsze wyniki niż dowolne jedno sani wyjaśnienie.
 
 \vspace{1cm}
@@ -162,7 +162,7 @@ Wszystkie połączenia dały lepsze wyniki niż dowolne jedno sani wyjaśnienie.
 Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na \ref{rys:combineandconfidenceor}oraz w tabeli \ref{tab:combineandconfidenceor}.
 Najlepszy wynik uzyskało połączenie wszystkich trzech wyjaśnień, co dało znacznie lepsze wyniki niż użycie jedngo wyjaśnienia.
 Spowodowane to było mniejszą modeyfikacją.
-Najgorsze wyniki uzyskało połączenie SHAP oraz LIME, nadal będąc lepszym wynikiem niż którekolwiek z pojedyńczych części.
+Najgorsze wyniki uzyskało połączenie \textbf{SHAP} oraz \textbf{LIME}, nadal będąc lepszym wynikiem niż którekolwiek z pojedyńczych części.
 \vspace{1cm}
 
 \begin{figure}[h]
@@ -193,4 +193,4 @@ Dodatkowo tak jak wcześniej połączenie zawsze jest lepsze niż, który kolwie
 
 \vspace{1cm}
 Podsumowując jest w tych badaniach wykazano że połączenie wyjaśnień poprzez sumę pozwala na znalezienie lepszych wyników.
-Kosztem takiego połączenia jest wielkość wyjaśnienia, nie jest on tak precyzyjne i uogólnia.
+Kosztem takiego połączenia jest zwiększenie obszaru wyjaśnienia, wyjaśnienie tak stworzone nie jest precyzyjne.

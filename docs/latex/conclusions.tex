@@ -22,7 +22,7 @@ Natomiast spójność GradCAM z SHAP była na podobnym poziomie niezależnie od 
 \section*{Analiza wielkości wyjaśnień}
 
 Analiza wielkości wyjaśnień wykazała, że GradCAM najlepiej radzi sobie z dopasowywaniem wielkości obszarów wyjaśnienia do wielkości obiektu.
-Zauważono również ograniczenie GradCAM spowodowane sposobe obliczania wyjaśnień, rozdzielczość wyjaśnienia jest zależna od wielkości ostatniej warstwy konwolucyjnej modelu.
+Zauważono również ograniczenie GradCAM spowodowane sposobem obliczania wyjaśnień, rozdzielczość wyjaśnienia jest zależna od wielkości ostatniej warstwy konwolucyjnej modelu.
 SHAP wykazał najniższą korelacje lub nawet jej brak, między rozmiarem obszaru wyjaśnienia, faktycznym rozmiarem obiektu na obrazie.
 
 \section*{Analiza porównawcza metod}
@@ -47,8 +47,3 @@ Wartości IoU były wyższe dla połączonych wyjaśnień, co sugeruje, że taki
 Zmiana pewności modelu po pozostawieniu sumy obszarów wyjaśnień była największa dla połączenia wszystkich trzech metod, co sugeruje, że suma wyjaśnień może dostarczać bardziej kompleksowych informacji.
 Jednak zmiana pewności po usunięciu tych obszarów również była największa dla tej kombinacji, co wskazuje na znaczną istotność tych obszarów dla modelu.
 
-\section*{Wnioski końcowe}
-
-Badania wykazały, że GradCAM jest najbardziej spójną i dokładną metodą wyjaśnień w porównaniu do LIME i SHAP.
-Łączenie wyjaśnień różnych metod może poprawić dokładność i spójność wyników, szczególnie gdy stosuje się sumę obszarów.
-W praktyce, wybór odpowiedniej metody XAI oraz podejście do łączenia wyjaśnień powinno być dostosowane do specyfiki problemu i wymagań interpretowalności modelu.

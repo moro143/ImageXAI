@@ -3,6 +3,33 @@
 
 \chapter*{Podsumowanie}
 
-Główne osiągnięcia.
-Znaczenie pracy.
-Prespektywa na przyszłość.
+
+Przeprowadzone badania skoncentrowały się na analizie i porównaniu metod wyjaśnialnej sztucznej inteligencji (XAI): LIME, SHAP oraz GradCAM. Celem było zrozumienie ich spójności, dokładności oraz wpływu na pewność modelu, a także ocena efektów łączenia wyjaśnień.
+
+\section*{Główne osiągnięcia}
+
+\begin{itemize}
+    \item \textbf{Spójność wyjaśnień:} Najlepszą spójność osiągnęło połączenie GradCAM z LIME, natomiast najgorsze wyniki uzyskano dla LIME z SHAP. GradCAM wykazał wysoką zgodność z istotnymi obszarami obrazów, szczególnie w kategorii "Insekt".
+    
+    \item \textbf{Wielkość wyjaśnień:} GradCAM najlepiej dopasowuje wielkość obszarów wyjaśnień do rozmiaru obiektów na obrazach. SHAP wykazał brak korelacji między rozmiarem obszaru wyjaśnienia a faktycznym rozmiarem obiektu.
+    
+    \item \textbf{Porównanie metod XAI:} GradCAM osiągnął najlepsze wyniki metryki IoU, z wyjątkiem obiektów bardzo małych, gdzie lepiej poradził sobie LIME. LIME wykazał najmniejszy odsetek obszarów poza rzeczywistymi obiektami, co świadczy o jego precyzji w identyfikacji istotnych cech.
+    
+    \item \textbf{Łączenie wyjaśnień:} Połączenie GradCAM z LIME poprez zsumowanie obszarów przyniosło najlepsze wyniki, sugerujące, że suma wyjaśnień może dostarczać bardziej kompleksowych informacji niż pojedyncze metody.
+\end{itemize}
+
+\section*{Znaczenie pracy}
+
+Badania te są istotne dla wyjaśnialnej sztucznej inteligencji, pokazując, jak różne metody XAI mogą być używane w różnych kontekstach oraz jak ich kombinacja może poprawić dokładność i spójność wyjaśnień.
+
+\section*{Perspektywy na przyszłość}
+
+W przyszłości warto rozważyć:
+\begin{itemize}
+    \item Dalsze badania nad optymalizacją parametrów metod XAI w celu poprawy ich skuteczności.
+    \item Zastosowanie innych metryk ewaluacyjnych dla bardziej szczegółowej analizy wyjaśnień.
+    \item Zastosowanie zaawansowanych technik łączenia wyjaśnień w celu dalszej poprawy interpretowalności modeli.
+    \item Analize innych metod wyjaśnialnej sztucznej inteligencji.
+\end{itemize}
+
+Podsumowując, wyniki tych badań mogą przyczynić się do lepszego zrozumienia mechanizmów działania metod XAI oraz ich odpowiedniego stosowania w praktyce.

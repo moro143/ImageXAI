@@ -2,7 +2,10 @@
 
 W tej sekcji przeprowadzono ocenę spójności wyjaśnień generowanych przez różne metody XAI: LIME, SHAP i GradCAM.
 Celem analizy było zrozumienie, jak bardzo wyjaśnienia nakładają się na siebie oraz jak różne techniki identyfikują istotne cechy obrazu.
+Zrozumienie spójności jest kluczowe, gdyż pozwala ocenić, które metody są zgodne w identyfikowaniu obszarów istotnych dla predykcji modeli.
+
 Spójność wyjaśnień oceniono za pomocą współczynnika Intersection over Union (IoU) między obszarami wyjaśnień generowanych przez różne metody.
+Wysokie wartości IoU wskazują na wysoką zgodność między metodami, natomiast niskie wartości sugerują, że różne metody identyfikują różne obszary jako istotne.
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/base_coherence}
@@ -26,58 +29,60 @@ Spójność wyjaśnień oceniono za pomocą współczynnika Intersection over Un
 	\label{tab:base_coherence}
 \end{table}
 
-Za pomocą wykresu pudełkowego (Rys \ref{rys:base_coherence}) przedstawione zostały wartości IoU.
-Natomiast Tabela \ref{tab:base_coherence} przedstawia średnich wartości IoU.
+Wyniki analizy zostały przedstawione za pomocą wykresu pudełkowego (Rys \ref{rys:base_coherence}), który ilustruje rozkład wartości IoU dla różnych par metod XAI.
+Dodatkowo, Tabela \ref{tab:base_coherence} przedstawia średnich wartości IoU dla poszczególnych par metod.
 
-GradCAM i LIME generują najbardziej spójne wyjaśnienia, co jest widoczne w najwyższych wartościach IoU.
-Sugeruje to, że dwie metody mają podobny sposóbidentyfikowania kluczowych obszarów na obrazach, które wpływają na decyzję.
+\textbf{GradCAM i LIME} generują najbardziej spójne wyjaśnienia, co jest widoczne w najwyższych i najbardziej rozległych wartościach IoU.
+Choć nie są identyczne, mają one tendencje do pokrywania się w kluczowyh obszarach decyzyhnych modelu.
 
-GradCAM i SHAP oraz LIME i SHAP mają niższe wartości IoU, co sugeruje na większe różnice w obszarach wyjaśnień generowanych przez te metody.
-Może to wynikać z różnych podejść do generowania wyjaśnień.
+\textbf{GradCAM i SHAP} - generują niższe średnie wartości IoU.
+Spowodowane to może być różnicą w podejściu do generowania wyjaśnień.
 
+\textbf{LIME i SHAP} - generują najniższe średnie wartości IoU.
+Warto jednak zauważyć wartości odstające, gdzie SHAP z LIME osiągnęły wyniki wyższe od GradCAM i SHAP.
 
 \vspace{1cm}
 
-W celu dokładniejszej analizy spójność wyjaśnień, wyniki podzielono ze względu na kategorie obrazów z bazy danych ImageNetS.
-Analiza została przeprowadzona dla różnych kategorii obrazów.
+W celu dokładniejszej analizy spójność wygenerowanych wyjaśnień, wyniki podzielono ze względu na kategorie obrazów z bazy danych ImageNet-9.
+Analiza została przeprowadzona dla różnych kategorii obrazów, co pozwoliło lepiej zrozumieć, jak poszczególne techniki XAI radzą sobie z różnymi rodzajami obrazów.
 
-\begin{figure}[h]
+\begin{figure}[!h]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
-		\includegraphics[width=.9\textwidth]{img/base_coherence_dog}
-		\caption{\textbf{Dog}}  \label{}
+		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_dog}
+		\caption{Pies}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_bird}
-		\caption{\textbf{Bird}}  \label{}
+		\caption{Ptak}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_vehicle}
-		\caption{\textbf{Vehicle}}  \label{}
+		\caption{Pojazd na kołach}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_reptile}
-		\caption{\textbf{Reptile}}  \label{}
+		\caption{Gad}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_carnivore}
-		\caption{\textbf{Carnivore}}  \label{}
+		\caption{Mięsożerca}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_insect}
-		\caption{\textbf{Insect}}  \label{}
+		\caption{Insekt}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_music}
-		\caption{\textbf{Instrument}}  \label{}
+		\caption{Instrument muzyczny}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_primate}
-		\caption{\textbf{Primate}}  \label{}
+		\caption{Naczelny}  \label{}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_coherence_fish}
-		\caption{\textbf{Fish}}  \label{}
+		\caption{Ryba}  \label{}
 	\end{subfigure}
 	\caption{Spójność wyjaśnień dla różnych kategorii}
 	\label{rys:coherence_category}
@@ -112,21 +117,22 @@ Analiza została przeprowadzona dla różnych kategorii obrazów.
 	\label{tab:base_coherence_categories}
 \end{table}
 
-Dane zostały przedstawione w ten sam sposób jak wcześniej, za pomocą wykresu (Rys \ref{rys:coherence_category}) oraz tabeli (Tabela \ref{tab:base_coherence_categories}) przedstawiającej średnie wartości IoU.
+Wyniki zostały przedstawione za pomocą wykresu (Rys \ref{rys:coherence_category}) oraz tabeli (Tabela \ref{tab:base_coherence_categories}), które zawierają średnie wartości IoU dla poszczególnych prównań między metodami XAI.
 
 Spójności różnią się w zależności od kategorii, jednak największą spójność zawsze posiada GradCAM z LIME.
-Największą spójnością dla nich są kategorie Instrument muzyczny oraz Insekt.
-Najniższą spójnością natomiast dla nich są kategorie Pies i Ptak.
+Największą spójnością między nimi są kategorie \textit{Instrument muzyczny} oraz \textit{Insekt}.
+Z kolei najniższą spójnością dla nich są kategorie \textit{Pies} i \textit{Ptak}.
 
-Najniższą spójnością cechują się zawsze LIME i SHAP, dla których najgorsze wyniki są dla kategorii Pies, natomiast najlepsze dla Gad.
+Najniższą spójnością cechują się zawsze LIME i SHAP, dla których najgorsze wyniki są dla kategorii \textit{Pies}, natomiast najlepsze dla \textit{Gad}.
 
 GraCAM i SHAP posiadają wartości o bliskich wartościach dla wszystkich kategorii.
 
-Kategoria Insekt jako jedyna posiada wyższą średnią IoU niż średnia IoU całego zbioru dla wszystkich typów XAI.
-Natomiast kategoria Naczelny jako jedyna posiada niższą średnią IoU całego zbioru dla wszystkich typów XAI.
+Kategoria \textit{Insekt} jest jedyną, gdzie średnia wartość IoU dla wszystkich metod XAI jest wyższa niż średnia IoU dla całego zbioru danych, co może sugerować, że te metody lepiej radzą sobie z tego typu obrazami.
+Natomiast kategoria \textit{Naczelny} jest jedyną, gdzie średnia wartość IoU dla wszystkich metod XAI jest niższa niż średnia IoU dla całego zbioru danych, co może wskazywać na trudności w identyfikacji istotnych cech przez wszystkie analizowane metody.
 
 \vspace{1cm}
-W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowano spójność wyjaśnień podzieloną ze względu na wielkość obiektów na obrazie.
+W celu lepszego zrozumienia wpływu wielkości obiektu na spójność wyjaśnień generowanych przez różne metody XAI, podzielono obrazy ze względu na wielkość obiektów.
+Badanie miało na celu określenie, czy różne metody XAI identyfikują istotne obszary w sposób zależny od rozmiaru obiektu
 
 \begin{figure}[h]
 	\centering
@@ -177,10 +183,14 @@ W celu zweryfikowania czy wielkość wyjaśnień miała znaczenie przeanalizowan
 
 Tak jak w poprzednich przypadkach wyniki przedstawiono na wykresie (Rys \ref{rys:coherence_size}) oraz tabeli (Tabela \ref{tab:base_coherence_size}) przedstawiającej średnie wartości IoU dla porównania spójności wyjaśnień w zależności od rozmiaru obiektu na obrazie.
 
-Spójności różnią się w zależności od wielkości obiektu, jednak największą spójność zawsze posiada GradCAM z LIME.
+Spójności różnią się w zależności od wielkości obiektu, jednak największą spójność zawsze posiada \textbf{GradCAM z LIME}.
 Największą spójność posiadają dla obiektów bardzo małych i ta spójność zmniejsza się wraz ze wzrostem wielkości obiektu.
 
-GradCAM i SHAP największą spójnośc posiadają dla obiektów małych obiektów, a najmniejszą dla obiektów bardzo małych, są to jednak niewielkie różnice.
+\textbf{GradCAM i SHAP} największą spójnośc posiadają dla obiektów małych obiektów, a najmniejszą dla obiektów bardzo małych.
+Różnice wynikami dla różnych rozmiarów obiektów są niewielkie.
 
-LIME i SHAP największą spójność posiadają dla obiektów małych, a najmniejszą dla obiektów bardzo małych.
+\textbf{LIME i SHAP} największą spójność posiadają dla obiektów małych, a najmniejszą dla obiektów bardzo małych.
 
+\vspace{1cm}
+Analizując te wyniki, można zauważyć, że GradCAM z LIME charakterysują się wyższą spójnością, natomiast LIME z SHAP charakteryzują się najniższą spójnością.
+Może to być spowodowane wielkościami obszarów wyjaśnień, SHAP i LIME mogą oznaczać mniejsze obszary niż GradCAM, co wpływa na ostateczną spójność między nimi.
