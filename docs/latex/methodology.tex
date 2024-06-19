@@ -46,22 +46,22 @@ W tej pracy wykorzystano  następujące narzędzia i biblioteki:
 	\item \textbf{Python}\cite{python} - wysokopoziomowy język programowania, który jest szeroko stosowany w dziedzinie nauki o danych i uczenia maszynowego.
 	      Był to główny język używany w badaniach.
 	\item \textbf{TensorFlow}\cite{tensorflow} - popularna biblioteka open-source do uczenia maszynowego, która jest szeroko stosowana w dziedzinie uczenia maszynowego do tworzenia i trenowania modeli głębokich.
-    \item \textbf{LIME}\cite{limedoc} - biblioteka do generowania lokalnie interpretowalnych wyjaśnień dla decyzji modelu.
-    \item \textbf{SHAP}\cite{shapdoc} - biblioteka oparta na teorii gier, która oblicza wartości Shapleya, określająca wpływ poszczególnych cech na wynik modelu.
-    \item \textbf{numpy}\cite{numpy} - szeroko stosowana biblioteka do obliczeń numerycznych.
-    \item \textbf{matplotlib}\cite{matplotlib} - biblioteka do tworzenia wykresów i wizualizacji danych, szeroko stosowana w dziedzinie uczenia maszynowego.
-    \item \textbf{scikit-image}\cite{scikitimage} - biblioteka do przetwarzania obrazów, która zawiera wiele funkcji do przetwarzania obrazów.
-    \item \textbf{Pandas}\cite{pandas} - biblioteka do manipulacji i analizy danych, które oferuje struktury danyc hi narzędzia do przetwarzania danych tabelarycznych.
+	\item \textbf{LIME}\cite{limedoc} - biblioteka do generowania lokalnie interpretowalnych wyjaśnień dla decyzji modelu.
+	\item \textbf{SHAP}\cite{shapdoc} - biblioteka oparta na teorii gier, która oblicza wartości Shapleya, określająca wpływ poszczególnych cech na wynik modelu.
+	\item \textbf{numpy}\cite{numpy} - szeroko stosowana biblioteka do obliczeń numerycznych.
+	\item \textbf{matplotlib}\cite{matplotlib} - biblioteka do tworzenia wykresów i wizualizacji danych, szeroko stosowana w dziedzinie uczenia maszynowego.
+	\item \textbf{scikit-image}\cite{scikitimage} - biblioteka do przetwarzania obrazów, która zawiera wiele funkcji do przetwarzania obrazów.
+	\item \textbf{Pandas}\cite{pandas} - biblioteka do manipulacji i analizy danych, które oferuje struktury danych hi narzędzia do przetwarzania danych tabelarycznych.
 	      Szczególnie użyteczna do zarządzania i analizowania zbiorów danych używanych w badaniach.
-      \item \textbf{seabron}\cite{seaborn} - biblioteka do tworzenia wykresów i wizualizacji danych, współgrająca z biblioteką pandas
+	\item \textbf{seabron}\cite{seaborn} - biblioteka do tworzenia wykresów i wizualizacji danych, współgrająca z biblioteką pandas
 \end{itemize}
 
 Środowisko to pozwoliło na tworzenie i analizowanie wyjaśnień dla już istniejących modeli głębokiego uczenia.
-Narzędzia te umożłiwiły także wizualizację wyników, co było kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
+Narzędzia te umożliwiły także wizualizację wyników, co było kluczowe dla zrozumienia i prezentacji działania zastosowanych metod XAI.
 
 \section*{Wybór bazy obrazów}
 
-W tej pracy wykorzystano bazę danych \textbf{ImageNet-9}\cite{imagenet} jest to podzbiór ImageNet, najpoularniejszej bazy zdjęć.
+W tej pracy wykorzystano bazę danych \textbf{ImageNet-9}\cite{imagenet} jest to podzbiór ImageNet, najpopularniejszej bazy zdjęć.
 Podzbiór ten zawiera zawiera 9 kategorii, z których każda posiada 450 obrazów.
 Ważnym aspektem wyboru tego zbioru były oznaczone obszary obiektów klasyfikowanych, co pozwalało na posiadanie wiedzy o ważnych obszarach, która została użyta do oceny jakości generowanych wyjaśnień.
 Kategorie obejmowały:
@@ -80,11 +80,11 @@ Kategorie obejmowały:
 Dodatkowo baza obrazów została podzielona ze względu na wielkość obiektu, jaki procent obrazu zajmuje obiekt docelowy.
 Podzielony został na 5 kategorie obrazów:
 \begin{itemize}
-    \item Bardzo mały (XS) - obiekt zajmuje mniej niż 2\% obrazu. W tej kategorii znajduje się 129 obrazów.
-    \item Mały (S) - obiekt zajmuje mniej niż 25\%, ale więcej niż 2\% obrazu. W tej kategorii znajduje się 3912 obrazów.
-    \item Średni (M) - obiekt zajumuje mniej niż 50\%, ale więcej niż 25\% obrazu. W tej kategorii znajduje się 4311 obrazów.
-    \item Duży (L) - obiekt zajmuje mniej niż 90\%, ale więcej niż 50\% obrazu. W tej kategorii znajduje się 3657 obrazów.
-    \item Bardzo duży (XL) - obiekt zajmuje więcej niż 90\% obrazu. W tej kategorii znajduje się 141 obrazów.
+	\item Bardzo mały (XS) - obiekt zajmuje mniej niż 2\% obrazu. W tej kategorii znajduje się 129 obrazów.
+	\item Mały (S) - obiekt zajmuje mniej niż 25\%, ale więcej niż 2\% obrazu. W tej kategorii znajduje się 3912 obrazów.
+	\item Średni (M) - obiekt zajmuje mniej niż 50\%, ale więcej niż 25\% obrazu. W tej kategorii znajduje się 4311 obrazów.
+	\item Duży (L) - obiekt zajmuje mniej niż 90\%, ale więcej niż 50\% obrazu. W tej kategorii znajduje się 3657 obrazów.
+	\item Bardzo duży (XL) - obiekt zajmuje więcej niż 90\% obrazu. W tej kategorii znajduje się 141 obrazów.
 \end{itemize}
 
 Przykłady obrazów dla kategorii wielkości zostały przedstawione na Rys \ref{rys:examples_size_cat}.
@@ -111,12 +111,12 @@ Przykłady obrazów dla kategorii wielkości zostały przedstawione na Rys \ref{
 		\centering\includegraphics[width=.9\textwidth]{img/examples/size_category_verybig}
 		\caption{Bardzo duży obiekt (90.2224\%)}  \label{}
 	\end{subfigure}
-	\caption{Przykłady obrazów dla różnych kategori wielkości}
+	\caption{Przykłady obrazów dla różnych kategorii wielkości}
 	\label{rys:examples_size_cat}
 \end{figure}
 
 \section*{Wybór parametrów metod XAI}
-Wybór odopwiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
+Wybór odpowiednich parametrów jest kluczowym etapem w procesie tworzenia i oceny modeli głębokiego uczenia oraz metod wyjaśnialnej sztucznej inteligencji (XAI).
 Parametry mają bezpośredni wpływ na jakość, dokładność i interpretowalność wyników generowanych przez modele i metody XAI.
 W tej sekcji omówione zostało, jakie parametry zostały wybrane dla każdej z zastosowanych metod (LIME, SHAP i GradCAM) oraz jak te parametry wpływają na wyniki i interpretacje uzyskane w badaniach
 
@@ -154,10 +154,10 @@ W tej pracy użyto wartości num\_samples=1000, co stanowi kompromis między dok
 \end{figure}
 
 Parametr \textbf{'num\_features'} oznacza maksymalną ilość cech które mogą występować w wyjaśnieniu.
-Wyjaśnienia LIME polegają na identyfikacji najważniejszych cech, które wþływają na decyzję modelu w danym punkcie.
-W przypadku obrazów, cech te są reprezentowane przez superpiksele, czyli segmenty obrazu zawierające grupy pikseli.
+Wyjaśnienia LIME polegają na identyfikacji najważniejszych cech, które wpływają na decyzję modelu w danym punkcie.
+W przypadku obrazów, cech te są reprezentowane przez super-piksele, czyli segmenty obrazu zawierające grupy pikseli.
 Określenie zbyt niskiej wartości dla num\_features może prowadzić do pominięcia istotnych cech, co skutkuje niepełnym wyjaśnieniem.
-Z kolei zbyt wysoka wartość może sprawić, że wyjaśnienie będzie zawerało nadmiarowe informacje, które mogą być trudnę do interpretacji.
+Z kolei zbyt wysoka wartość może sprawić, że wyjaśnienie będzie zawierało nadmiarowe informacje, które mogą być trudne do interpretacji.
 
 W przypadku tej pracy, użyto wysokiej wartości (num\_features = 100000), aby zapewnić, że wszystkie potencjalnie ważne cechy zostaną uwzględnione w wyjaśnieniach niezależnie od wielkości obiektu.
 
@@ -176,7 +176,7 @@ W przypadku tej pracy, użyto wysokiej wartości (num\_features = 100000), aby z
 
 Parametr \textbf{min\_weight} określa minimalną wagę cech, która musi być spełniona, aby cecha była uwzględniona w wyjaśnieniu.
 W tej pracy zostało ustawione min\_weight na 60\% największej wagi dla konkretnego wyjaśnienia, wagi cech mogą mieć bardzo różne wartości w różnych przypadkach.
-Ustalenie stałej wartości prowadzi do sytuacji, w której w niektóeych przypdakach żadna cecha nie zostałaby zaznaczona, a w innych wszystkie cechy byłby uwzględnione.
+Ustalenie stałej wartości prowadzi do sytuacji, w której w niektórych przypadkach żadna cecha nie zostałaby zaznaczona, a w innych wszystkie cechy byłby uwzględnione.
 
 \begin{figure}[h]
 	\centering
@@ -190,7 +190,7 @@ Ustalenie stałej wartości prowadzi do sytuacji, w której w niektóeych przypd
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/lime/min_weight_06m}
-        \caption{min\_weight = 60\% wagi maksymalnej}  \label{rys:parameters_lime_numsamples_5}
+		\caption{min\_weight = 60\% wagi maksymalnej}  \label{rys:parameters_lime_numsamples_5}
 	\end{subfigure}
 	\caption{Przykłady wyjaśnień LIME dla różnych wartości min\_weight}
 \end{figure}
@@ -198,7 +198,7 @@ Ustalenie stałej wartości prowadzi do sytuacji, w której w niektóeych przypd
 Parametr \textbf{'positive\_only'} określa, czy wyjaśnienia powinny uwzględniać tylko cechy, które mają pozytywny wpływ na klasyfikację.
 Ustawienie tego parametru na prawdziwy pomaga w identyfikowaniu pozytywnych cech, które wpływają na decyzję modelu.
 Natomiast ustawienie tego parametru na prawdziwy pomaga w identyfikowaniu także negatywnych cech.
-Ta praca skupia się na wyjaśnianiu dlaczego model podją daną decyzję więc parametr positive\_only jest ustawiony na prawdziwy.
+Ta praca skupia się na wyjaśnianiu dlaczego model podjął daną decyzję więc parametr positive\_only jest ustawiony na prawdziwy.
 
 
 \subsection*{SHAP}
@@ -233,7 +233,7 @@ Parametr \textbf{threshold} określa minimalną wartość cechy, która musi by�
 Wartość progowa jest ważna, ponieważ pozwala na filtrowanie mniej istotnych cech, co może uprościć wyjaśnienia i uczynić je bardziej zrozumiałymi.
 W przypadku obrazów, gdzie liczba cech jest bardzo duża, odpowiednie ustawienie tego parametru jest kluczowe.
 
-W tej pracy ustaliliśmy wartość threshold jako 40\% maksymalnej wagi wyjaśnienia. 
+W tej pracy ustaliliśmy wartość threshold jako 40\% maksymalnej wagi wyjaśnienia.
 Parametr ten został stworzony, aby umożliwić porównywanie różnych metod wyjaśniania.
 Threshold pełni kluczową rolę w procesie modyfikacji zbioru cech wyjaśnień.
 Względem tego parametru, wybierane są tylko te cechy, których wartości są większe lub równe średniej wartości cech.
@@ -244,7 +244,7 @@ W efekcie, wyjaśnienia stają się bardziej skoncentrowane na kluczowych cechac
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_base}
-		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
+		\caption{Oryginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/shap/threshold_mean}
@@ -276,7 +276,7 @@ Gdzie:
 	\begin{subfigure}[b]{0.9\textwidth}
 		\centering
 		\includegraphics[width=.45\textwidth]{img/parameters/gradcam/threshold_base}
-		\caption{Orginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
+		\caption{Oryginalne wyjaśnienie}  \label{rys:parameters_lime_numsamples_5}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/gradcam/threshold_01}
@@ -347,7 +347,7 @@ Innymi słowy, im lepsze wyjaśnienie, tym większy procent przypadków, w któr
 \begin{figure}[h]
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
-		\caption{Orginalny obraz}
+		\caption{Oryginalny obraz}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/mask}
@@ -358,12 +358,12 @@ Innymi słowy, im lepsze wyjaśnienie, tym większy procent przypadków, w któr
 \end{figure}
 
 Badano również \textbf{zmiany pewności po usunięciu obszaru wyjaśnienia} (Rys. \ref{rys:example_no_exp}) ocenia, jak zmienia się pewność modelu, gdy usunięty zostaje obszar wyjaśnienia.
-Dobre wyjaśnienie powino zaznaczać większość obszarów wpływających pozytynie na pewność modelu, tak więc im większy średni spadek pewności tym lepsze jest to wyjaśnienie.
+Dobre wyjaśnienie powinno zaznaczać większość obszarów wpływających pozytywnie na pewność modelu, tak więc im większy średni spadek pewności tym lepsze jest to wyjaśnienie.
 
 \begin{figure}[h]
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/base}
-		\caption{Orginalny obraz}
+		\caption{Oryginalny obraz}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.45\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/parameters/quality/wo_mask}
