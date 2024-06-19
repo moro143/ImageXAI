@@ -12,29 +12,29 @@ Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmi
 Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
 Negatywny wpływ na wynik klasyfikacji mogą mieć niskiej jakości zbiory danych
 
-Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, co może skutkować przuczeniem się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
+Źródłami  problemów mogą być zbiory danych, w których wszystkie dane pochodzą z tego samego lub podobnego źródła, co może skutkować przeuczeniem się modelu, poprzez nauczenie się modelu na nieoczekiwanych cech w celu klasyfikacji.
 
 \textbf{Głębokie sieci neuronowe (DNN)}\cite{nature} to modele, które składają się z wielu warstw neuronów, umożliwiając automatyczne uczenie się hierarchicznych cech na różnych poziomach abstrakcji, co sprawia, że są one bardzo skuteczne w analizie i rozpoznawaniu wzorców w danych obrazowych.
 
-Istnieje wiele różnych atchitektur głębokich sieci neuronowych.
+Istnieje wiele różnych architektur głębokich sieci neuronowych.
 Przykładem są \textbf{sieci konwolucyjne (CNN)}\cite{8379889}, które zostały stworzone do przetwarzania obrazów.
-Ich achitektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
-Podstawowymi elementami sieci konwolucyjnch są:
+Ich architektura opiera się na kilku podstawowych rodzajach warstw, które skutecznie wyodrębniają cechy obrazów na różnych poziomach abstrakcji.
+Podstawowymi elementami sieci konwolucyjnych są:
 \begin{itemize}
-	\item \textbf{Warstwy konowlucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
+	\item \textbf{Warstwy konwolucyjne}, wykorzystują zestaw filtrów, które przesuwają się po obrazie, wykonując operację konwolucji.
 	      Ta operacja pozwala na wyodrębnienie lokalnych cech z tego obrazu, takich jak krawędzie, tekstury czy wzory.
-	      Tworząc nowe obrazy zwane mapami konwolucyji.
+	      Tworząc nowe obrazy zwane mapami konwolucji.
 	\item \textbf{Warstwy poolingowe}, występują po warstwach konwolucyjnych , redukują wymiary przestrzenne map cech.
 \end{itemize}
 Sieci konwolucyjne są szczególnie skuteczne w analizie danych obrazowych ze względu na ich zdolność do automatycznego wyodrębniania cech lokalnych i hierarchicznego uczenia się abstrakcji na różnych poziomach.
-Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentaacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
+Ich zastosowanie znalazło szerokie zastosowanie ww rozpoznawaniu obrazów, klasyfikacji, detekcji i segmentacji obrazów, a także w innych dziedzinach przetwarzania danych, takich jak analiza tekstu czy przetwarzanie języka naturalnego.
 
 \textbf{ResNet (Residual Neural Network)}\cite{He_2016_CVPR} to innowacyjna architektura głębokiej sieci neuronowej, która została zaprojektowana w celu rozwiązania problemu zanikającego gradientu w głębokich sieciach.
 Problem zanikającego gradientu występuje gdy uczenie się modelu staje się trudniejsze wraz ze wzrostem liczby warstw, co prowadzi do ograniczenia wydajności modelu.
 
 Główną cechą ResNet są tzw. bloki rezydualne, które wprowadzają połączenia skrótowe między warstwami, pozwalając na przekazywanie informacji wstecz w sieci.
 Dzięki tym połączeniom model może uczyć się reszty funkcji, co eliminuje problem zanikającego gradientu.
-ResNet znany jest ze swojej zdolności do efektywnego ucenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
+ResNet znany jest ze swojej zdolności do efektywnego uczenia się bardzo głębokich modeli, nawet sięgających kilkuset warstw.
 Ta cecha sprawia, ze ResNet stał się jedną z najbardziej popularnych architektur w dziedzinie rozpoznawania obrazów, osiągając znakomite wyniki.
 
 \textbf{ResNet50}\cite{Koonce2021} jest konkretną wersją architektury ResNet, która składa się z 50 warstw.
@@ -48,13 +48,13 @@ Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeb
 W szczególności w przypadku krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
 
 Wyjaśnialna sztuczna inteligencja (XAI)\cite{XAItax, XAIcurrent, XAIOnC, XAIcounter} ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
-Posiadając wiedzę na temat danych treningowych oraz będąc w stanie określić jakie cechy mialy wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób.
+Posiadając wiedzę na temat danych treningowych oraz będąc w stanie określić jakie cechy miały wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób.
 Metody XAI pozwalają na analizę i interpretację działania modeli, co umożliwia użytkownikom oraz programistom zrozumienie, dlaczego model dokonał konkretnej predykcji i które cechy danych miały największy wpływ na tę decyzję.
 
 Istnieją różnorodne metody wyjaśnialnej sztucznej inteligencji, można je grupować na wiele różnych sposobów w celu lepszego zrozumienia ich działania.
 Jednym z nich to podział na wyjaśnienia lokalne\cite{ribeiro2016why} i wyjaśnienia globalne\cite{XAIglobal}.
 Wyjaśnienia globalne przedstawiają działanie całego model, natomiast wyjaśnienia lokalne skupiają się na wyjaśnianiu decyzji dla poszczególnych instancji danych.
-W problemie klasyfikacji danych użwane są zazwyczaj lokalne wyjaśnienia.
+W problemie klasyfikacji danych używane są zazwyczaj lokalne wyjaśnienia.
 
 Innym sposobem na grupowania XAI jest podział na dwie grupy:
 \begin{itemize}
@@ -70,9 +70,9 @@ Można dzięki temu wybrać odpowiednią metodę XAI dla konkretnych zastosowań
 Metody oparte na podejściu Model-agnostic są technikami XAI, które niezależnie od konkretnego modelu potrafią wyjaśnić jego decyzje.
 Charakteryzują się one uniwersalnością i zdolnością do stosowania wobec różnych rodzajów modeli, co czyni je atrakcyjnym narzędziem dla praktyków i badaczy.
 
-Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikownych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
+Główną zaletą tego podejścia jest jego niezależność od wewnętrznych mechanizmów modelu, co oznacza, że metody te mogą być stosowane do wyjaśniania decyzji zarówno prostych, jak i bardziej skomplikowanych modeli, w tym sieci neuronowych czy drzew decyzyjnych.
 
-Przykładem tekiej techniki jest \textbf{LIME} (Local Interpretable Model-agnostic Explanations)\cite{ribeiro2016why, LIMEwhy}, jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
+Przykładem takiej techniki jest \textbf{LIME} (Local Interpretable Model-agnostic Explanations)\cite{ribeiro2016why, LIMEwhy}, jedna z najpopularniejszych technik XAI, która umożliwia tworzenie lokalnie interpretowalnych modeli wokół wybranych przypadków danych.
 Metoda ta polega na generowaniu lokalnych wyjaśnień, które opisują, jakie cechy danych wejściowych wpływają na decyzje modelu.
 Poprzez symulowanie zbliżonych instancji danych i analizę reakcji modelu na ich zmiany, LIME pozwala na zrozumienie, które cechy mają największy wpływ na wynik predykcji.
 
@@ -81,11 +81,11 @@ Metoda LIME składa się z następujących kroków:
 	\item \textbf{Wybór instancji do wyjaśnienia} - Na początku wybierana jest konkretna instancja danych, której decyzja modelu zostanie  wyjaśniona.
 	\item \textbf{Generowanie perturbacji} - Następnie generowany jest zestaw perturbowanych wersji oryginalnej instancji.
 	      Perturbacje te są tworzone przez wprowadzenie małych, losowych zmian do cech wejściowych.
-	      W przypdaku danych obrazowych, perturbacje mogą polegać na zmianie wartości superpikseli.
-	\item \textbf{Ocena perturbowanych instancji} - Każda perturbowana instancja jest następnie przekazywana do orginalnego model, aby uzyskać predykcję dla nich
-	\item \textbf{Ważenie perturbacji} - Perturbacje są ważone na podstawie ich odległości od orginalnej instancji.
+	      W przypadku danych obrazowych, perturbacje mogą polegać na zmianie wartości super-pikseli.
+	\item \textbf{Ocena perturbowanych instancji} - Każda perturbowana instancja jest następnie przekazywana do oryginalnego model, aby uzyskać predykcję dla nich
+	\item \textbf{Ważenie perturbacji} - Perturbacje są ważone na podstawie ich odległości od oryginalnej instancji.
 	      Perturbacje bliższe oryginalnej instancji mają większy wpływ na trenowanie lokalnego modelu.
-	\item \textbf{Tworzenie loalnego modelu} - LIME buduje prosty, lokalny model interpretowalny w oparciu o perturbowane instancje i ich odpowiadające predykcje, z uwzględnieniem ich wag.
+	\item \textbf{Tworzenie lokalnego modelu} - LIME buduje prosty, lokalny model interpretowalny w oparciu o perturbowane instancje i ich odpowiadające predykcje, z uwzględnieniem ich wag.
 	      Ten model jest trenowany, aby najlepiej odwzorować zachowanie oryginalnego modelu w okolicy wybranej instancji.
 	\item \textbf{Generowanie wyjaśnień} - Po zbudowaniu lokalnego modelu interpretowalnego, LIME identyfikuje najważniejsze cechy, które wpływają na predykcję oryginalnego modelu dla wybranej instancji.
 	      Wyjaśnienia te są przedstawiane w postaci listy cech z przypisanymi wagami, które pokazują ich wpływ na decyzję modelu.
@@ -113,7 +113,7 @@ Innym przykładem techniki lokalnej jest \textbf{SHAP} (SHapley Additive exPlana
 Metoda ta opiera się na szacowaniu wartości Shapleya, które określają, jaki wpływ ma każda cecha na przewidywaną wartość.
 Dzięki tej technice możemy zidentyfikować, które cechy mają największy wpływ na wynik modelu i jakie są ich wzajemne zależności.
 
-Teoria wartości Shapleya pochodzi z teori gier kooperacyjnych i służą do podziału zysków między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
+Teoria wartości Shapleya pochodzi z teorii gier kooperacyjnych i służą do podziału zysków między graczy (cechy w kontekście modelu) proporcjonalnie do ich wkładu w wynik.
 Dla każdej cechy wartość Shapleya obliczana jest jako średni wkład tej cechy do wyniku modelu we wszystkich możliwych kombinacjach cech.
 
 Metoda SHAP składa się z następujących kroków:
@@ -121,13 +121,13 @@ Metoda SHAP składa się z następujących kroków:
 	\item \textbf{Wybór instancji}
 	\item \textbf{Perturbacja danych} - Dla każdej cechy generowane są wszystkie możliwe podzbiory cech
 	\item \textbf{Ocena wpływu cech} - Model jest uruchamiany dla każdego podzbioru cech, a różnice w wynikach są mierzone
-	\item \textbf{Średnia wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we weszystkich możliwych podzbiorach cech
+	\item \textbf{Średnia wartości} - Wartości Shapleya dla danej cechy są obliczane jako średnia marginalnego wkładu tej cechy do wyniku modelu we wszystkich możliwych podzbiorach cech
 \end{enumerate}
 
 Obliczanie dokładnych wartości Shapleya może być obliczeniowo kosztowne, dlatego SHAP wykorzystuje różne techniki przyspieszanie obliczeń, takie jak aproksymacje i metody samplingowe.
 
 SHAP to technika XAI, która pozwala na precyzyjne przypisywanie znaczenia poszczególnym cechom wejściowym.
-W przypadku danych obrazowych, SHAP umożliwia identyfikację wpływu poszczególnych superpikseli na predykcję modelu co jest kluczowe dla uzyskania wglądu w mechanizmy decyzyjne modelu.
+W przypadku danych obrazowych, SHAP umożliwia identyfikację wpływu poszczególnych super-pikseli na predykcję modelu co jest kluczowe dla uzyskania wglądu w mechanizmy decyzyjne modelu.
 
 \vspace{1cm}
 Podsumowując, metody model-agnostic oferują elastyczne i uniwersalne podejście do wyjaśniania decyzji modeli, co czyni je atrakcyjnym narzędziem dla różnorodnych zastosowań.
@@ -141,7 +141,7 @@ W odróżnieniu od metod niezależnych od modelu, metody te wykorzystują wewnę
 Dzięki temu są w stanie dokładniej wskazać, które elementy modelu oraz które cechy mają kluczowy wpływ na wynik predykcji.
 
 \textbf{GradCAM} \cite{Selvaraju_2019} (Gradient-weighted Class Activation Mapping) jest jedną z najbardziej popularnych metod model-specific, która umożliwia wizualizację obszarów obrazu, które najbardziej wpływają na decyzję klasyfikacji modelu.
-Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych superpikseli obrazu względem konkretnej klasy oraz warstwę konwolucyjną sieci CNN w celu wynaczenia obszarów superpikseli.
+Metoda ta wykorzystuje gradienty wsteczne, aby obliczyć istotność poszczególnych super-pikseli obrazu względem konkretnej klasy oraz warstwę konwolucyjną sieci CNN w celu wyznaczenia obszarów super-pikseli.
 Dzięki temu możemy zidentyfikować, które obszary obrazu były decydujące dla klasyfikacji i w jaki sposób model dokonywał swoich predykcji.
 
 GradCAM składa się z następujących kroków:
@@ -152,7 +152,7 @@ GradCAM składa się z następujących kroków:
 	\item \textbf{Ważona suma map cech} - wykonujemy ważoną sumę map cech, wykorzystując wagi istotności.
 	\item \textbf{ReLU} - zastosowanie funkcji ReLU do ważonej sumy, aby uzyskać ostateczną mapę cieplną.
 	\item \textbf{Normalizacja} - Normalizujemy mapę cieplną do zakresu [0, 1].
-  \item \textbf{Wizualizacjia} - Stworzoną mapę cieplną nakładamy na obraz w celu wizualizacji.
+  \item \textbf{Wizualizacja} - Stworzoną mapę cieplną nakładamy na obraz w celu wizualizacji.
 \end{enumerate}
 
 Poniżej znajduje się pseudo kod który wizualizuje kroki algorytmu GradCAM:
@@ -174,7 +174,7 @@ gradcam = gradcam / max(gradcam)
 \end{listing}
 
 GradCAM dostarcza  wizualnych wyjaśnień, które są intuicyjne do interpretacji.
-Dzięki mapom ciepła (heatmaps) generowanym przez tę metodę, możemy zobaczyć, które regiony obrazu najbardziej wpłynęły na predykcję modelu bez konieczności posiadania wiedzy ekspertskiej.
+Dzięki mapom ciepła (heatmaps) generowanym przez tę metodę, możemy zobaczyć, które regiony obrazu najbardziej wpłynęły na predykcję modelu bez konieczności posiadania wiedzy eksperckiej.
 
 \vspace{1cm}
 
@@ -187,9 +187,9 @@ Dzięki temu metody takie jak GradCAM mogą nie tylko zwiększać zaufanie użyt
 %DHIS - Evaluation of Explainable Artificial Intelligence: SHAP, LIME, and CAM
 %Ablation-CAM: Visual Explanations for Deep Convolutional Network via Gradient-free Localization
 %CLEVER_XAI
-Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacj obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
+Porównywanie metod wyjaśnialnej sztucznej inteligencji (XAI) w kontekście klasyfikacji obrazów jest kluczowe, aby zrozumieć, które techniki są najbardziej skuteczne i jakie mają zalety oraz ograniczenia.
 W pracy 'Ablation-CAM'\cite{9093360} porównano GradCAM z autorskim rozwiązaniem.
-Aby porównać obie metody zapropnowano dwa podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
+Aby porównać obie metody zaproponowano dwa podejścia do porównywania metod XAI: oparte na modelu (model-based) oraz oparte na prawdzie (truth-based).
 \begin{itemize}
 	\item \textbf{Oparte na modelu} (model-based)
 	\item \textbf{Oparte na prawdzie} (truth-based)
@@ -200,7 +200,7 @@ Metody oparte na modelu oceniają wyjaśnienia XAI poprzez analizie ich wpływu 
 Przykładowe metryki stosowane w tym podejściu:
 \begin{itemize}
 	\item \textbf{Średni spadek pewności i wyniku aktywacji}\cite{9093360} (Average drop in confidence and activation score) - ta metryka mierzy średni spadek pewności modelu (\ref{eq:average_drop}) w przypadku dostarczenia jedynie obszarów, które zostały zidentyfikowane jako ważne przez metodę XAI.
-	      Jeśli metoda XAI poprawnie identyikuje istotne cechy, powinno to prowadzić do niewielkiego spadku pewności predykcji modelu.
+	      Jeśli metoda XAI poprawnie identyfikuje istotne cechy, powinno to prowadzić do niewielkiego spadku pewności predykcji modelu.
 	      Metryka ta jest używana do oceny, jak skutecznie metoda XAI identyfikuje krytyczne cechy wpływające na decyzję modelu.
 	      \begin{equation}
 		      \text{Średni spadek} = \frac{1}{N} \sum_{i=1}^{N} \frac{\max(0,Y_i^c-O_i^c)}{T_i^c} \times 100
@@ -208,7 +208,7 @@ Przykładowe metryki stosowane w tym podejściu:
 	      \end{equation}
 	      Gdzie:
 	      \begin{itemize}[label=]
-		      \item $Y_i^c$ to wynik dla orginalnego obrazu
+		      \item $Y_i^c$ to wynik dla oryginalnego obrazu
 		      \item $O_i^c$ to wynik dla samego obszaru wyjaśnienia
 		      \item $N$ to liczba obrazów
 	      \end{itemize}
@@ -221,17 +221,17 @@ Przykładowe metryki stosowane w tym podejściu:
 	      \end{equation}
 	      Gdzie:
 	      \begin{itemize}[label=]
-		      \item $Y_i^c$ to wynik dla orginalnego obrazu
+		      \item $Y_i^c$ to wynik dla oryginalnego obrazu
 		      \item $O_i^c$ to wynik dla samego obszaru wyjaśnienia
 		      \item $N$ to liczba obrazów
 	      \end{itemize}
 \end{itemize}
 
 \subsection*{Metody oparte na prawdzie}
-Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zewnętrznymi, zdefinowanymi prawdziwymi danymi. Jedną z głównych metryk w tym podjściu jest:
+Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zewnętrznymi, zdefiniowanymi prawdziwymi danymi. Jedną z głównych metryk w tym podejściu jest:
 \begin{itemize}
 	\item Intersection over Union (IoU)\cite{9093360, XAIevalCNN} - jest to miara pokrycia między wyjaśnieniami wygenerowanymi przez metodę XAI a zdefiniowanymi obszarami referencyjnymi w obrazie (\ref{eq:iou}), które są uważane za istotne (np. ręcznie oznaczone przez ekspertów).
-	      IoU jest obliczane jako stosunek powierzchni przecięcia do powierzchni sumy obszarów wyjaśnień i referencji. Wysokie IoU wskazuje na dobrą zgodność wyjaśnień XAI z rzeczywistością, co oznacza, że metoda XAI skutrcznie identyfikuje istotne cechy.
+	      IoU jest obliczane jako stosunek powierzchni przecięcia do powierzchni sumy obszarów wyjaśnień i referencji. Wysokie IoU wskazuje na dobrą zgodność wyjaśnień XAI z rzeczywistością, co oznacza, że metoda XAI skutecznie identyfikuje istotne cechy.
 	      \begin{equation}
 		      \text{IoU} = \frac{\text{I}}{\text{U}}
 		      \label{eq:iou}

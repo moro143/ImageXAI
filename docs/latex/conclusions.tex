@@ -29,7 +29,7 @@ SHAP wykazał najniższą korelacje lub nawet jej brak, między rozmiarem obszar
 
 Porównując metody XAI pod kątem rzeczywistych wartości za pomocą metryki IoU najlepsze wyniki osiągał GradCAM, wyjątkiem były obiekty Bardzo małe dla których najlepszą metodą okazał się LIME.
 
-Porównikac metody XAI pod kątem średniego procentu obszaru wyjaśnienia poza faktycznym obszarem obiektu najlepsze wyniki osiągnął LIME, co oznacza że wybierał on najżadziej obszary na pewno nie waże dla klasyfikacji.
+Porównując metody XAI pod kątem średniego procentu obszaru wyjaśnienia poza faktycznym obszarem obiektu najlepsze wyniki osiągnął LIME, co oznacza że wybierał on najrzadziej obszary na pewno nie ważne dla klasyfikacji.
 Następnie był GradCAM, który ponownie był ograniczony wielkością ostatniej warstwy konwolucyjnej modelu, przez co częściej oznaczał obszary nie ważne.
 
 Porównując zmiany pewności najlepiej wyszedł GradCAM.

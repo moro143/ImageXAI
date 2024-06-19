@@ -4,13 +4,13 @@
 \chapter*{Wstęp}
 
 \section*{Wprowadzenie do problemu}
-Klasyfikacja obazów przy użyciu sieci głębokich (Deep Neral Networks, DNN) stanowi jeden z najważniejszych obszarów badawczych w dziedzinie sztucznej inteligencji.
+Klasyfikacja obrazów przy użyciu sieci głębokich (Deep Neutral Networks, DNN) stanowi jeden z najważniejszych obszarów badawczych w dziedzinie sztucznej inteligencji.
 Dzięki możliwościom w rozpoznawaniu wzorców, sieci głębokie są szeroko stosowane w różnych aplikacjach, takich jak diagnostyka medyczna, autonomiczne pojazdy, czy systemy rozpoznawania twarzy.
 Sieci te uczą się na dużej ilości danych, co pozwala im na osiąganie wysokich wyników w zadaniach klasyfikacyjnych.
 
 Pomimo ich imponujących wyników, sieci głębokie są często nazywane "czarnymi skrzynkami".
 Oznacza to, że procesy decyzyjne zachodzące wewnątrz tych modeli są trudne do zrozumienia, nawet dla ekspertów w dziedzinie.
-Brak przejrzystości w działaniu modeli DNN jest istotnym problemem, zwłaszcza w przypaku zastosowań wymagających wysokiego poziomu zaufania i odpowiedzialności, takich jak opieka zdrowotna czy systemy bezpieczeństwa.
+Brak przejrzystości w działaniu modeli DNN jest istotnym problemem, zwłaszcza w przypadku zastosowań wymagających wysokiego poziomu zaufania i odpowiedzialności, takich jak opieka zdrowotna czy systemy bezpieczeństwa.
 
 Wyjaśnialna sztuczna inteligencja (Explainable AI, XAI) powstała w odpowiedzi na ten problem.
 XAI ma na celu uczynienie decyzji podejmowanych przez modele AI bardziej przejrzystymi i zrozumiałymi dla użytkowników.
@@ -20,7 +20,7 @@ Potrzeba wyjaśniania decyzji podejmowanych przez modele DNN wynika z kilku kluc
 	      Jest to szczególnie ważne w aplikacjach krytycznych, gdzie błędy mogą prowadzić do poważnych konsekwencji.
 	\item \textbf{Optymalizacja i poprawa modelu} - Wyjaśnienia pomagają w identyfikacji potencjalnych błędów modelu, co umożliwia jego dalszą optymalizację i poprawę.
 	\item \textbf{Ocena modelu} - wyjaśnienia mogą służyć jako alternatywne miary oceny modelu, pozwalając na bardziej wszechstronne zrozumienie jego działania.
-	\item \textbf{Zgodnośc z regulacjami} - w wielu branżach istnieją regulacje wymagające przejrzystości, co sprawia, że wyjaśnialność decyzji modeli AI jest konieczna.
+	\item \textbf{Zgodność z regulacjami} - w wielu branżach istnieją regulacje wymagające przejrzystości, co sprawia, że wyjaśnialność decyzji modeli AI jest konieczna.
 \end{itemize}
 
 W kontekście klasyfikacji obrazów, metody XAI pomagają zrozumieć, które cechy obrazu miały największy wpływ na decyzję modelu.
@@ -29,14 +29,14 @@ Pozwala to na lepszą interpretację wyników i identyfikację potencjalnych obs
 \section*{Cel pracy}
 Celem niniejszej pracy było zbadanie i porównanie różnych metod XAI stosowanych w klasyfikacji obrazów.
 W ramach pracy przeanalizowano istniejące techniki wyjaśniania decyzji podejmowanych przez modele głębokie oraz oceniono ich skuteczność w kontekście klasyfikacji obrazów.
-Kluczowym elementem pracy było porównanie wybranych metod XAI pod kątem ich zdolości do generowania zrozumiałych i trafnych wyjaśnień, które wskazują jakie cechy obrazu miały największy wpływ na decyzję modelu.
+Kluczowym elementem pracy było porównanie wybranych metod XAI pod kątem ich zdolności do generowania zrozumiałych i trafnych wyjaśnień, które wskazują jakie cechy obrazu miały największy wpływ na decyzję modelu.
 
 Praca miała na celu:
 \begin{itemize}
 	\item \textbf{Zidentyfikowanie i zbadanie popularnych metod XAI stosowanych w klasyfikacji obrazów}
 	\item \textbf{Ocenę skuteczności i użyteczności tych metod}
 	\item \textbf{Porównanie metod XAI}
-	\item \textbf{Identyikacja zalet i ograniczeń poszczególnych metod}
+	\item \textbf{Identyfikacja zalet i ograniczeń poszczególnych metod}
 \end{itemize}
 
 Efektem końcowym pracy było lepsze zrozumienie, które metody XAI są najbardziej efektywne i jakie są ich praktyczne zastosowania w kontekście klasyfikacji obrazów.
@@ -45,11 +45,11 @@ Efektem końcowym pracy było lepsze zrozumienie, które metody XAI są najbardz
 Zakres pracy obejmował kilka kluczowych aspektów, mających na celu kompleksowe zbadanie i porównanie metod wyjaśnialnej sztucznej inteligencji (XAI) stosowanych w klasyfikacji obrazów.
 Praca została podzielona na następujące aspekty:
 \begin{itemize}
-	\item \textbf{Przegląd literatury}, w celu zapoznania się z metodami klasyfikacji orazów, metodami XAI oraz podobnymi pracami badawczymi, które umożliwiły zrozumienie obecnego stanu wiedzy w tej dziedzinie.
+	\item \textbf{Przegląd literatury}, w celu zapoznania się z metodami klasyfikacji obrazów, metodami XAI oraz podobnymi pracami badawczymi, które umożliwiły zrozumienie obecnego stanu wiedzy w tej dziedzinie.
 	\item \textbf{Analiza i wybór odpowiednich parametrów dla metod XAI oraz ustalenie sposobów przekształcania i prezentacji wyjaśnień} generowanych przez metody, aby były one porównywalne.
 	\item \textbf{Stworzenie odpowiedniego środowiska programistycznego} oraz \textbf{wybór zbioru danych}, który umożliwił przeprowadzenie badań.
 	\item \textbf{Implementacja i zastosowanie wybranych metod XAI} w klasyfikacji obrazów oraz \textbf{analiza wyników}, koncentrując się na ocenie, jak te metody wyjaśniają decyzje modeli głębokiego uczenia i jakie informacje dostarczają użytkownikom.
-	\item \textbf{Porównanie wyników} poprzez ocenę efektywności poszczegółnych metod XAI oraz \textbf{wyciągnięcie wniosków} dotyczących ich skuteczności oraz identyfikacja zalet i ograniczeń każdej z metod.
+	\item \textbf{Porównanie wyników} poprzez ocenę efektywności poszczególnych metod XAI oraz \textbf{wyciągnięcie wniosków} dotyczących ich skuteczności oraz identyfikacja zalet i ograniczeń każdej z metod.
 \end{itemize}
 
 Praca miała na celu kompleksową analizę i porównanie metod XAI, co miało prowadzić do lepszego zrozumienia ich praktycznych zastosowań oraz wskazanie kierunków dla przyszłych badań w tej dziedzinie.
