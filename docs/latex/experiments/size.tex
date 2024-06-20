@@ -2,7 +2,7 @@
 
 W tej sekcji przeprowadzono szczegółową analizę wpływu wielkości obiektu na rozmiar obszaru wyjaśniania wygenerowanego przez metody LIME, SHAP i GradCAM.
 Badanie miało na celu zgłębienie, jak różne metody XAI reprezentują istotność różnych części obrazu w zależności od wielkości obiektów na zdjęciach.
-Kluczowe było zrozumienie, czy metody XAI mogą lepiej lub gorzej reagować na obiekty o różnej wielkości.
+Kluczowe było zrozumienie, jak metody XAI regują na obiekty o różnej wielkości.
 
 \begin{figure}[h]
 	\centering
@@ -40,17 +40,17 @@ Kluczowe było zrozumienie, czy metody XAI mogą lepiej lub gorzej reagować na 
 Wyniki zostały przedstawione za pomocą wykresów (Rys. \ref{rys:size_exp_gradcam}-\ref{rys:size_exp_shap}), które wizualizują zależności między wielkością obiektów, a rozmiarem wyjaśnień generowanych przez poszczególne metody.
 Na końcu pracy, w Dodatku \ref{app2}, znajdują się przykłady obrazów z zaznaczonymi wyjaśnieniami.
 Dodatek ten zawiera przykłady, gdy wielkość wyjaśnienia jest zbliżona do rzeczywistej wielkości obiektu na obrazie, jak i przypadki, gdzie występuje znacząca różnica między tymi wartościami.
-Takie podejści pozwala lepiej zrozumieć i interpretować otrzymane wyniki.
+Takie podejście pozwala lepiej zrozumieć i interpretować otrzymane wyniki.
 
 Analiza wpływu wielkości obiektu na rozmiar wyjaśnień generowanych przez metody XAI wykazał, że wyjaśnienia \textbf{GradCAM} charakteryzuje największą korelacje między wielkością obszaru obiektu a wielkością wyjaśnienia.
 Dodatkowo na wykresie punktowym (Rys. \ref{rys:size_exp_gradcam}) widoczne jest, silne skorelowanie wyjaśnień GradCAM z rozmiarami warstwy konwolucyjnej, co oznacza ograniczenia tej metody.
 
 \textbf{LIME} wykazał niższą korelację niż GradCAM, generując wyjaśnienia często o małych rozmiarach, zazwyczaj poniżej 25\% rozmiaru obrazu.
-Wysoki wpływ dobranych parametrów może mieć istotny wpływ na ten efekt.
+Wysoka czułość LIME na dobór parametrów może mieć istotny wpływ na ten wynikj.
 
 Natomiast \textbf{SHAP} wykazał najniższą korelacje lub praktycznie jej brak.
 Obszary wyjaśnień SHAP są również zazwyczaj małe, co jest zgodne z obserwacjami dla LIME.
-Wybór odpowiednich parametrów mógł znacząco wpłynąć na wyniki. 
+Wybór odpowiednich parametrów mógł znacząco wpłynąć na wyniki.
 
 \vspace{1cm}
 Analiza wielkości wyjaśnień dla metod GradCAM, LIME i SHAP pokazuje, że każda z tych metod ma różne podejścia do generowania obszarów kluczowych na obrazach.

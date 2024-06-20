@@ -7,7 +7,7 @@
 Klasyfikacja obrazów to jedno z fundamentalnych zagadnień w dziedzinie sztucznej inteligencji, które ma na celu przypisanie etykiet klas do obrazów na podstawie ich cech.
 Jest to zagadnienie o szerokim zastosowaniu, znajdujące praktyczne zastosowanie w wielu dziedzinach życia, od medycyny\cite{medical} i biologii\cite{biology} po przemysł, marketing\cite{marketing} czy bezpieczeństwo\cite{security}.
 
-Jednym z głównych wyzwań w klasyfikacji obrazów\cite{imageclassificationchallanges} jest różnorodność danych i złożoność struktury obrazów.
+Jednym z głównych wyzwań w klasyfikacji obrazów\cite{imageclassficationchallanges} jest różnorodność danych i złożoność struktury obrazów.
 Obrazy mogą zawierać wiele różnych obiektów, o różnych kształtach, rozmiarach, orientacjach i położeniach, co utrudnia automatyczne rozpoznawanie i klasyfikację.
 Ponadto, obrazy mogą być podatne na różne rodzaje zniekształceń, takie jak zmiany oświetlenia, rozmazania czy zakłócenia, co dodatkowo utrudnia proces klasyfikacji.
 Negatywny wpływ na wynik klasyfikacji mogą mieć niskiej jakości zbiory danych
@@ -45,7 +45,7 @@ Jest to jedna z najpopularniejszych wariantów ResNet często używaną podczas 
 \section*{Metody XAI}
 W ostatnich latach głębokie sieci neuronowe (DNN) osiągnęły niezwykłe sukcesy w wielu dziedzinach, takich jak rozpoznawanie obrazów, analiza tekstu czy przetwarzanie języka naturalnego.
 Pomimo ich imponującej dokładności predykcji, istnieje coraz większa potrzeba zrozumienia, dlaczego modele te podejmują konkretne decyzje.
-W szczególności w przypadku krytycznych zastosowań, takich jak medycyna czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
+W szczególności w przypadku krytycznych zastosowań, takich jak medycyna\cite{medicalXAIexample, medicalXAIexampletret} czy bezpieczeństwo, zrozumienie powodów, dla których model dokonuje konkretnej predykcji, jest niezwykle istotne.
 
 Wyjaśnialna sztuczna inteligencja (XAI)\cite{XAItax, XAIcurrent, XAIOnC, XAIcounter} ma na celu zwiększenie transparentności i zrozumienia procesu podejmowania decyzji przez modele głębokiego uczenia.
 Posiadając wiedzę na temat danych treningowych oraz będąc w stanie określić jakie cechy miały wpływ na predykcję, można ocenić czy nauczył się w odpowiedni sposób.
@@ -152,7 +152,7 @@ GradCAM składa się z następujących kroków:
 	\item \textbf{Ważona suma map cech} - wykonujemy ważoną sumę map cech, wykorzystując wagi istotności.
 	\item \textbf{ReLU} - zastosowanie funkcji ReLU do ważonej sumy, aby uzyskać ostateczną mapę cieplną.
 	\item \textbf{Normalizacja} - Normalizujemy mapę cieplną do zakresu [0, 1].
-  \item \textbf{Wizualizacja} - Stworzoną mapę cieplną nakładamy na obraz w celu wizualizacji.
+	\item \textbf{Wizualizacja} - Stworzoną mapę cieplną nakładamy na obraz w celu wizualizacji.
 \end{enumerate}
 
 Poniżej znajduje się pseudo kod który wizualizuje kroki algorytmu GradCAM:
@@ -249,7 +249,7 @@ Metody oparte na prawdzie oceniają wyjaśnienia XAI przez porównanie ich z zew
 %Poniżej przedstawiono praktyczne zastosowania XAI w różnych obszach.
 %\subsection*{Medycyna}
 %\begin{itemize}
-%	\item Diagnostyka medyczna\cite{medicalXAIexample}
+%	\item Diagnostyka medyczna\cite{medicalXAIexample, medicalXAIexampletret}
 %	\item Planowanie leczenia\cite{medicalXAIexampletret}
 %\end{itemize}
 %\subsection*{Przemysł}

@@ -62,7 +62,7 @@ Analiza ta ma na celu ocenę precyzji lokalizacji wyjaśnień generowanych przez
 
 \begin{figure}[h]
 	\centering\includegraphics[width=.9\textwidth]{img/areaincorrect}
-	\caption{Procent obszaru wyjaśnienia poza obiektem}  \label{rys:areaincorrect}
+	\caption{Średni procent obszaru wyjaśnienia poza obiektem}  \label{rys:areaincorrect}
 \end{figure}
 
 \begin{table}[h]
@@ -74,13 +74,13 @@ Analiza ta ma na celu ocenę precyzji lokalizacji wyjaśnień generowanych przez
 		\textbf{Średni procent obszaru wyjaśnienia } & 36.310489\%      & 28.544654\%   & 45.590079\%   \\
 		\hline
 	\end{tabular}
-	\caption{Procent obszaru wyjaśnienia poza obiektem}
+	\caption{Średni procent obszaru wyjaśnienia poza obiektem}
 	\label{tab:areaincorrect}
 \end{table}
 
 Wyniki analizy pokazano na wykresie pudełkowym (Rys. \ref{rys:areaincorrect}), który przedstawia rozkład wartości procentów obszarów wyjaśnienia poza obiektem poszczególnych metod XAI.
 Dodatkowo, Tabela \ref{tab:areaincorrect} zawiera średnie procenty obszarów wyjaśnień poza obiektem.
-Na końcu pracy, w Dodatku \ref{app4}, znajdują się przykłady obrazów z zaznaczonymi wyjaśnieniami.
+Na końcu pracy, w Dodatku \ref{app3}, znajdują się przykłady obrazów z zaznaczonymi wyjaśnieniami.
 Dodatek ten zawiera przykłady wyjaśnień gdy procent poza wyjaśnieniem jest bliski średniej oraz gdy całe wyjaśnienie jest poza obiektem docelowym.
 
 Analiza wykazała, że najlepszy wynik osiągnął \textbf{LIME}.
@@ -97,7 +97,7 @@ SHAP przez wrażliwość na hiper parametry posiadał najgorsze wyniki.
 
 \vspace{1cm}
 
-W tej części przeprowadzono analiza porównawcza zmiany pewności modelu po pozostawieniu jedynie obszaru wyjaśnień generowanych przez wybrane metody XAI. 
+W tej części przeprowadzono analiza porównawcza zmiany pewności modelu po pozostawieniu jedynie obszaru wyjaśnień generowanych przez wybrane metody XAI.
 Celem analizy było zrozumienie, w jaki sposób wyjaśnienia wpływają na pewność decyzji modelu głębokiego uczenia.
 
 \begin{figure}[h]
@@ -127,7 +127,7 @@ Celem analizy było zrozumienie, w jaki sposób wyjaśnienia wpływają na pewno
 		\textbf{Procent}    & 24.8148\%        & 0.8642\%      & 0.2963\%      \\
 		\hline
 	\end{tabular}
-	\caption{Procent przypadków, w których pewność się zwiększyła}
+	\caption{Procent przypadków, w których pewność się zwiększyła po pozostawieniu jedynie obszaru wyjaśnienia}
 	\label{tab:base_confidence_exp_percent}
 \end{table}
 
@@ -136,7 +136,7 @@ Dodatkowo Tabela \ref{tab:base_confidence_exp} przedstawia średni spadek pewno�
 
 \textbf{GradCAM} wykazał najmniejszy spadek pewności oraz największy procent przypadków, w których pewność wzrosła.
 Jest to zgodne z oczekiwaniami ponieważ wyjaśnienia GradCAM są często większe i skupiają się na całym obiekcie.
-Natomiast\textbf{SHAP} i\textbf{LIME} uzyskały niższe wyniki w tej analizie, co może wynikać z tendencji wybierania mniejszych obszarów wyjaśnień, co prowadzi do mniejszego wpływu na pewność modelu.  
+Natomiast \textbf{SHAP} i\textbf{LIME} uzyskały niższe wyniki w tej analizie, co może wynikać z tendencji wybierania mniejszych obszarów wyjaśnień, co prowadzi do mniejszego wpływu na pewność modelu.
 
 \vspace{1cm}
 
@@ -182,27 +182,27 @@ Każda technika XAI może reagować inaczej na różne typy obiektów, co może 
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/base_iou_dog}
-		\caption{Dog}
+		\caption{Pies}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_bird}
-		\caption{Bird}
+		\caption{Ptak}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_vehicle}
-		\caption{Vehicle}
+		\caption{Pojazd na kołach}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_reptile}
-		\caption{Reptile}
+		\caption{Gad}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_carnivore}
-		\caption{Carnivore}
+		\caption{Mięsożerca}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_insect}
-		\caption{Insect}
+		\caption{Insekt}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_music}
@@ -210,11 +210,11 @@ Każda technika XAI może reagować inaczej na różne typy obiektów, co może 
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_primate}
-		\caption{Primate}
+		\caption{Naczelny}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_iou_fish}
-		\caption{Fish}
+		\caption{Ryba}
 	\end{subfigure}
 	\caption{Wartości IoU dla różnych kategorii obrazów}
 	\label{rys:base_iou_category}
@@ -245,7 +245,7 @@ Każda technika XAI może reagować inaczej na różne typy obiektów, co może 
 		\textbf{Ryba}                & 0.427992         & 0.189446      & 0.113783      \\
 		\hline
 	\end{tabular}
-	\caption{IoU dla kategorii}
+	\caption{Średnie wartości IoU dla kategorii}
 	\label{tab:base_iou_category}
 \end{table}
 
@@ -277,39 +277,39 @@ Analiza średniego procentu obszaru wyjaśnienia poza obiektem pozwoliła na lep
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_dog}
-		\caption{Dog}
+		\caption{Pies}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_bird}
-		\caption{Bird}
+		\caption{Ptak}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_vehicle}
-		\caption{Vehicle}
+		\caption{Pojazd na kołach}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_reptile}
-		\caption{Reptile}
+		\caption{Gad}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_carnivore}
-		\caption{Carnivore}
+		\caption{Mięsożerca}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_insect}
-		\caption{Insect}
+		\caption{Insekt}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_music}
-		\caption{Instrument}
+		\caption{Instrument muzyczny}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_primate}
-		\caption{Primate}
+		\caption{Naczelny}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_fish}
-		\caption{Fish}
+		\caption{Ryba}
 	\end{subfigure}
 	\caption{Procent obszaru wyjaśnienia poza obiektem}
 	\label{rys:areaincorrect_category}
@@ -340,7 +340,7 @@ Analiza średniego procentu obszaru wyjaśnienia poza obiektem pozwoliła na lep
 		\textbf{Ryba}                & 45.224726\%      & 36.728101\%   & 53.590312\%   \\
 		\hline
 	\end{tabular}
-	\caption{Średni procent obszaru wyjaśnienia poza obiektem}
+	\caption{Średni procent obszaru wyjaśnienia poza obiektem dla kategorii}
 	\label{tab:areaincorrect_category}
 \end{table}
 
@@ -368,39 +368,39 @@ Analiza zmiany pewności po pozostawieniu jedynie obszaru wyjaśnień z podział
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/base_confidence_exp_dog}
-		\caption{Dog}  \label{rys:base_confidence_exp_dog}
+		\caption{Pies}  \label{rys:base_confidence_exp_dog}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_bird}
-		\caption{Bird}  \label{rys:base_confidence_exp_bird}
+		\caption{Ptak}  \label{rys:base_confidence_exp_bird}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_vehicle}
-		\caption{Vehicle}  \label{rys:base_confidence_exp_vehicle}
+		\caption{Pojazd na kołach}  \label{rys:base_confidence_exp_vehicle}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_reptile}
-		\caption{Reptile}  \label{rys:base_confidence_exp_reptile}
+		\caption{Gad}  \label{rys:base_confidence_exp_reptile}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_carnivore}
-		\caption{Carnivore}  \label{rys:base_confidence_exp_carnivore}
+		\caption{Mięsożerca}  \label{rys:base_confidence_exp_carnivore}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_insect}
-		\caption{Insect}  \label{rys:base_confidence_exp_insect}
+		\caption{Insekt}  \label{rys:base_confidence_exp_insect}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_music}
-		\caption{Instrument}  \label{rys:base_confidence_exp_music}
+		\caption{Instrument muzyczny}  \label{rys:base_confidence_exp_music}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_primate}
-		\caption{Primate}  \label{rys:base_confidence_exp_primate}
+		\caption{Naczelny}  \label{rys:base_confidence_exp_primate}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_exp_fish}
-		\caption{Fish}  \label{rys:base_confidence_exp_fish}
+		\caption{Ryba}  \label{rys:base_confidence_exp_fish}
 	\end{subfigure}
 	\caption{Zmiana pewności po pozostawieniu jedynie obszaru wyjaśnienia dla różnych kategorii}
 	\label{rys:base_confidence_exp_category}
@@ -491,39 +491,39 @@ Analiza średniego spadku pewności po usunięciu obszaru wyjaśnienia pomogła 
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_dog}
-		\caption{Dog}  \label{rys:base_confidence_no_exp_dog}
+		\caption{Pies}  \label{rys:base_confidence_no_exp_dog}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_bird}
-		\caption{Bird}  \label{rys:base_confidence_no_exp_bird}
+		\caption{Ptak}  \label{rys:base_confidence_no_exp_bird}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_vehicle}
-		\caption{Vehicle}  \label{rys:base_confidence_no_exp_vehicle}
+		\caption{Pojazd na kołach}  \label{rys:base_confidence_no_exp_vehicle}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_reptile}
-		\caption{Reptile}  \label{rys:base_confidence_no_exp_reptile}
+		\caption{Gad}  \label{rys:base_confidence_no_exp_reptile}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_carnivore}
-		\caption{Carnivore}  \label{rys:base_confidence_no_exp_carnivore}
+		\caption{Mięsożerca}  \label{rys:base_confidence_no_exp_carnivore}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_insect}
-		\caption{Insect}  \label{rys:base_confidence_no_exp_insect}
+		\caption{Insekt}  \label{rys:base_confidence_no_exp_insect}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_music}
-		\caption{Instrument}  \label{rys:base_confidence_no_exp_music}
+		\caption{Instrument muzyczny}  \label{rys:base_confidence_no_exp_music}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_primate}
-		\caption{Primate}  \label{rys:base_confidence_no_exp_primate}
+		\caption{Naczelny}  \label{rys:base_confidence_no_exp_primate}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering\includegraphics[width=.9\textwidth]{img/base_confidence_no_exp_fish}
-		\caption{Fish}  \label{rys:base_confidence_no_exp_fish}
+		\caption{Ryba}  \label{rys:base_confidence_no_exp_fish}
 	\end{subfigure}
 	\caption{Zmiana pewności po usunięciu obszaru wyjaśnienia dla różnych kategorii}
 	\label{rys:category_confidence_no_exp}
@@ -634,7 +634,7 @@ Następnie zmniejszała się ta wartość wraz ze wzrostem rozmiarów obiektu.
 
 GradCAM wykazuje najlepsze wyniki w zakresie pokrycia istotnych obszarów decyzyjnych na obrazach, zwłaszcza w przypadku większych obiektów.
 LIME ma tendencję do generowania bardziej precyzyjnych wyjaśnień dla mniejszych obiektów, ale traci na efektywności dla większych.
-SHAP ma najniższe wartości IOU, co może ograniczać jego zastosowanie.
+SHAP ma najniższe wartości IoU, co może ograniczać jego zastosowanie.
 
 \vspace{1cm}
 
@@ -654,6 +654,7 @@ SHAP ma najniższe wartości IOU, co może ograniczać jego zastosowanie.
 		\centering\includegraphics[width=.9\textwidth]{img/areaincorrect_size_shap}
 		\caption{SHAP}  \label{rys:areaincorrect_size_shap}
 	\end{subfigure}
+	\caption{Procent obszaru wyjaśnienia poza obiektem}
 	\label{rys:areaincorrect_size}
 \end{figure}
 
@@ -674,7 +675,7 @@ SHAP ma najniższe wartości IOU, co może ograniczać jego zastosowanie.
 		\textbf{Bardzo duży} & 4.259065         & 4.566799      & 4.921229      \\
 		\hline
 	\end{tabular}
-	\caption{Procent obszaru wyjaśnienia poza obiektem}
+	\caption{Średni procent obszaru wyjaśnienia poza obiektem w zależności od rozmiaru obiektu na obrazie}
 	\label{tab:size_area}
 \end{table}
 
@@ -742,7 +743,7 @@ Najlepiej poradził sobie z tym LIME, który posiadał najlepsze wyniki dla wszy
 		\textbf{Bardzo duży} & 19.1489\%        & 00.0000\%     & 00.0000\%     \\
 		\hline
 	\end{tabular}
-	\caption{Procent przypadków, w których pewność się zwiększyła sam obszar wyjaśnienia dla rozmiarów}
+	\caption{Procent przypadków, w których pewność się zwiększyła sam obszar wyjaśnienia dla rozmiarów w zależności od rozmiaru obiektu na obrazie}
 	\label{tab:size_confidence_exp_percent}
 \end{table}
 
@@ -798,7 +799,7 @@ GradCAM okazuje się najskuteczniejszy w generowaniu istotnych wyjaśnień, któ
 		\textbf{Bardzo duży} & -0.794106        & -0.299977     & -0.199899     \\
 		\hline
 	\end{tabular}
-	\caption{Średni spadek po usunięciu obszaru wyjaśnienia dla rozmiarów}
+	\caption{Średni spadek pewności modelu po usunięciu obszaru wyjaśnienia w zależności od rozmiaru obiektu }
 	\label{tab:size_confidence_no_exp}
 \end{table}
 

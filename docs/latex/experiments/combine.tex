@@ -67,7 +67,7 @@ Powodem było zbyt duże zmniejszenie wielkość wyjaśnień.
 		GradCAM, LIME i SHAP & -0.789047       \\
 		\hline
 	\end{tabular}
-	\caption{Zmień na procent}
+	\caption{Średni spadek pewności po pozostawieniu jedynie obszaru wyjaśnienia dla części wspólnej połączonych wyjaśnień}
 	\label{tab:combineandconfidenceand}
 \end{table}
 Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na \ref{rys:combineandconfidencean} oraz w tabeli \ref{tab:combineandconfidenceand}.
@@ -95,7 +95,7 @@ Najlepsze wyniki dla połączenia \textbf{GradCAM} z \textbf{SHAP}, jednak nadal
 		GradCAM, LIME i SHAP & -0.059519       \\
 		\hline
 	\end{tabular}
-	\caption{Średnia zmiana pewności usunięciu części wspólne wyjaśnień}
+	\caption{Średni spadek pewności modelu po usunięciu obszaru wyjaśnienia dla części wspólnej połączonych wyjaśnień}
 	\label{tab:combineandconfidenceandno}
 \end{table}
 Zmiana pewności przy usunięciu obszarów wyjaśnienia zostały przedstawiona na rysunku \ref{rys:combineandconfidenceandno} oraz w tabeli \ref{tab:combineandconfidenceandno}
@@ -128,7 +128,7 @@ W tej sekcji przeanalizowano, jak różne metody XAI mogą zostać połączone p
 		GradCAM, LIME i SHAP & 0.448209    \\
 		\hline
 	\end{tabular}
-	\caption{Średnie wartości IoU części wspólnej połączonych wyjaśnień}
+	\caption{Średnie wartości IoU sumy obszarów połączonych wyjaśnień}
 	\label{tab:combineandiou}
 \end{table}
 Tabela \ref{tab:combineandiou} średnie wartości dla połączonych wyjaśnień różnych metod XAI.
@@ -156,7 +156,7 @@ Wszystkie połączenia dały lepsze wyniki niż dowolne jedno sani wyjaśnienie.
 		GradCAM, LIME i SHAP & -0.169937       \\
 		\hline
 	\end{tabular}
-	\caption{Zmień}
+	\caption{Średni spadek pewności modelu po pozostawieniu jedynie obszaru wyjaśnienia dla sumy obszarów połączonych wyjaśnień}
 	\label{tab:combineandconfidenceor}
 \end{table}
 Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na \ref{rys:combineandconfidenceor}oraz w tabeli \ref{tab:combineandconfidenceor}.
@@ -184,7 +184,7 @@ Najgorsze wyniki uzyskało połączenie \textbf{SHAP} oraz \textbf{LIME}, nadal 
 		GradCAM, LIME i SHAP & -0.799201       \\
 		\hline
 	\end{tabular}
-	\caption{Średnia zmiana pewności usunięciu obszarów}
+	\caption{Średni spadek pewności modelu po usunięciu obszaru wyjaśnienia dla sumy obszarów połączonych wyjaśnień}
 	\label{tab:combineandconfidenceorno}
 \end{table}
 Zmiana pewności po pozostawieniu samego wyjaśnienia została przedstawiona na \ref{rys:combineandconfidenceorno}oraz w tabeli \ref{tab:combineandconfidenceorno}.
