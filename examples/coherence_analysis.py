@@ -5,19 +5,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.applications.resnet50 import (
-    ResNet50,
-    decode_predictions,
-    preprocess_input,
-)
+from ImageXAI.measurements import iou_explanations
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing import image
-
-from ImageXAI.measurements import (
-    confidence_change_mask,
-    confidence_change_wo_mask,
-    iou_explanations,
-)
 
 base_model = ResNet50(weights="imagenet")
 model = Model(inputs=base_model.input, outputs=base_model.output)
@@ -43,10 +34,7 @@ images_done_path = f"{base_path}explanations/images_done"
 with open(images_done_path, "r") as f:
     images_done = f.read().splitlines()
 
-c = 0
 for img_name in images_done:
-    print(c / len(images_done))
-    c += 1
     for category in categories:
         path_img = f"{base_path}Imagenet/original/val/{category}/{img_name}"
         path_fg = f"{base_path}/Imagenet/fg_mask/val/{category}/{img_name[:-4]}npy"

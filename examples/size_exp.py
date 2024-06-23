@@ -1,24 +1,13 @@
 import os
 import pickle
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-from tensorflow.keras.applications.resnet50 import (
-    ResNet50,
-    decode_predictions,
-    preprocess_input,
-)
+from ImageXAI.measurements import exp_size
+from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
 from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing import image
-
-from ImageXAI.measurements import (
-    confidence_change_mask,
-    confidence_change_wo_mask,
-    iou,
-    new_predictions,
-)
 
 base_model = ResNet50(weights="imagenet")
 model = Model(inputs=base_model.input, outputs=base_model.output)
@@ -44,10 +33,7 @@ images_done_path = f"{base_path}explanations/images_done"
 with open(images_done_path, "r") as f:
     images_done = f.read().splitlines()
 
-c = 0
 for img_name in images_done:
-    print(c / len(images_done))
-    c += 1
     for category in categories:
         path_img = f"{base_path}Imagenet/original/val/{category}/{img_name}"
         path_fg = f"{base_path}/Imagenet/fg_mask/val/{category}/{img_name[:-4]}npy"
@@ -64,27 +50,14 @@ for img_name in images_done:
         path_explanation = f"{base_path}explanations/{img_name}-{exp_type}.pkl"
         with open(path_explanation, "rb") as f:
             exp = pickle.load(f)
-        old_pred, new_pred = new_predictions(
-            img_processed=img_processed, exp=exp, exp_type=exp_type, model=model
-        )
-        old_pred_wo_exp, new_pred_wo_exp = new_predictions(
-            img_processed=img_processed,
-            exp=exp,
-            exp_type=exp_type,
-            model=model,
-            no_explanation=True,
-        )
+        size = exp_size(exp, exp_type)
         results_list.append(
             {
                 "img_name": img_name,
                 "exp_type": exp_type,
-                "iou": iou(mask=mask, exp=exp, exp_type=exp_type),
-                "old_pred": old_pred,
-                "new_pred": new_pred,
-                "old_pred_wo_exp": old_pred_wo_exp,
-                "new_pred_wo_exp": new_pred_wo_exp,
+                "exp_size": size, 
             }
         )
 results_df = pd.DataFrame(results_list)
 
-results_df.to_pickle("experiment.pkl")
+results_df.to_pickle("size_exp.pkl")
